@@ -4,4 +4,10 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="LoginGoodDayTxt">Hi, Good Day!</string>
     <string name="PleaseSignInTxt">Please sign in to continue.</string>
+    <string name="EmailHintTxt">Email</string>
+    <string name="PasswordHintTxt">Password</string>
+    <string name="LoginButtonText">Login</string>
+    <string name="HelloTxt">Hello,</string>
+    <string name="DashboardNameExampleTxt">Tinara Nathania</string>
+    <string name="RecentProgressText">Recent Progress</string>
 </resources>

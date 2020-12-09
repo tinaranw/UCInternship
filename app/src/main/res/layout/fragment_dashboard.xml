@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/dashboard_cons"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.DashboardFragment">
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="118dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/dashboardbg_img"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:adjustViewBounds="true"
+                android:src="@drawable/ic_dashboardbg"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/profilepic_img"
+                android:layout_width="106dp"
+                android:layout_height="112dp"
+                android:layout_marginEnd="36dp"
+                android:src="@drawable/ic_profilepicture"
+                app:layout_constraintBottom_toBottomOf="@+id/dashboardbg_img"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/dashboardbg_img"
+                app:layout_constraintVertical_bias="0.688" />
+
+            <TextView
+                android:id="@+id/hello_txt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginBottom="152dp"
+                android:fontFamily="@font/opensans_regular"
+                android:text="@string/HelloTxt"
+                android:textColor="#C45E38"
+                android:textSize="18sp    "
+                app:layout_constraintBottom_toBottomOf="@+id/dashboardbg_img"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <TextView
+                android:id="@+id/dashboardname_text"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="24dp"
+                android:fontFamily="@font/montserrat_bold"
+                android:text="@string/DashboardNameExampleTxt"
+                android:textColor="#002842"
+                android:textSize="24sp"
+                app:layout_constraintEnd_toStartOf="@+id/profilepic_img"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/hello_txt"
+                app:layout_constraintTop_toBottomOf="@+id/hello_txt" />
+
+            <CalendarView
+                android:id="@+id/dashboardcalendar_cal"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="24dp"
+                android:layout_marginEnd="24dp"
+                android:background="@drawable/calendarbackground"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/profilepic_img" />
+
+            <TextView
+                android:id="@+id/recentprogress_txt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:fontFamily="@font/montserrat_regular"
+                android:text="@string/RecentProgressText"
+                android:textColor="#C45E38"
+                android:textSize="24sp"
+                app:layout_constraintStart_toStartOf="@+id/dashboardcalendar_cal"
+                app:layout_constraintTop_toBottomOf="@+id/dashboardcalendar_cal" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>
