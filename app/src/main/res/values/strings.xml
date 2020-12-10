@@ -36,5 +36,11 @@
     <string name="offer">Offer</string>
     <string name="request">Request</string>
     <string name="home">Home</string>
+<<<<<<< Updated upstream
+=======
+    <string name="ProgressProjectNameTxt">Project XXX</string>
+    <string name="ProgressNameTxt">Make a Powerpoint Presentation</string>
+    <string name="no_attachment_text">No Attachment</string>
+>>>>>>> Stashed changes
 
 </resources>

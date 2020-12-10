@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/projectlist_cons"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.ProjectListFragment">
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/other_img"
+                android:layout_width="75dp"
+                android:layout_height="75dp"
+                android:layout_marginEnd="24dp"
+                android:src="@drawable/ic_othericon"
+                app:layout_constraintBottom_toBottomOf="@+id/event_img"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/event_img"
+                app:layout_constraintTop_toTopOf="@+id/event_img" />
+
+            <ImageView
+                android:id="@+id/event_img"
+                android:layout_width="75dp"
+                android:layout_height="75dp"
+                android:src="@drawable/ic_eventicon"
+                app:layout_constraintBottom_toBottomOf="@+id/education_img"
+                app:layout_constraintEnd_toStartOf="@+id/other_img"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/education_img"
+                app:layout_constraintTop_toTopOf="@+id/education_img" />
+
+            <ImageView
+                android:id="@+id/education_img"
+                android:layout_width="75dp"
+                android:layout_height="75dp"
+                android:src="@drawable/ic_educationicon"
+                app:layout_constraintBottom_toBottomOf="@+id/request_img"
+                app:layout_constraintEnd_toStartOf="@+id/event_img"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/request_img"
+                app:layout_constraintTop_toTopOf="@+id/request_img" />
+
+            <ImageView
+                android:id="@+id/request_img"
+                android:layout_width="75dp"
+                android:layout_height="75dp"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="24dp"
+                android:layout_weight="1"
+                android:src="@drawable/ic_requesticon"
+                app:layout_constraintEnd_toStartOf="@+id/education_img"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/projectsearchbar_search" />
+
+            <SearchView
+                android:id="@+id/projectsearchbar_search"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="24dp"
+                android:layout_marginEnd="24dp"
+                android:background="@drawable/calendarbackground"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+            </SearchView>
+
+            <TextView
+                android:id="@+id/request_txt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="@string/RequestText"
+                android:textColor="#002842"
+                app:layout_constraintEnd_toEndOf="@+id/request_img"
+                app:layout_constraintStart_toStartOf="@+id/request_img"
+                app:layout_constraintTop_toBottomOf="@+id/request_img" />
+
+            <TextView
+                android:id="@+id/education_txt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="@string/EducationText"
+                android:textColor="#002842"
+                app:layout_constraintEnd_toEndOf="@+id/education_img"
+                app:layout_constraintStart_toStartOf="@+id/education_img"
+                app:layout_constraintTop_toBottomOf="@+id/education_img" />
+
+            <TextView
+                android:id="@+id/event_txt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="@string/EventText"
+                android:textColor="#002842"
+                app:layout_constraintEnd_toEndOf="@+id/event_img"
+                app:layout_constraintStart_toStartOf="@+id/event_img"
+                app:layout_constraintTop_toBottomOf="@+id/event_img" />
+
+            <TextView
+                android:id="@+id/other_txt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="@string/OtherText"
+                android:textColor="#002842"
+                app:layout_constraintEnd_toEndOf="@+id/other_img"
+                app:layout_constraintStart_toStartOf="@+id/other_img"
+                app:layout_constraintTop_toBottomOf="@+id/other_img" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginTop="24dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/education_txt" />
+
+            <ImageView
+                android:id="@+id/imageView9"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:adjustViewBounds="true"
+                android:src="@drawable/ic_no_list"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/request_txt" />
+
+            <TextView
+                android:id="@+id/textView8"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="96dp"
+                android:layout_marginEnd="8dp"
+                android:fontFamily="@font/montserrat_semibold"
+                android:text="You have no project \nat the moment"
+                android:textAlignment="textStart"
+                android:textColor="@color/blue"
+                android:textSize="18sp"
+                app:layout_constraintEnd_toEndOf="@+id/imageView9"
+                app:layout_constraintTop_toTopOf="@+id/imageView9" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>
