@@ -90,7 +90,7 @@
                 android:id="@+id/textView14"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="16dp"
                 android:fontFamily="@font/opensans_regular"
                 android:text="Progress Description"
                 android:textColor="@color/text2"
@@ -108,6 +108,57 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="@+id/textView14"
                 app:layout_constraintTop_toBottomOf="@+id/textView14" />
+
+            <TextView
+                android:id="@+id/textView7"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:fontFamily="@font/opensans_regular"
+                android:text="Time Taken"
+                android:textColor="@color/text2"
+                android:textSize="18sp"
+                app:layout_constraintStart_toStartOf="@+id/desc_progress_txt"
+                app:layout_constraintTop_toBottomOf="@+id/desc_progress_txt" />
+
+            <TextView
+                android:id="@+id/start_time_txt"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="TextView"
+                app:layout_constraintStart_toStartOf="@+id/textView7"
+                app:layout_constraintTop_toBottomOf="@+id/textView7" />
+
+            <TextView
+                android:id="@+id/textView11"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:text="-"
+                app:layout_constraintStart_toEndOf="@+id/start_time_txt"
+                app:layout_constraintTop_toTopOf="@+id/start_time_txt" />
+
+            <TextView
+                android:id="@+id/end_time_txt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:text="TextView"
+                app:layout_constraintStart_toEndOf="@+id/textView11"
+                app:layout_constraintTop_toTopOf="@+id/textView11" />
+
+            <TextView
+                android:id="@+id/textView16"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:fontFamily="@font/montserrat_semibold"
+                android:text="Progress Attachment"
+                android:textColor="@color/blue"
+                android:textSize="16sp"
+                app:layout_constraintStart_toStartOf="@+id/start_time_txt"
+                app:layout_constraintTop_toBottomOf="@+id/start_time_txt" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.core.widget.NestedScrollView>

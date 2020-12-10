@@ -1,10 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="purple_200">#FFBB86FC</color>
-    <color name="purple_500">#FF6200EE</color>
-    <color name="purple_700">#FF3700B3</color>
-    <color name="teal_200">#FF03DAC5</color>
-    <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="Brown">#CE674A</color>
@@ -23,5 +18,8 @@
     <color name="button_enabled">#c45e38</color>
     <color name="button_disabled">#AAA4A2</color>
     <color name="status_box">#fee0bc</color>
+    <color name="card_status">#f3a364</color>
+    <color name="bottom_stud">#D9C480</color>
+    <color name="button_applicant">#0F8A9B</color>
 
 </resources>
