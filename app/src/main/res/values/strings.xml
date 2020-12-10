@@ -2,20 +2,39 @@
     <string name="app_name">UCInternship</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <
-    <
-    <
-    <
-    <
-    <
-    < Updated upstream
+
     <string name="LoginGoodDayTxt">Hi, Good Day!</string>
     <string name="PleaseSignInTxt">Please sign in to continue.</string>
+
+    <string name="EmailHintTxt">Email</string>
+    <string name="PasswordHintTxt">Password</string>
+    <string name="LoginButtonText">Login</string>
+    <string name="HelloTxt">Hello,</string>
+    <string name="DashboardNameExampleTxt">Tinara Nathania</string>
+    <string name="RecentProgressText">Recent Progress</string>
+    <string name="RequestText">Request</string>
+    <string name="EducationText">Education</string>
+    <string name="EventText">Event</string>
+    <string name="OtherText">Other</string>
+    <string name="ProjectNameText">Project XXX</string>
+    <string name="ProjectStatusText">Ongoing</string>
+    <string name="ProjectCategoryText">Event</string>
+    <string name="ProjectDescriptionTitleText">Project Description</string>
+    <string name="ProjectDescriptionText">Lorem Ipsum is simply dummy text of the printing  and typesetting industry. Lorem Ipsum has been  the industry\'s standard dummy text ever since the  1500s, when an unknown printer took a galley of type  and scrambled it to make a type specimen book.</string>
+    <string name="ProjectDurationTitleText">Duration: </string>
+    <string name="ProjectDurationText">30 hours</string>
+    <string name="ProjectDeadlineTitleText">Deadline: </string>
+    <string name="ProjectDeadlineText">13 November 2020</string>
+    <string name="ProjectAttachmentTitleText">Project Attachments</string>
+    <string name="RejectButtonText">Reject</string>
+    <string name="ApproveButtonText">Approve</string>
+    <string name="AddCommentText">Add Your Comment</string>
+    <string name="AddCommentBtnText">Add Comment</string>
+
     <string name="profile">Profile</string>
     <string name="list">List</string>
     <string name="offer">Offer</string>
     <string name="request">Request</string>
     <string name="home">Home</string>
-    =======
-    >>>>>>> Stashed changes
+
 </resources>

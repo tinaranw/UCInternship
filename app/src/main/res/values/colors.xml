@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="Brown">#CE674A</color>
 
     <color name="bg">#f8fbfb</color>
     <color name="green">#4b5b3d</color>
@@ -15,5 +18,8 @@
     <color name="button_enabled">#c45e38</color>
     <color name="button_disabled">#AAA4A2</color>
     <color name="status_box">#fee0bc</color>
+    <color name="card_status">#f3a364</color>
+    <color name="bottom_stud">#D9C480</color>
+    <color name="button_applicant">#0F8A9B</color>
 
 </resources>
