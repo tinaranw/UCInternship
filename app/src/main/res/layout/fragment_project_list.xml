@@ -135,6 +135,33 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/education_txt" />
 
+            <ImageView
+                android:id="@+id/imageView9"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:adjustViewBounds="true"
+                android:src="@drawable/ic_no_list"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/request_txt" />
+
+            <TextView
+                android:id="@+id/textView8"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="96dp"
+                android:layout_marginEnd="8dp"
+                android:fontFamily="@font/montserrat_semibold"
+                android:text="You have no project \nat the moment"
+                android:textAlignment="textStart"
+                android:textColor="@color/blue"
+                android:textSize="18sp"
+                app:layout_constraintEnd_toEndOf="@+id/imageView9"
+                app:layout_constraintTop_toTopOf="@+id/imageView9" />
+
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.core.widget.NestedScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>

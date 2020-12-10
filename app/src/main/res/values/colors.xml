@@ -21,5 +21,6 @@
     <color name="card_status">#f3a364</color>
     <color name="bottom_stud">#D9C480</color>
     <color name="button_applicant">#0F8A9B</color>
+    <color name="transparent">#00FFFFFF</color>
 
 </resources>

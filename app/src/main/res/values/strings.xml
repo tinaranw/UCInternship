@@ -33,6 +33,7 @@
     <string name="offer">Offer</string>
     <string name="request">Request</string>
     <string name="home">Home</string>
+
     <string name="ProgressProjectNameTxt">Project XXX</string>
     <string name="ProgressNameTxt">Make a Powerpoint Presentation</string>
     <string name="ReqProjectAttachmentText">Visit the website to see the attachments.</string>
@@ -42,5 +43,7 @@
     <string name="TotalPendingText">3</string>
     <string name="TotalAcceptedText">0</string>
     <string name="ProjectText">Projects</string>
+    <string name="no_attachment_text">No Attachment</string>
+
 
 </resources>

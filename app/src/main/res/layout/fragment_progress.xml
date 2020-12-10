@@ -10,11 +10,13 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/bg"
-        android:fillViewport="true">
+        android:fillViewport="true"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="59dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" >
+            android:layout_height="wrap_content">
 
             <ImageView
                 android:id="@+id/imageView6"
@@ -159,6 +161,15 @@
                 android:textSize="16sp"
                 app:layout_constraintStart_toStartOf="@+id/start_time_txt"
                 app:layout_constraintTop_toBottomOf="@+id/start_time_txt" />
+
+            <TextView
+                android:id="@+id/no_attachment_txt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="@string/no_attachment_text"
+                app:layout_constraintStart_toStartOf="@+id/textView16"
+                app:layout_constraintTop_toBottomOf="@+id/textView16" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.core.widget.NestedScrollView>
