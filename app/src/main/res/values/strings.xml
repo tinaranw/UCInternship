@@ -28,4 +28,6 @@
     <string name="ProjectAttachmentTitleText">Project Attachments</string>
     <string name="RejectButtonText">Reject</string>
     <string name="ApproveButtonText">Approve</string>
+    <string name="AddCommentText">Add Your Comment</string>
+    <string name="AddCommentBtnText">Add Comment</string>
 </resources>
