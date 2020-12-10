@@ -30,4 +30,20 @@
     <string name="ApproveButtonText">Approve</string>
     <string name="AddCommentText">Add Your Comment</string>
     <string name="AddCommentBtnText">Add Comment</string>
+    <
+    <
+    <
+    <
+    <
+    <
+    < Updated upstream
+    <string name="LoginGoodDayTxt">Hi, Good Day!</string>
+    <string name="PleaseSignInTxt">Please sign in to continue.</string>
+    <string name="profile">Profile</string>
+    <string name="list">List</string>
+    <string name="offer">Offer</string>
+    <string name="request">Request</string>
+    <string name="home">Home</string>
+    =======
+    >>>>>>> Stashed changes
 </resources>
