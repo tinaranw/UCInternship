@@ -11,7 +11,7 @@
         android:theme="@style/Theme.UCInternship">
         <activity android:name=".adapter.StudentAdapter"></activity>
         <activity android:name=".adapter.ProjectAdapter" />
-        <activity android:name=".MainActivity">
+        <activity android:name=".ui.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

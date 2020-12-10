@@ -35,5 +35,12 @@
     <string name="home">Home</string>
     <string name="ProgressProjectNameTxt">Project XXX</string>
     <string name="ProgressNameTxt">Make a Powerpoint Presentation</string>
+    <string name="ReqProjectAttachmentText">Visit the website to see the attachments.</string>
+    <string name="YourApplicationsText">Your Applications</string>
+    <string name="PendingStatusText">Pending</string>
+    <string name="AcceptedStatusText">Accepted</string>
+    <string name="TotalPendingText">3</string>
+    <string name="TotalAcceptedText">0</string>
+    <string name="ProjectText">Projects</string>
 
 </resources>

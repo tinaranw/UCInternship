@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:id="@+id/yourapplications_txt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="24dp"
+        android:fontFamily="@font/montserrat_medium"
+        android:text="@string/YourApplicationsText"
+        android:textColor="#C45E38"
+        android:textSize="24sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/pendingcardbg_img"
+        android:layout_width="150dp"
+        android:layout_height="175dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="24dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/acceptedcardbg_img"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/pendingstatus_txt"
+        app:srcCompat="@drawable/commentbg" />
+
+    <ImageView
+        android:id="@+id/acceptedcardbg_img"
+        android:layout_width="150dp"
+        android:layout_height="175dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/pendingcardbg_img"
+        app:layout_constraintTop_toBottomOf="@+id/acceptedstatus_txt"
+        app:srcCompat="@drawable/commentbg" />
+
+    <TextView
+        android:id="@+id/pendingstatus_txt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:fontFamily="@font/montserrat_semibold"
+        android:text="@string/PendingStatusText"
+        android:textColor="#000000"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="@+id/pendingcardbg_img"
+        app:layout_constraintStart_toStartOf="@+id/pendingcardbg_img"
+        app:layout_constraintTop_toBottomOf="@+id/yourapplications_txt" />
+
+    <TextView
+        android:id="@+id/acceptedstatus_txt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/montserrat_semibold"
+        android:text="@string/AcceptedStatusText"
+        android:textColor="#000000"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="@+id/pendingstatus_txt"
+        app:layout_constraintEnd_toEndOf="@+id/acceptedcardbg_img"
+        app:layout_constraintStart_toStartOf="@+id/acceptedcardbg_img"
+        app:layout_constraintTop_toTopOf="@+id/pendingstatus_txt" />
+
+    <TextView
+        android:id="@+id/totalpending_txt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:fontFamily="@font/montserrat_semibold"
+        android:text="@string/TotalPendingText"
+        android:textColor="#000000"
+        android:textSize="72sp"
+        app:layout_constraintEnd_toEndOf="@+id/pendingcardbg_img"
+        app:layout_constraintStart_toStartOf="@+id/pendingcardbg_img"
+        app:layout_constraintTop_toTopOf="@+id/pendingcardbg_img" />
+
+    <TextView
+        android:id="@+id/totalaccepted_txt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:fontFamily="@font/montserrat_semibold"
+        android:text="@string/TotalAcceptedText"
+        android:textColor="#000000"
+        android:textSize="72sp"
+        app:layout_constraintEnd_toEndOf="@+id/acceptedcardbg_img"
+        app:layout_constraintStart_toStartOf="@+id/acceptedcardbg_img"
+        app:layout_constraintTop_toTopOf="@+id/acceptedcardbg_img" />
+
+    <TextView
+        android:id="@+id/projectlabel_txt"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginTop="8dp"
+        android:fontFamily="@font/opensans_bold"
+        android:text="@string/ProjectText"
+        android:textColor="#C45E38"
+        app:layout_constraintBottom_toBottomOf="@+id/pendingcardbg_img"
+        app:layout_constraintEnd_toEndOf="@+id/totalpending_txt"
+        app:layout_constraintStart_toStartOf="@+id/totalpending_txt"
+        app:layout_constraintTop_toBottomOf="@+id/totalpending_txt" />
+
+    <TextView
+        android:id="@+id/projectlabel_txt2"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginTop="8dp"
+        android:fontFamily="@font/opensans_bold"
+        android:text="@string/ProjectText"
+        android:textColor="#C45E38"
+        app:layout_constraintBottom_toBottomOf="@+id/acceptedcardbg_img"
+        app:layout_constraintEnd_toEndOf="@+id/totalaccepted_txt"
+        app:layout_constraintStart_toStartOf="@+id/totalaccepted_txt"
+        app:layout_constraintTop_toBottomOf="@+id/totalaccepted_txt" />
+</androidx.constraintlayout.widget.ConstraintLayout>
