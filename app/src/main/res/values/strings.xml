@@ -2,10 +2,8 @@
     <string name="app_name">UCInternship</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-
     <string name="LoginGoodDayTxt">Hi, Good Day!</string>
     <string name="PleaseSignInTxt">Please sign in to continue.</string>
-
     <string name="EmailHintTxt">Email</string>
     <string name="PasswordHintTxt">Password</string>
     <string name="LoginButtonText">Login</string>
@@ -30,11 +28,12 @@
     <string name="ApproveButtonText">Approve</string>
     <string name="AddCommentText">Add Your Comment</string>
     <string name="AddCommentBtnText">Add Comment</string>
-
     <string name="profile">Profile</string>
     <string name="list">List</string>
     <string name="offer">Offer</string>
     <string name="request">Request</string>
     <string name="home">Home</string>
+    <string name="ProgressProjectNameTxt">Project XXX</string>
+    <string name="ProgressNameTxt">Make a Powerpoint Presentation</string>
 
 </resources>
