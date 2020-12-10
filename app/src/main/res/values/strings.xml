@@ -2,9 +2,20 @@
     <string name="app_name">UCInternship</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-<<<<<<< Updated upstream
+    <
+    <
+    <
+    <
+    <
+    <
+    < Updated upstream
     <string name="LoginGoodDayTxt">Hi, Good Day!</string>
     <string name="PleaseSignInTxt">Please sign in to continue.</string>
-=======
->>>>>>> Stashed changes
+    <string name="profile">Profile</string>
+    <string name="list">List</string>
+    <string name="offer">Offer</string>
+    <string name="request">Request</string>
+    <string name="home">Home</string>
+    =======
+    >>>>>>> Stashed changes
 </resources>

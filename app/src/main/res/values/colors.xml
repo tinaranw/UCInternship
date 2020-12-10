@@ -1,10 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="purple_200">#FFBB86FC</color>
-    <color name="purple_500">#FF6200EE</color>
-    <color name="purple_700">#FF3700B3</color>
-    <color name="teal_200">#FF03DAC5</color>
-    <color name="teal_700">#FF018786</color>
-    <color name="black">#FF000000</color>
-    <color name="white">#FFFFFFFF</color>
+
+    <color name="bg">#f8fbfb</color>
+    <color name="green">#4b5b3d</color>
+    <color name="nav">#a8be99</color>
+    <color name="nav_true">#fff6ee</color>
+    <color name="nav_false">#3e3932</color>
+    <color name="card_profile">#cae6c1</color>
+    <color name="blue">#0a2b2d</color>
+    <color name="text">#3e3932</color>
+    <color name="text2">#c45e38</color>
+    <color name="card_time">#f4bc90</color>
+    <color name="cont_task">#fee0bc</color>
+    <color name="button_enabled">#c45e38</color>
+    <color name="button_disabled">#AAA4A2</color>
+    <color name="status_box">#fee0bc</color>
+
 </resources>
