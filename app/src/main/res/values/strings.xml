@@ -44,6 +44,7 @@
     <string name="TotalAcceptedText">0</string>
     <string name="ProjectText">Projects</string>
     <string name="no_attachment_text">No Attachment</string>
+    <string name="RecentProgressText">Recent Progress</string>
 
 
 </resources>
