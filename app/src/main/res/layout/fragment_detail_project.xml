@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/detailproject_cons"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.DetailProjectFragment" >
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/projectdetailbg_img"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:adjustViewBounds="true"
+                android:src="@drawable/ic_detailprojectbg"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/detailproject_icon"
+                android:layout_width="142dp"
+                android:layout_height="122dp"
+                android:layout_marginStart="28dp"
+                android:layout_marginTop="152dp"
+                android:src="@drawable/ic_laptopicon"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/projectdetailbg_img" />
+
+            <TextView
+                android:id="@+id/projectname_txt"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:layout_marginEnd="112dp"
+                android:fontFamily="@font/montserrat_bold"
+                android:text="@string/ProjectNameText"
+                android:textColor="#002842"
+                android:textSize="30sp"
+                app:layout_constraintEnd_toEndOf="@+id/projectdetailbg_img"
+                app:layout_constraintStart_toStartOf="@+id/detailproject_icon"
+                app:layout_constraintTop_toBottomOf="@+id/detailproject_icon" />
+
+            <TextView
+                android:id="@+id/projectstatus_txt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/projectstatustextbg"
+                android:fontFamily="@font/opensans_regular"
+                android:paddingLeft="16dp"
+                android:paddingTop="4dp"
+                android:paddingRight="16dp"
+                android:paddingBottom="4dp"
+                android:text="@string/ProjectStatusText"
+                android:textColor="#FFFFFF"
+                app:layout_constraintStart_toStartOf="@+id/projectname_txt"
+                app:layout_constraintTop_toBottomOf="@+id/projectname_txt" />
+
+            <TextView
+                android:id="@+id/projectcategory_txt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:background="@drawable/projectcategorytextbg"
+                android:fontFamily="@font/opensans_regular"
+                android:paddingLeft="16dp"
+                android:paddingTop="4dp"
+                android:paddingRight="16dp"
+                android:paddingBottom="4dp"
+                android:text="@string/ProjectCategoryText"
+                android:textColor="#002842"
+                app:layout_constraintBottom_toBottomOf="@+id/projectstatus_txt"
+                app:layout_constraintStart_toEndOf="@+id/projectstatus_txt"
+                app:layout_constraintTop_toTopOf="@+id/projectstatus_txt" />
+
+            <TextView
+                android:id="@+id/projectdesctitle_txt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:fontFamily="@font/montserrat_medium"
+                android:text="@string/ProjectDescriptionTitleText"
+                android:textColor="#C45E38"
+                android:textSize="18sp"
+                app:layout_constraintStart_toStartOf="@+id/projectstatus_txt"
+                app:layout_constraintTop_toBottomOf="@+id/projectstatus_txt" />
+
+            <TextView
+                android:id="@+id/projectdesc_txt"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="24dp"
+                android:fontFamily="@font/opensans_regular"
+                android:text="@string/ProjectDescriptionText"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/projectdesctitle_txt"
+                app:layout_constraintTop_toBottomOf="@+id/projectdesctitle_txt" />
+
+            <TextView
+                android:id="@+id/projectdurationtitle_txt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:fontFamily="@font/montserrat_medium"
+                android:text="@string/ProjectDurationTitleText"
+                android:textColor="#C45E38"
+                android:textSize="18sp"
+                app:layout_constraintStart_toStartOf="@+id/projectdesc_txt"
+                app:layout_constraintTop_toBottomOf="@+id/projectdesc_txt" />
+
+            <TextView
+                android:id="@+id/projectduration_txt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:fontFamily="@font/opensans_regular"
+                android:text="@string/ProjectDurationText"
+                app:layout_constraintBottom_toBottomOf="@+id/projectdurationtitle_txt"
+                app:layout_constraintStart_toEndOf="@+id/projectdurationtitle_txt"
+                app:layout_constraintTop_toTopOf="@+id/projectdurationtitle_txt" />
+
+            <TextView
+                android:id="@+id/projectdeadlinetitle_txt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:fontFamily="@font/montserrat_medium"
+                android:text="@string/ProjectDeadlineTitleText"
+                android:textColor="#C45E38"
+                android:textSize="18sp"
+                app:layout_constraintStart_toStartOf="@+id/projectdurationtitle_txt"
+                app:layout_constraintTop_toBottomOf="@+id/projectdurationtitle_txt" />
+
+            <TextView
+                android:id="@+id/projectdeadline_txt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:text="@string/ProjectDeadlineText"
+                app:layout_constraintBottom_toBottomOf="@+id/projectdeadlinetitle_txt"
+                app:layout_constraintStart_toEndOf="@+id/projectdeadlinetitle_txt"
+                app:layout_constraintTop_toTopOf="@+id/projectdeadlinetitle_txt" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>
