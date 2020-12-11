@@ -23,6 +23,7 @@
     <color name="button_applicant">#0F8A9B</color>
     <color name="transparent">#00FFFFFF</color>
     <color name="var_prim">#749659</color>
+    <color name="task_status">#fdc27a</color>
 
 
 </resources>
