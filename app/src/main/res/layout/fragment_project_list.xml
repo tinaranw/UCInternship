@@ -133,7 +133,8 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/education_txt" />
+                app:layout_constraintTop_toBottomOf="@+id/education_txt"
+                tools:listitem="@layout/activity_project_adapter" />
 
             <ImageView
                 android:id="@+id/imageView9"

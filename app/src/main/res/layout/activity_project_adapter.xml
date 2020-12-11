@@ -18,11 +18,11 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="155dp">
+            android:layout_height="130dp">
 
             <View
                 android:id="@+id/divider6"
-                android:layout_width="300dp"
+                android:layout_width="250dp"
                 android:layout_height="0dp"
                 android:alpha="0.6"
                 android:background="@drawable/card_profile"
@@ -33,9 +33,9 @@
 
             <ImageView
                 android:id="@+id/imageView7"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
+                android:layout_width="94dp"
+                android:layout_height="83dp"
+                app:layout_constraintBottom_toBottomOf="@+id/divider6"
                 app:layout_constraintEnd_toEndOf="@+id/divider6"
                 app:layout_constraintStart_toEndOf="@+id/divider6"
                 app:layout_constraintTop_toTopOf="@+id/divider6"
@@ -43,8 +43,8 @@
 
             <View
                 android:id="@+id/divider7"
-                android:layout_width="110dp"
-                android:layout_height="30dp"
+                android:layout_width="100dp"
+                android:layout_height="25dp"
                 android:background="@drawable/card_status"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -61,6 +61,7 @@
                 android:text="TextView"
                 android:textAlignment="center"
                 android:textColor="@color/blue"
+                android:textSize="12sp"
                 app:layout_constraintBottom_toBottomOf="@+id/divider7"
                 app:layout_constraintEnd_toEndOf="@+id/divider7"
                 app:layout_constraintStart_toStartOf="parent"
@@ -71,11 +72,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="32dp"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="12dp"
                 android:fontFamily="@font/montserrat_semibold"
                 android:text="Design PPT"
                 android:textColor="@color/blue"
-                android:textSize="20sp"
+                android:textSize="18sp"
                 app:layout_constraintStart_toStartOf="@+id/divider6"
                 app:layout_constraintTop_toBottomOf="@+id/divider7" />
 
@@ -83,10 +84,11 @@
                 android:id="@+id/textView18"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="8dp"
                 android:fontFamily="@font/opensans_semibold"
                 android:text="SPV:"
                 android:textColor="@color/text2"
+                android:textSize="12sp"
                 app:layout_constraintStart_toStartOf="@+id/textView17"
                 app:layout_constraintTop_toBottomOf="@+id/textView17" />
 
@@ -94,10 +96,13 @@
                 android:id="@+id/textView19"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="4dp"
+                android:layout_marginBottom="8dp"
                 android:fontFamily="@font/opensans_semibold"
                 android:text="Duration:"
                 android:textColor="@color/text2"
+                android:textSize="12sp"
+                app:layout_constraintBottom_toBottomOf="@+id/divider6"
                 app:layout_constraintStart_toStartOf="@+id/textView18"
                 app:layout_constraintTop_toBottomOf="@+id/textView18" />
 
@@ -107,8 +112,11 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:fontFamily="@font/opensans_semibold"
+                android:maxLines="1"
                 android:text="TextView"
                 android:textColor="@color/black"
+                android:textSize="12sp"
+                app:layout_constraintBottom_toBottomOf="@+id/textView19"
                 app:layout_constraintStart_toEndOf="@+id/textView19"
                 app:layout_constraintTop_toTopOf="@+id/textView19" />
 
@@ -117,8 +125,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/opensans_semibold"
+                android:maxLines="1"
                 android:text="TextView"
                 android:textColor="@color/black"
+                android:textSize="12sp"
                 app:layout_constraintStart_toStartOf="@+id/textView20"
                 app:layout_constraintTop_toTopOf="@+id/textView18" />
         </androidx.constraintlayout.widget.ConstraintLayout>
