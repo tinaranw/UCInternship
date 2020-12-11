@@ -41,6 +41,11 @@
     <string name="ProgressProjectNameTxt">Project XXX</string>
     <string name="ProgressNameTxt">Make a Powerpoint Presentation</string>
     <string name="no_attachment_text">No Attachment</string>
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
+    <!--    <string name="RecentProgressText">Recent Progress</string>-->
+
 >>>>>>> Stashed changes
 
 </resources>

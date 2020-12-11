@@ -9,7 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.UCInternship">
-        <activity android:name=".adapter.StudentAdapter"></activity>
+        <activity android:name=".adapter.TaskAdapter"></activity>
+        <activity android:name=".adapter.StudentAdapter" />
         <activity android:name=".adapter.ProjectAdapter" />
         <activity android:name=".MainActivity">
             <intent-filter>
