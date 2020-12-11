@@ -129,11 +129,10 @@
                 android:id="@+id/projectduration_txt"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
                 android:fontFamily="@font/opensans_regular"
                 android:text="@string/ProjectDurationText"
                 app:layout_constraintBottom_toBottomOf="@+id/projectdurationtitle_txt"
-                app:layout_constraintStart_toEndOf="@+id/projectdurationtitle_txt"
+                app:layout_constraintStart_toStartOf="@+id/projectdeadline_txt"
                 app:layout_constraintTop_toTopOf="@+id/projectdurationtitle_txt" />
 
             <TextView
@@ -157,6 +156,38 @@
                 app:layout_constraintBottom_toBottomOf="@+id/projectdeadlinetitle_txt"
                 app:layout_constraintStart_toEndOf="@+id/projectdeadlinetitle_txt"
                 app:layout_constraintTop_toTopOf="@+id/projectdeadlinetitle_txt" />
+
+            <TextView
+                android:id="@+id/textView10"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:fontFamily="@font/montserrat_medium"
+                android:text="SPV:"
+                android:textColor="#C45E38"
+                android:textSize="18sp"
+                app:layout_constraintStart_toStartOf="@+id/projectdeadlinetitle_txt"
+                app:layout_constraintTop_toBottomOf="@+id/projectdeadlinetitle_txt" />
+
+            <TextView
+                android:id="@+id/spv_name_txt"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="Laura T"
+                app:layout_constraintStart_toStartOf="@+id/projectdeadline_txt"
+                app:layout_constraintTop_toTopOf="@+id/textView10" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="16dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView10"
+                tools:listitem="@layout/activity_task_adapter" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.core.widget.NestedScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>
