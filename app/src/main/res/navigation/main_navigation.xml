@@ -49,4 +49,9 @@
         android:name="com.example.ucinternship.ui.DetailProjectFragment"
         android:label="fragment_detail_project"
         tools:layout="@layout/fragment_detail_project" />
+    <fragment
+        android:id="@+id/projectOfferFragment"
+        android:name="com.example.ucinternship.ui.student.ProjectOfferFragment"
+        android:label="fragment_project_offer"
+        tools:layout="@layout/fragment_project_offer" />
 </navigation>

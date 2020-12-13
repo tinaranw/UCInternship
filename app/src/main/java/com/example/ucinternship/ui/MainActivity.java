@@ -35,13 +35,13 @@ public class MainActivity extends AppCompatActivity {
         BottomNavigationView navigationView = findViewById(R.id.main_navview);
 
         AppBarConfiguration configuration = new AppBarConfiguration
-                .Builder(R.id.nav_home,R.id.nav_request, R.id.nav_offer, R.id.nav_list, R.id.nav_profile)
+                .Builder(R.id.dashboardFragment, R.id.projectOfferFragment, R.id.projectListFragment, R.id.profileFragment)
                 .build();
 
         navController = Navigation.findNavController(this, R.id.fragment);
 
         navController.addOnDestinationChangedListener((controller, destination, arguments) -> {
-            if(destination.getId() == R.id.nav_home || destination.getId() == R.id.nav_request || destination.getId() == R.id.nav_offer || destination.getId() == R.id.nav_list || destination.getId() == R.id.nav_profile){
+            if(destination.getId() == R.id.dashboardFragment ||destination.getId() == R.id.projectOfferFragment || destination.getId() == R.id.projectListFragment || destination.getId() == R.id.profileFragment){
                 navigationView.setVisibility(View.VISIBLE);
 
             }
@@ -55,6 +55,7 @@ public class MainActivity extends AppCompatActivity {
 
         NavigationUI.setupActionBarWithNavController(this, navController, configuration);
         NavigationUI.setupWithNavController(navigationView, navController);
+
     }
 
     @Override
