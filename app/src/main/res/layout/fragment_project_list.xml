@@ -140,7 +140,7 @@
                 tools:listitem="@layout/activity_project_adapter" />
 
             <ImageView
-                android:id="@+id/imageView9"
+                android:id="@+id/no_project_img"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
@@ -163,8 +163,8 @@
                 android:textAlignment="textStart"
                 android:textColor="@color/blue"
                 android:textSize="18sp"
-                app:layout_constraintEnd_toEndOf="@+id/imageView9"
-                app:layout_constraintTop_toTopOf="@+id/imageView9" />
+                app:layout_constraintEnd_toEndOf="@+id/no_project_img"
+                app:layout_constraintTop_toTopOf="@+id/no_project_img" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.core.widget.NestedScrollView>

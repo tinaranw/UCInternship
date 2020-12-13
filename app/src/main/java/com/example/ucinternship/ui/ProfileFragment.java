@@ -9,11 +9,35 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.example.ucinternship.R;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 
 public class ProfileFragment extends Fragment {
+
+    @BindView(R.id.profile_img)
+    ImageView image;
+    @BindView(R.id.nim_txt)
+    TextView nim;
+    @BindView(R.id.name_txt)
+    TextView name;
+    @BindView(R.id.department_txt)
+    TextView departemnt;
+    @BindView(R.id.email_txt)
+    TextView email;
+    @BindView(R.id.address_txt)
+    TextView address;
+    @BindView(R.id.phone_txt)
+    TextView phone;
+    @BindView(R.id.hour_remaining_txt)
+    TextView remaining;
+    @BindView(R.id.hour_completed_txt)
+    TextView completed;
 
     public ProfileFragment() {
         // Required empty public constructor
@@ -30,7 +54,8 @@ public class ProfileFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle("Your Profile");
+        ButterKnife.bind(this,view);
+        ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle("My Profile");
         ((AppCompatActivity) getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(false);
     }
 }
