@@ -1,4 +1,4 @@
-package com.example.ucinternship.ui;
+package com.example.ucinternship.ui.splash;
 
 import android.os.Bundle;
 
@@ -16,6 +16,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.ucinternship.R;
+import com.example.ucinternship.ui.SplashFragmentDirections;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
