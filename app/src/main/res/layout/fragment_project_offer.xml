@@ -5,5 +5,139 @@
     android:id="@+id/projectoffer_cons"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_marginTop="30dp"
     android:layout_marginBottom="50dp"
-    tools:context=".ui.student.ProjectOfferFragment"/>
+    tools:context=".ui.student.ProjectOfferFragment">
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/offerother_img"
+                android:layout_width="75dp"
+                android:layout_height="75dp"
+                android:layout_marginEnd="24dp"
+                android:src="@drawable/ic_othericon"
+                app:layout_constraintBottom_toBottomOf="@+id/offerevent_img"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/offerevent_img"
+                app:layout_constraintTop_toTopOf="@+id/offerevent_img" />
+
+            <ImageView
+                android:id="@+id/offerevent_img"
+                android:layout_width="75dp"
+                android:layout_height="75dp"
+                android:src="@drawable/ic_eventicon"
+                app:layout_constraintBottom_toBottomOf="@+id/offereducation_img"
+                app:layout_constraintEnd_toStartOf="@+id/offerother_img"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/offereducation_img"
+                app:layout_constraintTop_toTopOf="@+id/offereducation_img" />
+
+            <ImageView
+                android:id="@+id/offereducation_img"
+                android:layout_width="75dp"
+                android:layout_height="75dp"
+                android:src="@drawable/ic_educationicon"
+                app:layout_constraintBottom_toBottomOf="@+id/offerrequest_img"
+                app:layout_constraintEnd_toStartOf="@+id/offerevent_img"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/offerrequest_img"
+                app:layout_constraintTop_toTopOf="@+id/offerrequest_img" />
+
+            <ImageView
+                android:id="@+id/offerrequest_img"
+                android:layout_width="75dp"
+                android:layout_height="75dp"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="24dp"
+                android:layout_weight="1"
+                android:src="@drawable/ic_requesticon"
+                app:layout_constraintEnd_toStartOf="@+id/offereducation_img"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/projectoffersearchbar_search" />
+
+            <SearchView
+                android:id="@+id/projectoffersearchbar_search"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="24dp"
+                android:layout_marginEnd="24dp"
+                android:background="@drawable/calendarbackground"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+            </SearchView>
+
+            <TextView
+                android:id="@+id/offerrequest_txt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="@string/RequestText"
+                android:textColor="#002842"
+                app:layout_constraintEnd_toEndOf="@+id/offerrequest_img"
+                app:layout_constraintStart_toStartOf="@+id/offerrequest_img"
+                app:layout_constraintTop_toBottomOf="@+id/offerrequest_img" />
+
+            <TextView
+                android:id="@+id/offereducation_txt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="@string/EducationText"
+                android:textColor="#002842"
+                app:layout_constraintEnd_toEndOf="@+id/offereducation_img"
+                app:layout_constraintStart_toStartOf="@+id/offereducation_img"
+                app:layout_constraintTop_toBottomOf="@+id/offereducation_img" />
+
+            <TextView
+                android:id="@+id/offerevent_txt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="@string/EventText"
+                android:textColor="#002842"
+                app:layout_constraintEnd_toEndOf="@+id/offerevent_img"
+                app:layout_constraintStart_toStartOf="@+id/offerevent_img"
+                app:layout_constraintTop_toBottomOf="@+id/offerevent_img" />
+
+            <TextView
+                android:id="@+id/offerother_txt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="@string/OtherText"
+                android:textColor="#002842"
+                app:layout_constraintEnd_toEndOf="@+id/offerother_img"
+                app:layout_constraintStart_toStartOf="@+id/offerother_img"
+                app:layout_constraintTop_toBottomOf="@+id/offerother_img" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/projectoffer_rv"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="24dp"
+                android:layout_marginEnd="24dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/offerrequest_txt"
+                tools:listitem="@layout/activity_project_adapter" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.core.widget.NestedScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>

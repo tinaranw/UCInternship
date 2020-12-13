@@ -5,6 +5,7 @@
     android:id="@+id/projectlist_cons"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_marginTop="30dp"
     android:layout_marginBottom="50dp"
     tools:context=".ui.ProjectListFragment">
 
@@ -126,6 +127,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/other_img" />
 
             <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/projectlist_rv"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_marginStart="24dp"

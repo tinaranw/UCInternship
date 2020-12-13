@@ -47,7 +47,6 @@ public class MainActivity extends AppCompatActivity {
             }
             else {
                 navigationView.setVisibility(View.GONE);
-//                getSupportActionBar().hide();
             }
         });
 
