@@ -45,4 +45,13 @@
     <string name="ProjectText">Projects</string>
     <string name="no_attachment_text">No Attachment</string>
     <string name="application">Application</string>
+    <string name="comment">Add Comment</string>
+    <string name="pro_detail">Detail Project</string>
+    <string name="task_det">Task Detail</string>
+    <string name="dashboard">Dashboard</string>
+    <string name="login">Login</string>
+    <string name="profiile">Profile</string>
+    <string name="pro_list">Project List</string>
+    <string name="progress">Progress Detail</string>
+    <string name="pro_offer">Project Offer</string>
 </resources>

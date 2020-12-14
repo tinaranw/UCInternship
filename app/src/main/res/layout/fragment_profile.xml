@@ -139,6 +139,19 @@
                 app:layout_constraintStart_toStartOf="@+id/address_txt"
                 app:layout_constraintTop_toBottomOf="@+id/address_txt" />
 
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/profile_tb"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/transparent"
+                android:minHeight="?attr/actionBarSize"
+                android:theme="@style/ToolbarTheme"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:title="@string/profiile"
+                app:titleTextColor="@color/blue" />
+
             <include
                 android:id="@+id/profile_hour_inc"
                 layout="@layout/profilehours_inc"
