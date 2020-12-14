@@ -177,6 +177,19 @@
                 app:layout_constraintStart_toStartOf="@+id/projectdeadline_txt"
                 app:layout_constraintTop_toTopOf="@+id/textView10" />
 
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/pro_det_tb"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/transparent"
+                android:minHeight="?attr/actionBarSize"
+                android:theme="@style/ToolbarTheme"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:title="@string/pro_detail"
+                app:titleTextColor="@color/blue" />
+
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rv_task"
                 android:layout_width="match_parent"

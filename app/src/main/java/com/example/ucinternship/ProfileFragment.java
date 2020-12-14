@@ -13,14 +13,11 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-<<<<<<< Updated upstream:app/src/main/java/com/example/ucinternship/ProfileFragment.java
-=======
 import com.example.ucinternship.R;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
->>>>>>> Stashed changes:app/src/main/java/com/example/ucinternship/ui/ProfileFragment.java
 /**
  * A simple {@link Fragment} subclass.
  * Use the {@link ProfileFragment#newInstance} factory method to

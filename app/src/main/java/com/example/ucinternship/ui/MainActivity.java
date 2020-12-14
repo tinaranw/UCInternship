@@ -21,8 +21,8 @@ import butterknife.ButterKnife;
 public class MainActivity extends AppCompatActivity {
 
     private NavController navController;
-    @BindView(R.id.main_toolbar)
-    Toolbar toolbar;
+//    @BindView(R.id.main_toolbar)
+//    Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         ButterKnife.bind(this, MainActivity.this);
-        setSupportActionBar(toolbar);
+//        setSupportActionBar(toolbar);
 
         BottomNavigationView navigationView = findViewById(R.id.main_navview);
 
@@ -50,9 +50,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-
-
-        NavigationUI.setupActionBarWithNavController(this, navController, configuration);
+//        NavigationUI.setupActionBarWithNavController(this, navController, configuration);
         NavigationUI.setupWithNavController(navigationView, navController);
 
     }
