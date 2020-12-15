@@ -8,7 +8,7 @@ public class LoginViewModel {
     private AuthRepository repository;
 
     public LoginViewModel() {
-        repository = AuthRepository.getInstance();
+//        repository = AuthRepository.getInstance();
     }
 
 //    public MutableLiveData<TokenResponse> login(String email, String password) {

@@ -1,4 +1,4 @@
-package com.example.ucinternship.model;
+package com.example.ucinternship.model.local;
 
 import android.os.Parcel;
 import android.os.Parcelable;
