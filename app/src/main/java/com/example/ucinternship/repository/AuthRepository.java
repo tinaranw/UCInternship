@@ -9,6 +9,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class AuthRepository {
+
     private static AuthRepository authRepository;
     private RetrofitService apiService;
     private static final String TAG = "AuthRepository";
