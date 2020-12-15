@@ -16,7 +16,7 @@ public class Task implements Parcelable {
     @SerializedName("deadline")
     private String task_deadline;
     @SerializedName("duration")
-    private String task_status;
+    private String task_duration;
     @SerializedName("is_approved")
     private String task_approved;
     @SerializedName("pu_id")
@@ -56,12 +56,12 @@ public class Task implements Parcelable {
         this.task_deadline = task_deadline;
     }
 
-    public String getTask_status() {
-        return task_status;
+    public String getTask_duration() {
+        return task_duration;
     }
 
-    public void setTask_status(String task_status) {
-        this.task_status = task_status;
+    public void setTask_duration(String task_duration) {
+        this.task_duration = task_duration;
     }
 
     public String getTask_approved() {
@@ -80,12 +80,12 @@ public class Task implements Parcelable {
         this.task_pu = task_pu;
     }
 
-    public Task(String task_id, String task_name, String task_description, String task_deadline, String task_status, String task_approved, String task_pu) {
+    public Task(String task_id, String task_name, String task_description, String task_deadline, String task_duration, String task_approved, String task_pu) {
         this.task_id = task_id;
         this.task_name = task_name;
         this.task_description = task_description;
         this.task_deadline = task_deadline;
-        this.task_status = task_status;
+        this.task_duration = task_duration;
         this.task_approved = task_approved;
         this.task_pu = task_pu;
     }
@@ -95,7 +95,7 @@ public class Task implements Parcelable {
         task_name = in.readString();
         task_description = in.readString();
         task_deadline = in.readString();
-        task_status = in.readString();
+        task_duration = in.readString();
         task_approved = in.readString();
         task_pu = in.readString();
     }
@@ -106,7 +106,7 @@ public class Task implements Parcelable {
         dest.writeString(task_name);
         dest.writeString(task_description);
         dest.writeString(task_deadline);
-        dest.writeString(task_status);
+        dest.writeString(task_duration);
         dest.writeString(task_approved);
         dest.writeString(task_pu);
     }
