@@ -46,7 +46,7 @@ public class RecentProgressAdapter extends RecyclerView.Adapter<RecentProgressAd
             super(itemView);
             icon = itemView.findViewById(R.id.rpprojecticon_img);
             project = itemView.findViewById(R.id.rpprojectname_txt);
-            task = itemView.findViewById(R.id.rpprogressname_txt);
+            task = itemView.findViewById(R.id.rptaskname_txt);
         }
     }
 }

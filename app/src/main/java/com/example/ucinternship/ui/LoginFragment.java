@@ -8,6 +8,8 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProviders;
 import androidx.navigation.NavDirections;
 import androidx.navigation.Navigation;
 
@@ -15,17 +17,30 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.example.ucinternship.R;
+import com.example.ucinternship.ui.login.LoginViewModel;
+import com.example.ucinternship.utils.SharedPreferenceHelper;
+import com.google.android.material.textfield.TextInputLayout;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 public class LoginFragment extends Fragment {
 
     @BindView(R.id.login_btn)
     Button login_btn;
 
+    @BindView(R.id.password_inp)
+    TextInputLayout password_inp;
+
+    @BindView(R.id.email_inp)
+    TextInputLayout email_inp;
+
+    private LoginViewModel viewModel;
+    private SharedPreferenceHelper helper;
 
     public LoginFragment() {
         // Required empty public constructor
@@ -42,7 +57,9 @@ public class LoginFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         ButterKnife.bind(this, view);
-//        ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle("Login");
+
+//        viewModel = ViewModelProviders.of(requireActivity()).get(LoginViewModel.class);
+//        helper =  SharedPreferenceHelper.getInstance(requireActivity());
 
         login_btn.setOnClickListener(v -> {
             Login();
@@ -52,6 +69,20 @@ public class LoginFragment extends Fragment {
     }
 
     public void Login(){
-
+//        if(!email_inp.getEditText().toString().isEmpty() && !password_inp.getEditText().toString().isEmpty()){
+//            String email = email_inp.getEditText().toString().trim();
+//            String password = password_inp.getEditText().toString().trim();
+//            viewModel.login(email, password).observe(requireActivity(), new Observer<TokenResponse>() {
+//                @Override
+//                public void onChanged(TokenResponse tokenResponse) {
+//                    if(tokenResponse != null){
+//                        helper.saveAccessToken(tokenResponse.getAuthorization());
+//                        NavDirections actions = LoginFragmentDirections.actionLoginFragmentToEventFragment();
+//                        Navigation.findNavController(view).navigate(actions);
+//                        Toast.makeText(requireActivity(),  "Success", Toast.LENGTH_SHORT).show();
+//                    }
+//                }
+//            });
+//        }
     }
 }

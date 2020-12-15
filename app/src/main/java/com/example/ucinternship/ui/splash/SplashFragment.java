@@ -17,7 +17,6 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.ucinternship.R;
-import com.example.ucinternship.ui.SplashFragmentDirections;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
