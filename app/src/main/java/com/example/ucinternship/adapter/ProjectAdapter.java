@@ -2,6 +2,7 @@ package com.example.ucinternship.adapter;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
@@ -12,11 +13,16 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.example.ucinternship.R;
+import com.example.ucinternship.model.local.Project;
+
+import java.util.List;
 
 public class ProjectAdapter extends RecyclerView.Adapter<ProjectAdapter.ProjectViewHolder> {
 
     private Context context;
+    private List<Project> projectList;
 
 
     public ProjectAdapter(Context context) {
@@ -31,8 +37,8 @@ public class ProjectAdapter extends RecyclerView.Adapter<ProjectAdapter.ProjectV
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ProjectAdapter.ProjectViewHolder holder, int position) {
-
+    public void onBindViewHolder(@NonNull ProjectAdapter.ProjectViewHolder holder, int i) {
+        Project p = projectList.get(i);
     }
 
     @Override
