@@ -21,6 +21,8 @@ public class Project implements Parcelable {
     private String project_category;
     @SerializedName("period_id")
     private String project_period;
+    @SerializedName("supervisor_id")
+    private String project_spv;
 
     public Project(){}
 
@@ -73,6 +75,14 @@ public class Project implements Parcelable {
         this.project_category = project_category;
     }
 
+    public String getProject_spv() {
+        return project_spv;
+    }
+
+    public void setProject_spv(String project_spv) {
+        this.project_spv = project_spv;
+    }
+
     public String getProject_period() {
         return project_period;
     }
@@ -81,7 +91,7 @@ public class Project implements Parcelable {
         this.project_period = project_period;
     }
 
-    public Project(String project_id, String project_name, String project_description, String project_deadline, String project_status, String project_category, String project_period) {
+    public Project(String project_id, String project_name, String project_description, String project_deadline, String project_status, String project_category, String project_period, String project_spv) {
         this.project_id = project_id;
         this.project_name = project_name;
         this.project_description = project_description;
@@ -89,6 +99,7 @@ public class Project implements Parcelable {
         this.project_status = project_status;
         this.project_category = project_category;
         this.project_period = project_period;
+        this.project_spv = project_spv;
     }
 
     protected Project(Parcel in) {
@@ -99,6 +110,7 @@ public class Project implements Parcelable {
         project_status = in.readString();
         project_category = in.readString();
         project_period = in.readString();
+        project_spv = in.readString();
     }
 
     @Override
@@ -110,6 +122,7 @@ public class Project implements Parcelable {
         dest.writeString(project_status);
         dest.writeString(project_category);
         dest.writeString(project_period);
+        dest.writeString(project_spv);
     }
 
     @Override

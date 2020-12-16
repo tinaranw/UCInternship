@@ -44,9 +44,9 @@ public class ProjectAdapter extends RecyclerView.Adapter<ProjectAdapter.ProjectV
     @Override
     public void onBindViewHolder(@NonNull ProjectAdapter.ProjectViewHolder holder, int i) {
         Project p = projectList.get(i);
-        holder.title.setText(project.getProject_name());
-        holder.duration.setText(project.getProject_deadline());
-        holder.status.setText(project.getProject_status());
+        holder.title.setText(p.getProject_name());
+        holder.duration.setText(p.getProject_deadline());
+        holder.status.setText(p.getProject_status());
     }
 
     @Override
