@@ -13,6 +13,7 @@ import androidx.lifecycle.ViewModelProviders;
 import androidx.navigation.NavDirections;
 import androidx.navigation.Navigation;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -60,22 +61,21 @@ public class LoginFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         ButterKnife.bind(this, view);
-        Objects.requireNonNull(((MainActivity) requireActivity()).getSupportActionBar()).setDisplayHomeAsUpEnabled(false);
 
         viewModel = ViewModelProviders.of(requireActivity()).get(LoginViewModel.class);
         helper =  SharedPreferenceHelper.getInstance(requireActivity());
 
         login_btn.setOnClickListener(v -> {
             Login(view);
-            NavDirections action = LoginFragmentDirections.actionLoginFragmentToDashboardFragment();
-            Navigation.findNavController(view).navigate(action);
         });
     }
 
     public void Login(View view){
-        if(!email_inp.getEditText().toString().isEmpty() && !password_inp.getEditText().toString().isEmpty()){
-            String email = email_inp.getEditText().toString().trim();
-            String password = password_inp.getEditText().toString().trim();
+        if(!email_inp.getEditText().getText().toString().isEmpty() && !password_inp.getEditText().getText().toString().isEmpty()){
+            String email = email_inp.getEditText().getText().toString().trim();
+            Log.d("user-email", email);
+            String password = password_inp.getEditText().getText().toString().trim();
+            Log.d("user-password", password);
             viewModel.login(email, password).observe(requireActivity(), tokenResponse -> {
                 if(tokenResponse != null){
                     helper.saveAccessToken(tokenResponse.getAuthorization());

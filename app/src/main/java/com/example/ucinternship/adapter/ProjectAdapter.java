@@ -29,6 +29,11 @@ public class ProjectAdapter extends RecyclerView.Adapter<ProjectAdapter.ProjectV
         this.context = context;
     }
 
+    public void setProjectList(List<Project> projectList){
+        this.projectList = projectList;
+        notifyDataSetChanged();
+    }
+
     @NonNull
     @Override
     public ProjectAdapter.ProjectViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int viewType) {
@@ -39,6 +44,9 @@ public class ProjectAdapter extends RecyclerView.Adapter<ProjectAdapter.ProjectV
     @Override
     public void onBindViewHolder(@NonNull ProjectAdapter.ProjectViewHolder holder, int i) {
         Project p = projectList.get(i);
+        holder.title.setText(project.getProject_name());
+        holder.duration.setText(project.getProject_deadline());
+        holder.status.setText(project.getProject_status());
     }
 
     @Override
