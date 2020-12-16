@@ -65,9 +65,7 @@ public class LoginFragment extends Fragment {
         helper =  SharedPreferenceHelper.getInstance(requireActivity());
 
         login_btn.setOnClickListener(v -> {
-//            Login(view);
-            NavDirections action = LoginFragmentDirections.actionLoginFragmentToDashboardFragment();
-            Navigation.findNavController(view).navigate(action);
+            Login(view);
         });
     }
 
