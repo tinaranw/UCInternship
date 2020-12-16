@@ -20,9 +20,12 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import com.example.ucinternship.R;
+import com.example.ucinternship.model.response.TokenResponse;
 import com.example.ucinternship.ui.login.LoginViewModel;
 import com.example.ucinternship.utils.SharedPreferenceHelper;
 import com.google.android.material.textfield.TextInputLayout;
+
+import java.util.Objects;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -57,32 +60,30 @@ public class LoginFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         ButterKnife.bind(this, view);
+        Objects.requireNonNull(((MainActivity) requireActivity()).getSupportActionBar()).setDisplayHomeAsUpEnabled(false);
 
-//        viewModel = ViewModelProviders.of(requireActivity()).get(LoginViewModel.class);
-//        helper =  SharedPreferenceHelper.getInstance(requireActivity());
+        viewModel = ViewModelProviders.of(requireActivity()).get(LoginViewModel.class);
+        helper =  SharedPreferenceHelper.getInstance(requireActivity());
 
         login_btn.setOnClickListener(v -> {
-            Login();
+            Login(view);
             NavDirections action = LoginFragmentDirections.actionLoginFragmentToDashboardFragment();
             Navigation.findNavController(view).navigate(action);
         });
     }
 
-    public void Login(){
-//        if(!email_inp.getEditText().toString().isEmpty() && !password_inp.getEditText().toString().isEmpty()){
-//            String email = email_inp.getEditText().toString().trim();
-//            String password = password_inp.getEditText().toString().trim();
-//            viewModel.login(email, password).observe(requireActivity(), new Observer<TokenResponse>() {
-//                @Override
-//                public void onChanged(TokenResponse tokenResponse) {
-//                    if(tokenResponse != null){
-//                        helper.saveAccessToken(tokenResponse.getAuthorization());
-//                        NavDirections actions = LoginFragmentDirections.actionLoginFragmentToEventFragment();
-//                        Navigation.findNavController(view).navigate(actions);
-//                        Toast.makeText(requireActivity(),  "Success", Toast.LENGTH_SHORT).show();
-//                    }
-//                }
-//            });
-//        }
+    public void Login(View view){
+        if(!email_inp.getEditText().toString().isEmpty() && !password_inp.getEditText().toString().isEmpty()){
+            String email = email_inp.getEditText().toString().trim();
+            String password = password_inp.getEditText().toString().trim();
+            viewModel.login(email, password).observe(requireActivity(), tokenResponse -> {
+                if(tokenResponse != null){
+                    helper.saveAccessToken(tokenResponse.getAuthorization());
+                    NavDirections actions = LoginFragmentDirections.actionLoginFragmentToDashboardFragment();
+                    Navigation.findNavController(view).navigate(actions);
+                    Toast.makeText(requireActivity(),  "Success", Toast.LENGTH_SHORT).show();
+                }
+            });
+        }
     }
 }
