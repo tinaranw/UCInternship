@@ -13,14 +13,23 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.ucinternship.R;
+import com.example.ucinternship.model.local.Project;
+
+import java.util.List;
 
 public class ProjectAdapter extends RecyclerView.Adapter<ProjectAdapter.ProjectViewHolder> {
 
     private Context context;
+    private List<Project> projectList;
 
 
     public ProjectAdapter(Context context) {
         this.context = context;
+    }
+
+    public void setProjectList(List<Project> projectList){
+        this.projectList = projectList;
+        notifyDataSetChanged();
     }
 
     @NonNull
@@ -32,7 +41,10 @@ public class ProjectAdapter extends RecyclerView.Adapter<ProjectAdapter.ProjectV
 
     @Override
     public void onBindViewHolder(@NonNull ProjectAdapter.ProjectViewHolder holder, int position) {
-
+        Project project = projectList.get(position);
+        holder.title.setText(project.getProject_name());
+        holder.duration.setText(project.getProject_deadline());
+        holder.status.setText(project.getProject_status());
     }
 
     @Override
