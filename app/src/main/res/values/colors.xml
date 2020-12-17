@@ -24,6 +24,7 @@
     <color name="transparent">#00FFFFFF</color>
     <color name="var_prim">#749659</color>
     <color name="task_status">#fdc27a</color>
+    <color name="button_cam">#ffd9aa</color>
 
 
 </resources>
