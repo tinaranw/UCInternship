@@ -82,6 +82,8 @@ public class LoginFragment extends Fragment {
                     NavDirections actions = LoginFragmentDirections.actionLoginFragmentToDashboardFragment();
                     Navigation.findNavController(view).navigate(actions);
                     Toast.makeText(requireActivity(),  "Success", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(requireActivity(),  "Failed", Toast.LENGTH_SHORT).show();
                 }
             });
         }

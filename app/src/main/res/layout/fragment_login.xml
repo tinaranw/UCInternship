@@ -81,7 +81,8 @@
                     android:background="@drawable/roundedrectangle"
                     android:elegantTextHeight="false"
                     android:fontFamily="@font/opensans_regular"
-                    android:hint="@string/PasswordHintTxt" />
+                    android:hint="@string/PasswordHintTxt"
+                    android:inputType="textPassword|textWebPassword" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
