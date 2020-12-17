@@ -48,10 +48,28 @@
         android:id="@+id/detailProjectFragment"
         android:name="com.example.ucinternship.ui.DetailProjectFragment"
         android:label="fragment_detail_project"
-        tools:layout="@layout/fragment_detail_project" />
+        tools:layout="@layout/fragment_detail_project" >
+        <action
+            android:id="@+id/action_detailProjectFragment_to_detailTaskFragment"
+            app:destination="@id/detailTaskFragment" />
+    </fragment>
     <fragment
         android:id="@+id/projectOfferFragment"
         android:name="com.example.ucinternship.ui.student.ProjectOfferFragment"
         android:label="fragment_project_offer"
         tools:layout="@layout/fragment_project_offer" />
+    <fragment
+        android:id="@+id/detailTaskFragment"
+        android:name="com.example.ucinternship.ui.DetailTaskFragment"
+        android:label="fragment_detail_task"
+        tools:layout="@layout/fragment_detail_task" >
+        <action
+            android:id="@+id/action_detailTaskFragment_to_progressFragment"
+            app:destination="@id/progressFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/progressFragment"
+        android:name="com.example.ucinternship.ui.ProgressFragment"
+        android:label="fragment_progress"
+        tools:layout="@layout/fragment_progress" />
 </navigation>

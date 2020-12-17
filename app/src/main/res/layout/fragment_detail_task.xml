@@ -94,7 +94,7 @@
                 android:layout_marginBottom="24dp"
                 android:background="@drawable/selector_button"
                 android:fontFamily="@font/opensans_semibold"
-                android:text="Add Progress"
+                android:text="@string/detail_progress"
                 android:textColor="@color/bg"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"

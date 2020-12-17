@@ -54,4 +54,6 @@
     <string name="pro_list">Project List</string>
     <string name="progress">Progress Detail</string>
     <string name="pro_offer">Project Offer</string>
+    <string name="detail_progress">Detail Progress</string>
+    <string name="logout">Logout</string>
 </resources>

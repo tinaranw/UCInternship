@@ -14,10 +14,15 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.ucinternship.R;
+import com.example.ucinternship.model.local.Student;
+import com.example.ucinternship.model.local.Task;
+
+import java.util.List;
 
 public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder> {
 
     private Context context;
+    private List<Task> taskList;
 
 
     public TaskAdapter(Context context) {
@@ -32,8 +37,8 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
     }
 
     @Override
-    public void onBindViewHolder(@NonNull TaskAdapter.TaskViewHolder holder, int position) {
-
+    public void onBindViewHolder(@NonNull TaskAdapter.TaskViewHolder holder, int i) {
+        Task t = taskList.get(i);
 
     }
 
