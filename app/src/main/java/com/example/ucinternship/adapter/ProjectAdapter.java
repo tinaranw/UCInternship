@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -45,13 +46,14 @@ public class ProjectAdapter extends RecyclerView.Adapter<ProjectAdapter.ProjectV
     public void onBindViewHolder(@NonNull ProjectAdapter.ProjectViewHolder holder, int i) {
         Project p = projectList.get(i);
         holder.title.setText(p.getProject_name());
+        Log.d("project_name", p.getProject_name());
         holder.duration.setText(p.getProject_deadline());
         holder.status.setText(p.getProject_status());
     }
 
     @Override
     public int getItemCount() {
-        return 0;
+        return projectList.size();
     }
 
     public class ProjectViewHolder extends RecyclerView.ViewHolder {

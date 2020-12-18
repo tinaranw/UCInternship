@@ -75,11 +75,13 @@ public class ProjectListFragment extends Fragment {
         rv.setLayoutManager(new LinearLayoutManager(getActivity()));
         adapter = new ProjectAdapter(getActivity());
     }
+
+
     private Observer<List<Project>> observeViewModel = new Observer<List<Project>>() {
         @Override
-        public void onChanged(List<Project> events) {
-            if(events != null){
-                adapter.setProjectList(events);
+        public void onChanged(List<Project> projects) {
+            if(projects != null){
+                adapter.setProjectList(projects);
                 adapter.notifyDataSetChanged();
                 rv.setAdapter(adapter);
 //                showLoading(false);

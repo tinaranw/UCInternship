@@ -66,6 +66,4 @@ public class ProjectRepository {
         });
         return listProjects;
     }
-
-
 }
