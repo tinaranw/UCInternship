@@ -45,8 +45,8 @@ public class ProjectAdapter extends RecyclerView.Adapter<ProjectAdapter.ProjectV
     @Override
     public void onBindViewHolder(@NonNull ProjectAdapter.ProjectViewHolder holder, int i) {
         Project p = projectList.get(i);
-        holder.title.setText(p.getProject_name());
         Log.d("project_name", p.getProject_name());
+        holder.title.setText(p.getProject_name());
         holder.duration.setText(p.getProject_deadline());
         holder.status.setText(p.getProject_status());
     }
@@ -64,8 +64,8 @@ public class ProjectAdapter extends RecyclerView.Adapter<ProjectAdapter.ProjectV
         public ProjectViewHolder(@NonNull View itemView) {
             super(itemView);
             icon = itemView.findViewById(R.id.icon_card_img);
-            title = itemView.findViewById(R.id.task_title_txt);
-            spv = itemView.findViewById(R.id.status_task_txt);
+            title = itemView.findViewById(R.id.title_card_txt);
+            spv = itemView.findViewById(R.id.spv_card_txt);
             duration = itemView.findViewById(R.id.duration_card_txt);
             status = itemView.findViewById(R.id.status_card_txt);
         }

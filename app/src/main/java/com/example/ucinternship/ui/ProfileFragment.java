@@ -100,7 +100,6 @@ public class ProfileFragment extends Fragment {
                         NavDirections action = ProfileFragmentDirections.actionProfileToSplash();
                         Navigation.findNavController(view).navigate(action);
 
-
                     }, 2000);
                 })
                 .setNegativeButton("No", (dialog, which) -> dialog.cancel())

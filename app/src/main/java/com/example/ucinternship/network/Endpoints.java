@@ -8,6 +8,7 @@ import retrofit2.Call;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
+import retrofit2.http.Headers;
 import retrofit2.http.POST;
 
 public interface Endpoints {
@@ -19,6 +20,7 @@ public interface Endpoints {
     @GET("projects")
     Call<ProjectResponse> getProjects();
 
-    @POST("logout")
+//    @Headers({})
+    @POST("api-logout")
     Call<JsonObject> logout();
 }

@@ -42,6 +42,8 @@ public class ProjectListFragment extends Fragment {
     ImageView other;
     @BindView(R.id.no_project_img)
     ImageView noproject;
+    @BindView(R.id.noproject_txt)
+    TextView noproject_txt;
     @BindView(R.id.projectlist_rv)
     RecyclerView rv;
     @BindView(R.id.projectsearchbar_search)
@@ -84,7 +86,12 @@ public class ProjectListFragment extends Fragment {
                 adapter.setProjectList(projects);
                 adapter.notifyDataSetChanged();
                 rv.setAdapter(adapter);
+                noproject.setVisibility(View.INVISIBLE);
+                noproject_txt.setVisibility(View.INVISIBLE);
 //                showLoading(false);
+            } else {
+                noproject.setVisibility(View.VISIBLE);
+                noproject_txt.setVisibility(View.VISIBLE);
             }
         }
     };
@@ -98,4 +105,5 @@ public class ProjectListFragment extends Fragment {
 //            loading.setVisibility(View.GONE);
         }
     }
+
 }
