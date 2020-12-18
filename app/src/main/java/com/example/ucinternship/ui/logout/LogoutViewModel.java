@@ -13,7 +13,7 @@ public class LogoutViewModel  extends ViewModel {
         repository = AuthRepository.getInstance();
     }
 
-    public MutableLiveData<TokenResponse> logout() {
+    public MutableLiveData<String> logout() {
         return repository.logout();
     }
 }

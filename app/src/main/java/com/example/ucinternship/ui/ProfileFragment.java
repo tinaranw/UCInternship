@@ -28,6 +28,7 @@ import com.example.ucinternship.Glovar;
 import com.example.ucinternship.R;
 import com.example.ucinternship.ui.splash.SplashFragment;
 import com.example.ucinternship.ui.splash.SplashFragmentDirections;
+import com.example.ucinternship.utils.SharedPreferenceHelper;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -57,7 +58,7 @@ public class ProfileFragment extends Fragment {
     ImageView edit;
     @BindView(R.id.logout_btn)
     Button logout;
-
+    private SharedPreferenceHelper helper;
     Dialog dialog;
 
 
@@ -95,7 +96,7 @@ public class ProfileFragment extends Fragment {
                     dialog.show();
                     new Handler(Looper.getMainLooper()).postDelayed(() -> {
                         dialog.cancel();
-
+                        helper.getInstance(getActivity()).clearPref();
                         NavDirections action = ProfileFragmentDirections.actionProfileToSplash();
                         Navigation.findNavController(view).navigate(action);
 
