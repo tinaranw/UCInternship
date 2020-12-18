@@ -15,6 +15,9 @@
             app:destination="@id/loginFragment"
             app:popUpTo="@id/loginFragment"
             app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/actionSplashtoDashboard"
+            app:destination="@id/dashboardFragment" />
     </fragment>
     <fragment
         android:id="@+id/dashboardFragment"
@@ -34,7 +37,11 @@
         android:id="@+id/profileFragment"
         android:name="com.example.ucinternship.ui.ProfileFragment"
         android:label="fragment_profile"
-        tools:layout="@layout/fragment_profile" />
+        tools:layout="@layout/fragment_profile" >
+        <action
+            android:id="@+id/actionProfileToSplash"
+            app:destination="@id/splashFragment" />
+    </fragment>
     <fragment
         android:id="@+id/projectListFragment"
         android:name="com.example.ucinternship.ui.ProjectListFragment"

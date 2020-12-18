@@ -66,6 +66,7 @@ public class LoginFragment extends Fragment {
         helper =  SharedPreferenceHelper.getInstance(requireActivity());
 
         login_btn.setOnClickListener(v -> {
+            helper.saveSPBoolean(SharedPreferenceHelper.LOGIN, true);
             Login(view);
         });
     }

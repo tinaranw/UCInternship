@@ -1,5 +1,7 @@
 package com.example.ucinternship.ui.splash;
 
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -12,17 +14,21 @@ import androidx.navigation.Navigation;
 
 import android.os.Handler;
 import android.os.Looper;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.ucinternship.R;
+import com.example.ucinternship.ui.MainActivity;
+import com.example.ucinternship.utils.SharedPreferenceHelper;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class SplashFragment extends Fragment {
 
+    SharedPreferenceHelper sharedPreferenceHelper;
 
     public SplashFragment() {
         // Required empty public constructor
@@ -39,10 +45,18 @@ public class SplashFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        new Handler(Looper.getMainLooper()).postDelayed(() -> {
-            NavDirections action = SplashFragmentDirections.actionSplashFragmentToLoginFragment();
+        sharedPreferenceHelper = new SharedPreferenceHelper(getActivity());
+        Log.d("balalala", String.valueOf(sharedPreferenceHelper.getLogin()));
+        if (sharedPreferenceHelper.getLogin()){
+            NavDirections action = SplashFragmentDirections.actionSplashtoDashboard();
             Navigation.findNavController(view).navigate(action);
-        }, 2000);
+        }else{
+            new Handler(Looper.getMainLooper()).postDelayed(() -> {
+                NavDirections action = SplashFragmentDirections.actionSplashFragmentToLoginFragment();
+                Navigation.findNavController(view).navigate(action);
+            }, 2000);
+        }
+
     }
 
     @Override

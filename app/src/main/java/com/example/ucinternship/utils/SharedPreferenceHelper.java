@@ -6,11 +6,14 @@ import android.preference.PreferenceManager;
 
 public class SharedPreferenceHelper {
     private static final String PREFS = "pref";
+    public static final String LOGIN = "Login";
     private static SharedPreferenceHelper instance;
     private SharedPreferences prefs;
+    private SharedPreferences.Editor spEditor;
 
-    private SharedPreferenceHelper(Context context){
-        prefs = PreferenceManager.getDefaultSharedPreferences(context);
+    public SharedPreferenceHelper(Context context){
+        prefs = context.getSharedPreferences(PREFS, Context.MODE_PRIVATE);
+        spEditor = prefs.edit();
     }
 
     public static SharedPreferenceHelper getInstance(Context context){
@@ -21,11 +24,11 @@ public class SharedPreferenceHelper {
     }
 
     public void saveAccessToken (String token){
-        prefs.edit().putString(PREFS,token).apply();
+        spEditor.putString(PREFS,token).apply();
     }
 
     public void saveRefreshToken (String token){
-        prefs.edit().putString(PREFS,token).apply();
+        spEditor.putString(PREFS,token).apply();
     }
 
     public String getAccessToken(){
@@ -33,6 +36,15 @@ public class SharedPreferenceHelper {
     }
 
     public void clearPref(){
-        prefs.edit().clear().apply();
+        spEditor.clear().apply();
+    }
+
+    public void saveSPBoolean(String keySP, boolean value){
+        spEditor.putBoolean(keySP, value);
+        spEditor.commit();
+    }
+
+    public Boolean getLogin(){
+        return prefs.getBoolean(LOGIN, false);
     }
 }
