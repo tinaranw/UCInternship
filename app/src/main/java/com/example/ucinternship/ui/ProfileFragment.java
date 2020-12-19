@@ -58,12 +58,6 @@ public class ProfileFragment extends Fragment {
     ImageView edit;
     @BindView(R.id.logout_btn)
     Button logout;
-<<<<<<< Updated upstream
-=======
-
-    //kita perlu declare ini, krn fragment butuh data dari sini
-    private LogoutViewModel viewModel;
->>>>>>> Stashed changes
     private SharedPreferenceHelper helper;
     Dialog dialog;
 
@@ -84,24 +78,14 @@ public class ProfileFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         ButterKnife.bind(this,view);
-<<<<<<< Updated upstream
 //        ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle("My Profile");
 //        ((AppCompatActivity) getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(false);
-=======
-
-        //inisialisasi sharedpref dan viewmodel -> sm spt firebase yg reference bla"
-        helper = SharedPreferenceHelper.getInstance(requireActivity());
-        viewModel = ViewModelProviders.of(requireActivity()).get(LogoutViewModel.class);
-        //untuk token sharedpref
-        viewModel.init(helper.getAccessToken());
->>>>>>> Stashed changes
         dialog = Glovar.loadingDialog(getActivity());
         logout.setOnClickListener(v -> {
             logout(view);
         });
     }
 
-    //View view ini gunanya untuk nav
     public void logout(View view){
         new AlertDialog.Builder(getActivity())
                 .setTitle("Confirmation")
@@ -112,25 +96,9 @@ public class ProfileFragment extends Fragment {
                     dialog.show();
                     new Handler(Looper.getMainLooper()).postDelayed(() -> {
                         dialog.cancel();
-<<<<<<< Updated upstream
                         helper.getInstance(getActivity()).clearPref();
                         NavDirections action = ProfileFragmentDirections.actionProfileToSplash();
                         Navigation.findNavController(view).navigate(action);
-=======
-                        Log.d("accesstokenlogout", helper.getAccessToken());
-                        //manggil logout di viewmodel
-                        viewModel.logout().observe(requireActivity(), message -> {
-                            if(message != null){
-                                //clearpref ini adalah ngehapus cookies (menjalankan)
-                                helper.getInstance(getActivity()).clearPref();
-                                NavDirections actions = ProfileFragmentDirections.actionProfileToSplash();
-                                Navigation.findNavController(view).navigate(actions);
-                                Toast.makeText(requireActivity(),  "Successfully logged out!", Toast.LENGTH_SHORT).show();
-                            } else {
-                                Toast.makeText(requireActivity(),  "Failed to logout!", Toast.LENGTH_SHORT).show();
-                            }
-                        });
->>>>>>> Stashed changes
 
                     }, 2000);
                 })

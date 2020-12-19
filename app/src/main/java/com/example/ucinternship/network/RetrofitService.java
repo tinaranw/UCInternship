@@ -16,8 +16,6 @@ public class RetrofitService {
     private static com.example.ucinternship.network.RetrofitService service;
     private static final String TAG="RetrofitService";
 
-    //fungsi retrofit service itu nyambungin apps dengan DB (request)
-
     private RetrofitService(String token) {
         OkHttpClient.Builder client =  new OkHttpClient.Builder();
 

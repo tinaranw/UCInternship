@@ -35,17 +35,15 @@ public class AuthRepository {
 
     public MutableLiveData<TokenResponse> login(String email, String password) {
         MutableLiveData<TokenResponse> tokenResponse = new MutableLiveData<>();
-        //tiap kali req
+
         apiService.login(email, password).enqueue(new Callback<TokenResponse>() {
             @Override
             public void onResponse(Call<TokenResponse> call, Response<TokenResponse> response) {
                 if (response.isSuccessful()) {
                     Log.d(TAG, "onResponse: " + response.code());
-                    //jika berhasil akan kirim 200
                     if(response.code() == 200){
                         if (response.body() != null) {
                             Log.d(TAG, "onResponse: " + response.body().getAccessToken());
-                            //ngirim tokennya untuk di save di sharepref
                             tokenResponse.postValue(response.body());
                         }
                     }

@@ -11,9 +11,6 @@ public class SharedPreferenceHelper {
     private SharedPreferences prefs;
     private SharedPreferences.Editor spEditor;
 
-
-    //fungsi sharedpref ini seperti cookies, dia akan nyimpan informasi user yang login di aplikasi,
-    //dia tidak ada hubungannya dengan DB
     public SharedPreferenceHelper(Context context){
         prefs = context.getSharedPreferences(PREFS, Context.MODE_PRIVATE);
         spEditor = prefs.edit();
