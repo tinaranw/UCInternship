@@ -34,6 +34,8 @@ public class LogoutRepository {
         return logoutRepository;
     }
 
+    //mencegah bug yang terjadi saat logout sehingga kita bisa logout berulang kali tanpa kecantol
+    //kita harus membuat null isi logoutrepo
     public synchronized void resetInstance(){
         if (logoutRepository != null) {
             logoutRepository = null;
@@ -41,7 +43,7 @@ public class LogoutRepository {
     }
     public LiveData<String> logout(){
         MutableLiveData<String> message = new MutableLiveData<>();
-
+        //tiap kali req
         apiService.logout().enqueue(new Callback<JsonObject>() {
             @Override
             public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {

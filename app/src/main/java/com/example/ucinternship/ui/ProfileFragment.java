@@ -63,6 +63,7 @@ public class ProfileFragment extends Fragment {
     @BindView(R.id.logout_btn)
     Button logout;
 
+    //kita perlu declare ini, krn fragment butuh data dari sini
     private LogoutViewModel viewModel;
     private SharedPreferenceHelper helper;
     Dialog dialog;
@@ -85,8 +86,10 @@ public class ProfileFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         ButterKnife.bind(this,view);
 
+        //inisialisasi sharedpref dan viewmodel -> sm spt firebase yg reference bla"
         helper = SharedPreferenceHelper.getInstance(requireActivity());
         viewModel = ViewModelProviders.of(requireActivity()).get(LogoutViewModel.class);
+        //untuk token sharedpref
         viewModel.init(helper.getAccessToken());
         dialog = Glovar.loadingDialog(getActivity());
         logout.setOnClickListener(v -> {
@@ -94,6 +97,7 @@ public class ProfileFragment extends Fragment {
         });
     }
 
+    //View view ini gunanya untuk nav
     public void logout(View view){
         new AlertDialog.Builder(getActivity())
                 .setTitle("Confirmation")
@@ -105,6 +109,7 @@ public class ProfileFragment extends Fragment {
                     new Handler(Looper.getMainLooper()).postDelayed(() -> {
                         dialog.cancel();
                         Log.d("accesstokenlogout", helper.getAccessToken());
+                        //manggil logout di viewmodel
                         viewModel.logout().observe(requireActivity(), message -> {
                             if(message != null){
                                 helper.getInstance(getActivity()).clearPref();
