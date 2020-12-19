@@ -3,6 +3,9 @@ package com.example.ucinternship.model.response;
 import com.google.gson.annotations.SerializedName;
 
 public class TokenResponse {
+
+    //yang sesuai dengan yang ada di header (ex: postman)
+
     @SerializedName("token_type")
     String tokenType;
 
@@ -31,6 +34,9 @@ public class TokenResponse {
         return refreshToken;
     }
 
+    //bentuk penulisannya
+    //Bearer (tokenType) accesstoken
+    //ini bisa dilihat di header authoriz
     public String getAuthorization(){
         return this.tokenType + " " + this.accessToken;
     }

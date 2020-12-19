@@ -62,22 +62,28 @@ public class LoginFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         ButterKnife.bind(this, view);
 
+        //inisialisasi viewmodel dan sharedpref
         viewModel = ViewModelProviders.of(requireActivity()).get(LoginViewModel.class);
         helper =  SharedPreferenceHelper.getInstance(requireActivity());
 
         login_btn.setOnClickListener(v -> {
+            //ngecek klo misal ada user maka di lempar ke dash langsung sedangkan klo g ada masuk login (splashfragment)
             helper.saveSPBoolean(SharedPreferenceHelper.LOGIN, true);
             Login(view);
         });
     }
 
+    //View view ini untuk navigation (nav)
     public void Login(View view){
+        //krn ada input email dan pass, kita hrs get data yang ada disini
         if(!email_inp.getEditText().getText().toString().isEmpty() && !password_inp.getEditText().getText().toString().isEmpty()){
             String email = email_inp.getEditText().getText().toString().trim();
             Log.d("user-email", email);
             String password = password_inp.getEditText().getText().toString().trim();
             Log.d("user-password", password);
+            //email dan pass berupa string
             viewModel.login(email, password).observe(requireActivity(), tokenResponse -> {
+                // klo dah dpt token maka ia akan diarahkan ke nav dan nge save token nya di sharedpref
                 if(tokenResponse != null){
                     helper.saveAccessToken(tokenResponse.getAuthorization());
                     NavDirections actions = LoginFragmentDirections.actionLoginFragmentToDashboardFragment();
