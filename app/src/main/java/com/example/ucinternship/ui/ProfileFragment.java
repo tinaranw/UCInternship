@@ -11,11 +11,13 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProviders;
 import androidx.navigation.NavDirections;
 import androidx.navigation.Navigation;
 
 import android.os.Handler;
 import android.os.Looper;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,6 +28,8 @@ import android.widget.Toast;
 
 import com.example.ucinternship.Glovar;
 import com.example.ucinternship.R;
+import com.example.ucinternship.ui.login.LoginViewModel;
+import com.example.ucinternship.ui.logout.LogoutViewModel;
 import com.example.ucinternship.ui.splash.SplashFragment;
 import com.example.ucinternship.ui.splash.SplashFragmentDirections;
 import com.example.ucinternship.utils.SharedPreferenceHelper;
@@ -58,6 +62,8 @@ public class ProfileFragment extends Fragment {
     ImageView edit;
     @BindView(R.id.logout_btn)
     Button logout;
+
+    private LogoutViewModel viewModel;
     private SharedPreferenceHelper helper;
     Dialog dialog;
 
@@ -80,6 +86,7 @@ public class ProfileFragment extends Fragment {
         ButterKnife.bind(this,view);
 //        ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle("My Profile");
 //        ((AppCompatActivity) getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(false);
+        viewModel = ViewModelProviders.of(requireActivity()).get(LogoutViewModel.class);
         dialog = Glovar.loadingDialog(getActivity());
         logout.setOnClickListener(v -> {
             logout(view);
@@ -96,6 +103,7 @@ public class ProfileFragment extends Fragment {
                     dialog.show();
                     new Handler(Looper.getMainLooper()).postDelayed(() -> {
                         dialog.cancel();
+                        databaseLogOut(view);
                         helper.getInstance(getActivity()).clearPref();
                         NavDirections action = ProfileFragmentDirections.actionProfileToSplash();
                         Navigation.findNavController(view).navigate(action);
@@ -105,6 +113,18 @@ public class ProfileFragment extends Fragment {
                 .setNegativeButton("No", (dialog, which) -> dialog.cancel())
                 .create()
                 .show();
+    }
+
+    public void databaseLogOut(View view){
+        viewModel.logout().observe(requireActivity(), tokenResponse -> {
+            if(tokenResponse != null){
+                NavDirections actions = LoginFragmentDirections.actionLoginFragmentToDashboardFragment();
+                Navigation.findNavController(view).navigate(actions);
+                Toast.makeText(requireActivity(),  "Success", Toast.LENGTH_SHORT).show();
+            } else {
+                Toast.makeText(requireActivity(),  "Failed", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
 

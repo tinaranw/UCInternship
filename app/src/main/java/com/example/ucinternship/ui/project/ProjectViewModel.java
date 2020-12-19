@@ -23,10 +23,6 @@ public class ProjectViewModel extends ViewModel {
         return repository.getProjects();
     }
 
-//    public LiveData<String> logout(){
-//        return repository.logout();
-//    }
-
     @Override
     protected void onCleared() {
         super.onCleared();
