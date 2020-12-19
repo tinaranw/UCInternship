@@ -84,9 +84,10 @@ public class ProfileFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         ButterKnife.bind(this,view);
-//        ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle("My Profile");
-//        ((AppCompatActivity) getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(false);
+
+        helper = SharedPreferenceHelper.getInstance(requireActivity());
         viewModel = ViewModelProviders.of(requireActivity()).get(LogoutViewModel.class);
+        viewModel.init(helper.getAccessToken());
         dialog = Glovar.loadingDialog(getActivity());
         logout.setOnClickListener(v -> {
             logout(view);
@@ -103,28 +104,23 @@ public class ProfileFragment extends Fragment {
                     dialog.show();
                     new Handler(Looper.getMainLooper()).postDelayed(() -> {
                         dialog.cancel();
-                        databaseLogOut(view);
-                        helper.getInstance(getActivity()).clearPref();
-                        NavDirections action = ProfileFragmentDirections.actionProfileToSplash();
-                        Navigation.findNavController(view).navigate(action);
+                        Log.d("accesstokenlogout", helper.getAccessToken());
+                        viewModel.logout().observe(requireActivity(), message -> {
+                            if(message != null){
+                                helper.getInstance(getActivity()).clearPref();
+                                NavDirections actions = ProfileFragmentDirections.actionProfileToSplash();
+                                Navigation.findNavController(view).navigate(actions);
+                                Toast.makeText(requireActivity(),  "Successfully logged out!", Toast.LENGTH_SHORT).show();
+                            } else {
+                                Toast.makeText(requireActivity(),  "Failed to logout!", Toast.LENGTH_SHORT).show();
+                            }
+                        });
 
                     }, 2000);
                 })
                 .setNegativeButton("No", (dialog, which) -> dialog.cancel())
                 .create()
                 .show();
-    }
-
-    public void databaseLogOut(View view){
-        viewModel.logout().observe(requireActivity(), tokenResponse -> {
-            if(tokenResponse != null){
-                NavDirections actions = LoginFragmentDirections.actionLoginFragmentToDashboardFragment();
-                Navigation.findNavController(view).navigate(actions);
-                Toast.makeText(requireActivity(),  "Success", Toast.LENGTH_SHORT).show();
-            } else {
-                Toast.makeText(requireActivity(),  "Failed", Toast.LENGTH_SHORT).show();
-            }
-        });
     }
 
 

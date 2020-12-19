@@ -11,6 +11,7 @@ import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -72,6 +73,7 @@ public class ProjectListFragment extends Fragment {
         helper = SharedPreferenceHelper.getInstance(requireActivity());
         viewModel = ViewModelProviders.of(requireActivity()).get(ProjectViewModel.class);
         viewModel.init(helper.getAccessToken());
+        Log.d("gettingaccesstoken", helper.getAccessToken());
         viewModel.getProjects().observe(requireActivity(), observeViewModel);
 
         rv.setLayoutManager(new LinearLayoutManager(getActivity()));

@@ -2,9 +2,11 @@ package com.example.ucinternship.repository;
 
 import android.util.Log;
 
+import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
 import com.example.ucinternship.model.local.Project;
+import com.example.ucinternship.model.response.TokenResponse;
 import com.example.ucinternship.network.RetrofitService;
 import com.example.ucinternship.model.response.ProjectResponse;
 import com.google.gson.Gson;
@@ -42,36 +44,39 @@ public class LogoutRepository {
             logoutRepository = null;
         }
     }
-
-    public MutableLiveData<String> logout(){
+    public LiveData<String> logout(){
         MutableLiveData<String> message = new MutableLiveData<>();
 
         apiService.logout().enqueue(new Callback<JsonObject>() {
             @Override
             public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
-                if(response.isSuccessful()){
-                    if(response.isSuccessful()){
-                        Log.d(TAG, "onResponse: "+ response.code());
-                        if(response.body() != null){
-                            try {
-                                JSONObject object = new JSONObject(new Gson().toJson(response.body()));
-                                String msg = object.getString("message");
-                                Log.d(TAG, "onResponse: " + msg);
-                                message.postValue(msg);
-                            }  catch (JSONException e) {
-                                e.printStackTrace();
-                            }
+                //masuk kesini
+                if (response.isSuccessful()){
+                    Log.d(TAG, "onResponse: Success - : " + response.code());
+                    if (response.body() != null){
+                        try {
+                            JSONObject object = new JSONObject(new Gson().toJson(response.body()));
+                            String msg = object.getString("message");
+                            Log.d(TAG, "onResponse: Success - : " + msg);
+                            message.postValue(msg);
+                            Log.d(TAG, "messagelogout" + message);
+                            resetInstance();
+                        } catch (JSONException e) {
+                            e.printStackTrace();
                         }
                     }
+                } else {
+                    Log.d(TAG, "onResponse: Failed - " + response.code());
                 }
             }
 
             @Override
             public void onFailure(Call<JsonObject> call, Throwable t) {
-                Log.d(TAG, "onFailure: "+ t.getMessage());
+
             }
         });
 
         return message;
     }
+
 }

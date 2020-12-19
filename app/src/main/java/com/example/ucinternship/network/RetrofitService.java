@@ -1,5 +1,7 @@
 package com.example.ucinternship.network;
 
+import android.util.Log;
+
 import com.example.ucinternship.model.response.ProjectResponse;
 import com.example.ucinternship.model.response.TokenResponse;
 import com.example.ucinternship.utils.Constants;
@@ -26,6 +28,7 @@ public class RetrofitService {
                 return chain.proceed(request);
             });
         } else {
+            Log.d("token2ndtime", token);
             client.addInterceptor(chain -> {
                 Request request = chain.request().newBuilder()
                         .addHeader("Accept", "application/json")
