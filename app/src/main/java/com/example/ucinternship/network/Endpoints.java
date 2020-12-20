@@ -21,7 +21,6 @@ public interface Endpoints {
     @GET("projects")
     Call<ProjectResponse> getProjects();
 
-//    @Headers({})
     @POST("api-logout")
     Call<JsonObject> logout();
 }

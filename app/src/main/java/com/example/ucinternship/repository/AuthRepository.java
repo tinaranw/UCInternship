@@ -4,6 +4,8 @@ import android.util.Log;
 
 import androidx.lifecycle.MutableLiveData;
 
+import com.example.ucinternship.model.local.Project;
+import com.example.ucinternship.model.response.ProjectResponse;
 import com.example.ucinternship.network.RetrofitService;
 import com.example.ucinternship.model.response.TokenResponse;
 import com.google.gson.Gson;
@@ -11,6 +13,8 @@ import com.google.gson.JsonObject;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -60,6 +64,7 @@ public class AuthRepository {
 
         return tokenResponse;
     }
+
 
 
 }

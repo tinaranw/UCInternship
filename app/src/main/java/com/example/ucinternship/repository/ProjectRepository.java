@@ -2,6 +2,7 @@ package com.example.ucinternship.repository;
 
 import android.util.Log;
 
+import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
 import com.example.ucinternship.model.local.Project;
@@ -55,6 +56,7 @@ public class ProjectRepository {
                     if(response.body() != null){
                         Log.d(TAG, "onResponse: "+ response.body().getResults().size());
                         listProjects.postValue(response.body().getResults());
+                        resetInstance();
                     }
                 }
             }
@@ -66,4 +68,5 @@ public class ProjectRepository {
         });
         return listProjects;
     }
+
 }
