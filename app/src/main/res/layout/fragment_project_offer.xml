@@ -44,22 +44,10 @@
                 android:id="@+id/offereducation_img"
                 android:layout_width="75dp"
                 android:layout_height="75dp"
-                android:src="@drawable/ic_educationicon"
-                app:layout_constraintBottom_toBottomOf="@+id/offerrequest_img"
-                app:layout_constraintEnd_toStartOf="@+id/offerevent_img"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toEndOf="@+id/offerrequest_img"
-                app:layout_constraintTop_toTopOf="@+id/offerrequest_img" />
-
-            <ImageView
-                android:id="@+id/offerrequest_img"
-                android:layout_width="75dp"
-                android:layout_height="75dp"
                 android:layout_marginStart="24dp"
                 android:layout_marginTop="24dp"
-                android:layout_weight="1"
-                android:src="@drawable/ic_requesticon"
-                app:layout_constraintEnd_toStartOf="@+id/offereducation_img"
+                android:src="@drawable/ic_educationicon"
+                app:layout_constraintEnd_toStartOf="@+id/offerevent_img"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/projectoffersearchbar_search" />
@@ -77,17 +65,6 @@
                 app:layout_constraintTop_toBottomOf="@+id/offer_tb">
 
             </SearchView>
-
-            <TextView
-                android:id="@+id/offerrequest_txt"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:text="@string/RequestText"
-                android:textColor="#002842"
-                app:layout_constraintEnd_toEndOf="@+id/offerrequest_img"
-                app:layout_constraintStart_toStartOf="@+id/offerrequest_img"
-                app:layout_constraintTop_toBottomOf="@+id/offerrequest_img" />
 
             <TextView
                 android:id="@+id/offereducation_txt"
@@ -133,7 +110,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/offerrequest_txt"
+                app:layout_constraintTop_toBottomOf="@+id/offereducation_txt"
                 tools:listitem="@layout/activity_project_adapter" />
 
             <androidx.appcompat.widget.Toolbar

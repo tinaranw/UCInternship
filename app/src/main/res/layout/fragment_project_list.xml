@@ -47,22 +47,10 @@
                 android:id="@+id/education_img"
                 android:layout_width="75dp"
                 android:layout_height="75dp"
-                android:src="@drawable/ic_educationicon"
-                app:layout_constraintBottom_toBottomOf="@+id/request_img"
-                app:layout_constraintEnd_toStartOf="@+id/event_img"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toEndOf="@+id/request_img"
-                app:layout_constraintTop_toTopOf="@+id/request_img" />
-
-            <ImageView
-                android:id="@+id/request_img"
-                android:layout_width="75dp"
-                android:layout_height="75dp"
                 android:layout_marginStart="24dp"
                 android:layout_marginTop="24dp"
-                android:layout_weight="1"
-                android:src="@drawable/ic_requesticon"
-                app:layout_constraintEnd_toStartOf="@+id/education_img"
+                android:src="@drawable/ic_educationicon"
+                app:layout_constraintEnd_toStartOf="@+id/event_img"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/projectsearchbar_search" />
@@ -80,17 +68,6 @@
                 app:layout_constraintTop_toBottomOf="@+id/pro_list_tb">
 
             </SearchView>
-
-            <TextView
-                android:id="@+id/request_txt"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:text="@string/RequestText"
-                android:textColor="#002842"
-                app:layout_constraintEnd_toEndOf="@+id/request_img"
-                app:layout_constraintStart_toStartOf="@+id/request_img"
-                app:layout_constraintTop_toBottomOf="@+id/request_img" />
 
             <TextView
                 android:id="@+id/education_txt"
@@ -149,9 +126,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/request_txt"
-                app:layout_constraintVertical_bias="0.488" />
+                app:layout_constraintStart_toStartOf="parent" />
 
             <TextView
                 android:id="@+id/noproject_txt"
