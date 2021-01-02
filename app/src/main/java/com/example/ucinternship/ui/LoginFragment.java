@@ -1,14 +1,10 @@
 package com.example.ucinternship.ui;
 
-import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.navigation.NavDirections;
 import androidx.navigation.Navigation;
@@ -21,16 +17,12 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import com.example.ucinternship.R;
-import com.example.ucinternship.model.response.TokenResponse;
-import com.example.ucinternship.ui.login.LoginViewModel;
+import com.example.ucinternship.ui.viewmodel.LoginViewModel;
 import com.example.ucinternship.utils.SharedPreferenceHelper;
 import com.google.android.material.textfield.TextInputLayout;
 
-import java.util.Objects;
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.OnClick;
 
 public class LoginFragment extends Fragment {
 

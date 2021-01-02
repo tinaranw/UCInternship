@@ -1,15 +1,11 @@
 package com.example.ucinternship.ui;
 
 import android.app.Dialog;
-import android.content.DialogInterface;
-import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.navigation.NavDirections;
@@ -28,10 +24,7 @@ import android.widget.Toast;
 
 import com.example.ucinternship.Glovar;
 import com.example.ucinternship.R;
-import com.example.ucinternship.ui.login.LoginViewModel;
-import com.example.ucinternship.ui.logout.LogoutViewModel;
-import com.example.ucinternship.ui.splash.SplashFragment;
-import com.example.ucinternship.ui.splash.SplashFragmentDirections;
+import com.example.ucinternship.ui.viewmodel.LogoutViewModel;
 import com.example.ucinternship.utils.SharedPreferenceHelper;
 
 import butterknife.BindView;

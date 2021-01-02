@@ -1,4 +1,4 @@
-package com.example.ucinternship.ui.logout;
+package com.example.ucinternship.ui.viewmodel;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;

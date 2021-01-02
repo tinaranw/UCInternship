@@ -1,4 +1,4 @@
-package com.example.ucinternship.ui.project;
+package com.example.ucinternship.ui.viewmodel;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModel;
