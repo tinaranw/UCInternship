@@ -18,10 +18,12 @@ public interface Endpoints {
     @FormUrlEncoded
     Call<TokenResponse> login(@Field("email") String email, @Field("password") String password);
 
-    @GET("projects")
+    @GET("project")
     Call<ProjectResponse> getProjects();
 
-    //    @Headers({})
+    @GET("offer")
+    Call<ProjectResponse> getProjectOffers();
+
     @POST("api-logout")
     Call<JsonObject> logout();
 }

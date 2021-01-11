@@ -25,7 +25,6 @@ public class ProjectAdapter extends RecyclerView.Adapter<ProjectAdapter.ProjectV
     private Context context;
     private List<Project> projectList;
 
-
     public ProjectAdapter(Context context) {
         this.context = context;
     }
@@ -48,7 +47,23 @@ public class ProjectAdapter extends RecyclerView.Adapter<ProjectAdapter.ProjectV
         Log.d("project_name", p.getProject_name());
         holder.title.setText(p.getProject_name());
         holder.duration.setText(p.getProject_deadline());
-        holder.status.setText(p.getProject_status());
+        holder.spv.setText(p.getProject_spv());
+        if(p.getProject_status().equalsIgnoreCase("0")){
+            holder.status.setText("Available");
+        } else if(p.getProject_status().equalsIgnoreCase("1")){
+            holder.status.setText("Ongoing");
+        } else if(p.getProject_status().equalsIgnoreCase("2")){
+            holder.status.setText("Completed");
+        } else if(p.getProject_status().equalsIgnoreCase("3")){
+            holder.status.setText("Suspended");
+        }
+        if(p.getProject_category().equalsIgnoreCase("0")){
+            holder.icon.setImageResource(R.drawable.ic_event);
+        } else if(p.getProject_category().equalsIgnoreCase("1")){
+            holder.icon.setImageResource(R.drawable.ic_material);
+        } else if(p.getProject_category().equalsIgnoreCase("2")){
+            holder.icon.setImageResource(R.drawable.ic_others);
+        }
     }
 
     @Override

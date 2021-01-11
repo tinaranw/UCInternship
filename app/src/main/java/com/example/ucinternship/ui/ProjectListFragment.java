@@ -84,7 +84,6 @@ public class ProjectListFragment extends Fragment {
                 rv.setAdapter(adapter);
                 noproject.setVisibility(View.INVISIBLE);
                 noproject_txt.setVisibility(View.INVISIBLE);
-//                showLoading(false);
             } else {
                 noproject.setVisibility(View.VISIBLE);
                 noproject_txt.setVisibility(View.VISIBLE);
@@ -95,10 +94,8 @@ public class ProjectListFragment extends Fragment {
     private void showLoading(Boolean state) {
         if (state) {
             rv.setVisibility(View.GONE);
-//            loading.setVisibility(View.VISIBLE);
         } else {
             rv.setVisibility(View.VISIBLE);
-//            loading.setVisibility(View.GONE);
         }
     }
 
