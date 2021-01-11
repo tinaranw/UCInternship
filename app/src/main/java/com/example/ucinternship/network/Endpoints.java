@@ -2,6 +2,7 @@ package com.example.ucinternship.network;
 
 import com.example.ucinternship.model.response.ProjectResponse;
 import com.example.ucinternship.model.response.TokenResponse;
+import com.example.ucinternship.model.response.UserResponse;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 
@@ -20,6 +21,9 @@ public interface Endpoints {
 
     @GET("projects")
     Call<ProjectResponse> getProjects();
+
+    @POST("user")
+    Call<UserResponse> user();
 
     //    @Headers({})
     @POST("api-logout")
