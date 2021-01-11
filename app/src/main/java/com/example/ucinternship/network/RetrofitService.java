@@ -63,6 +63,10 @@ public class RetrofitService {
         return api.getProjects();
     }
 
+    public Call<ProjectResponse> getProjectOffers(){
+        return api.getProjectOffers();
+    }
+
     public Call<JsonObject> logout(){
         return api.logout();
     }

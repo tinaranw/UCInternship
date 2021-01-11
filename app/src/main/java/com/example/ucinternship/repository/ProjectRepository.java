@@ -69,4 +69,28 @@ public class ProjectRepository {
         return listProjects;
     }
 
+    public MutableLiveData<List<Project>> getProjectOffers(){
+        MutableLiveData<List<Project>> listProjects = new MutableLiveData<>();
+
+        apiService.getProjectOffers().enqueue(new Callback<ProjectResponse>() {
+            @Override
+            public void onResponse(Call<ProjectResponse> call, Response<ProjectResponse> response) {
+                Log.d(TAG, "onResponse: "+ response.code());
+                if(response.isSuccessful()){
+                    Log.d(TAG, "onResponse: "+ response.code());
+                    if(response.body() != null){
+                        Log.d(TAG, "onResponse: "+ response.body().getResults().size());
+                        listProjects.postValue(response.body().getResults());
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ProjectResponse> call, Throwable t) {
+                Log.d(TAG, "onFailure: "+ t.getMessage());
+            }
+        });
+        return listProjects;
+    }
+
 }

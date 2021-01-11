@@ -23,6 +23,10 @@ public class ProjectViewModel extends ViewModel {
         return repository.getProjects();
     }
 
+    public LiveData<List<Project>> getProjectOffers(){
+        return repository.getProjectOffers();
+    }
+
     @Override
     protected void onCleared() {
         super.onCleared();
