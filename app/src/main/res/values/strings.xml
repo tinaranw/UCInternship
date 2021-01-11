@@ -56,4 +56,6 @@
     <string name="pro_offer">Project Offer</string>
     <string name="detail_progress">Detail Progress</string>
     <string name="logout">Logout</string>
+    <string name="editprofile">Edit Profile</string>
+    <string name="update">Update Profile</string>
 </resources>

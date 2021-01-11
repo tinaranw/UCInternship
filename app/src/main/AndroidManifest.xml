@@ -4,16 +4,16 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
 
-
     <application
         android:allowBackup="true"
         android:icon="@drawable/ic_logo"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:usesCleartextTraffic="true"
-        android:theme="@style/Theme.UCInternship">
-        <activity android:name=".adapter.TaskAdapter"></activity>
+        android:theme="@style/Theme.UCInternship"
+        android:usesCleartextTraffic="true">
+        <activity android:name=".ui.EditProfileActivity"></activity>
+        <activity android:name=".adapter.TaskAdapter" />
         <activity android:name=".adapter.StudentAdapter" />
         <activity android:name=".adapter.ProjectAdapter" />
         <activity android:name=".ui.MainActivity">
