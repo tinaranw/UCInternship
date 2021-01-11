@@ -15,15 +15,15 @@ public class ProjectViewModel extends ViewModel {
 
     }
 
-    public void init(String token){
+    public void init(String token) {
         repository = ProjectRepository.getInstance(token);
     }
 
-    public LiveData<List<Project>> getProjects(){
+    public LiveData<List<Project>> getProjects() {
         return repository.getProjects();
     }
 
-    public LiveData<List<Project>> getProjectOffers(){
+    public LiveData<List<Project>> getProjectOffers() {
         return repository.getProjectOffers();
     }
 

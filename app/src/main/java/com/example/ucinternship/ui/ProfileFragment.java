@@ -7,6 +7,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.navigation.NavDirections;
 import androidx.navigation.Navigation;
@@ -24,7 +25,9 @@ import android.widget.Toast;
 
 import com.example.ucinternship.Glovar;
 import com.example.ucinternship.R;
+import com.example.ucinternship.model.local.Student;
 import com.example.ucinternship.ui.viewmodel.LogoutViewModel;
+import com.example.ucinternship.ui.viewmodel.ProfileViewModel;
 import com.example.ucinternship.utils.SharedPreferenceHelper;
 
 import butterknife.BindView;
@@ -57,8 +60,10 @@ public class ProfileFragment extends Fragment {
     Button logout;
 
     //kita perlu declare ini, krn fragment butuh data dari sini
-    private LogoutViewModel viewModel;
+    private LogoutViewModel logoutViewModel;
+    private ProfileViewModel profileViewModel;
     private SharedPreferenceHelper helper;
+    private Student student;
     Dialog dialog;
 
 
@@ -77,21 +82,31 @@ public class ProfileFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        ButterKnife.bind(this,view);
+        ButterKnife.bind(this, view);
 
         //inisialisasi sharedpref dan viewmodel -> sm spt firebase yg reference bla"
         helper = SharedPreferenceHelper.getInstance(requireActivity());
-        viewModel = ViewModelProviders.of(requireActivity()).get(LogoutViewModel.class);
+        logoutViewModel = ViewModelProviders.of(requireActivity()).get(LogoutViewModel.class);
+
         //untuk token sharedpref
-        viewModel.init(helper.getAccessToken());
+        logoutViewModel.init(helper.getAccessToken());
         dialog = Glovar.loadingDialog(getActivity());
         logout.setOnClickListener(v -> {
             logout(view);
         });
+
+
+        profileViewModel = ViewModelProviders.of(requireActivity()).get(ProfileViewModel.class);
+        profileViewModel.init(helper.getAccessToken());
+
+        if (getArguments() != null) {
+            student = ProfileFragmentArgs.fromBundle(getArguments()).getStudent();
+            profileViewModel.getStudentDetails(1);
+        }
     }
 
     //View view ini gunanya untuk nav
-    public void logout(View view){
+    public void logout(View view) {
         new AlertDialog.Builder(getActivity())
                 .setTitle("Confirmation")
                 .setIcon(R.drawable.ic_logo)
@@ -103,14 +118,14 @@ public class ProfileFragment extends Fragment {
                         dialog.cancel();
                         Log.d("accesstokenlogout", helper.getAccessToken());
                         //manggil logout di viewmodel
-                        viewModel.logout().observe(requireActivity(), message -> {
-                            if(message != null){
+                        logoutViewModel.logout().observe(requireActivity(), message -> {
+                            if (message != null) {
                                 helper.getInstance(getActivity()).clearPref();
                                 NavDirections actions = ProfileFragmentDirections.actionProfileToSplash();
                                 Navigation.findNavController(view).navigate(actions);
-                                Toast.makeText(requireActivity(),  "Successfully logged out!", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(requireActivity(), "Successfully logged out!", Toast.LENGTH_SHORT).show();
                             } else {
-                                Toast.makeText(requireActivity(),  "Failed to logout!", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(requireActivity(), "Failed to logout!", Toast.LENGTH_SHORT).show();
                             }
                         });
 

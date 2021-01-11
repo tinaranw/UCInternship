@@ -46,7 +46,6 @@ public class ProjectRepository {
 
     public MutableLiveData<List<Project>> getProjects(){
         MutableLiveData<List<Project>> listProjects = new MutableLiveData<>();
-
         apiService.getProjects().enqueue(new Callback<ProjectResponse>() {
             @Override
             public void onResponse(Call<ProjectResponse> call, Response<ProjectResponse> response) {
@@ -60,7 +59,6 @@ public class ProjectRepository {
                     }
                 }
             }
-
             @Override
             public void onFailure(Call<ProjectResponse> call, Throwable t) {
                 Log.d(TAG, "onFailure: "+ t.getMessage());
