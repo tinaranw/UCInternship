@@ -5,7 +5,9 @@ import android.util.Log;
 import androidx.lifecycle.MutableLiveData;
 
 import com.example.ucinternship.model.local.Student;
+import com.example.ucinternship.model.local.Supervisor;
 import com.example.ucinternship.model.response.StudentResponse;
+import com.example.ucinternship.model.response.SupervisorResponse;
 import com.example.ucinternship.network.RetrofitService;
 
 import java.util.List;
@@ -58,6 +60,29 @@ public class ProfileRepository {
             }
         });
         return listStudents;
+    }
+
+    public MutableLiveData<List<Supervisor>> getSupervisorDetails(int id){
+        MutableLiveData<List<Supervisor>> listSupervisors = new MutableLiveData<>();
+        apiService.getSupervisorDetails(id).enqueue(new Callback<SupervisorResponse>() {
+            @Override
+            public void onResponse(Call<SupervisorResponse> call, Response<SupervisorResponse> response) {
+                Log.d(TAG, "onResponse: "+ response.code());
+                if(response.isSuccessful()){
+                    Log.d(TAG, "onResponse: "+ response.code());
+                    if(response.body() != null){
+                        Log.d(TAG, "onResponse: "+ response.body().getSupervisor_data().size());
+                        listSupervisors.postValue(response.body().getSupervisor_data());
+                        resetInstance();
+                    }
+                }
+            }
+            @Override
+            public void onFailure(Call<SupervisorResponse> call, Throwable t) {
+                Log.d(TAG, "onFailure: "+ t.getMessage());
+            }
+        });
+        return listSupervisors;
     }
 
 

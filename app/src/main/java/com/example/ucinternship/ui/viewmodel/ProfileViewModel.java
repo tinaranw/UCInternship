@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModel;
 
 import com.example.ucinternship.model.local.Project;
 import com.example.ucinternship.model.local.Student;
+import com.example.ucinternship.model.local.Supervisor;
 import com.example.ucinternship.repository.ProfileRepository;
 import com.example.ucinternship.repository.ProjectRepository;
 
@@ -24,6 +25,9 @@ public class ProfileViewModel extends ViewModel {
 
     public LiveData<List<Student>> getStudentDetails(int id) {
         return repository.getStudentDetails(id);
+    }
+    public LiveData<List<Supervisor>> getSupervisorDetails(int id) {
+        return repository.getSupervisorDetails(id);
     }
 
     @Override

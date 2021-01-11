@@ -1,10 +1,13 @@
 package com.example.ucinternship.model.local;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
-public class Supervisor {
+public class Supervisor implements Parcelable {
 
     @SerializedName("user_id")
     private int supervisor_user_id;
@@ -48,6 +51,33 @@ public class Supervisor {
         this.supervisor_department_initial = supervisor_department_initial;
         this.supervisor_title = supervisor_title;
     }
+
+    protected Supervisor(Parcel in) {
+        supervisor_user_id = in.readInt();
+        supervisor_nip = in.readString();
+        supervisor_name = in.readString();
+        supervisor_email = in.readString();
+        supervisor_desc = in.readString();
+        supervisor_photo = in.readString();
+        supervisor_gender = in.readString();
+        supervisor_phone = in.readString();
+        supervisor_line = in.readString();
+        supervisor_department_name = in.readString();
+        supervisor_department_initial = in.readString();
+        supervisor_title = in.readString();
+    }
+
+    public static final Creator<Supervisor> CREATOR = new Creator<Supervisor>() {
+        @Override
+        public Supervisor createFromParcel(Parcel in) {
+            return new Supervisor(in);
+        }
+
+        @Override
+        public Supervisor[] newArray(int size) {
+            return new Supervisor[size];
+        }
+    };
 
     public int getSupervisor_user_id() {
         return supervisor_user_id;
@@ -143,5 +173,26 @@ public class Supervisor {
 
     public void setSupervisor_title(String supervisor_title) {
         this.supervisor_title = supervisor_title;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel parcel, int i) {
+        parcel.writeInt(supervisor_user_id);
+        parcel.writeString(supervisor_nip);
+        parcel.writeString(supervisor_name);
+        parcel.writeString(supervisor_email);
+        parcel.writeString(supervisor_desc);
+        parcel.writeString(supervisor_photo);
+        parcel.writeString(supervisor_gender);
+        parcel.writeString(supervisor_phone);
+        parcel.writeString(supervisor_line);
+        parcel.writeString(supervisor_department_name);
+        parcel.writeString(supervisor_department_initial);
+        parcel.writeString(supervisor_title);
     }
 }
