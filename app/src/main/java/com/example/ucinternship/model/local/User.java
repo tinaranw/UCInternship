@@ -15,6 +15,8 @@ public class User implements Parcelable {
     private String user_email;
     @SerializedName("password")
     private String user_password;
+    @SerializedName("role_id")
+    private String user_role;
     @SerializedName("detailable_id")
     private String user_detailable;
     @SerializedName("detailable_type")
@@ -24,16 +26,39 @@ public class User implements Parcelable {
 
     public User(){}
 
-    public User(String user_id, String user_name, String user_email, String user_password, String user_detailable, String user_type, String user_info) {
+    public User(String user_id, String user_name, String user_email, String user_password, String user_role, String user_detailable, String user_type, String user_info) {
         this.user_id = user_id;
         this.user_name = user_name;
         this.user_email = user_email;
         this.user_password = user_password;
+        this.user_role = user_role;
         this.user_detailable = user_detailable;
         this.user_type = user_type;
         this.user_info = user_info;
     }
 
+    protected User(Parcel in) {
+        user_id = in.readString();
+        user_name = in.readString();
+        user_email = in.readString();
+        user_password = in.readString();
+        user_role = in.readString();
+        user_detailable = in.readString();
+        user_type = in.readString();
+        user_info = in.readString();
+    }
+
+    public static final Creator<User> CREATOR = new Creator<User>() {
+        @Override
+        public User createFromParcel(Parcel in) {
+            return new User(in);
+        }
+
+        @Override
+        public User[] newArray(int size) {
+            return new User[size];
+        }
+    };
 
     public String getUser_id() {
         return user_id;
@@ -67,6 +92,14 @@ public class User implements Parcelable {
         this.user_password = user_password;
     }
 
+    public String getUser_role() {
+        return user_role;
+    }
+
+    public void setUser_role(String user_role) {
+        this.user_role = user_role;
+    }
+
     public String getUser_detailable() {
         return user_detailable;
     }
@@ -91,15 +124,9 @@ public class User implements Parcelable {
         this.user_info = user_info;
     }
 
-
-    protected User(Parcel in) {
-        user_id = in.readString();
-        user_name = in.readString();
-        user_email = in.readString();
-        user_password = in.readString();
-        user_detailable = in.readString();
-        user_type = in.readString();
-        user_info = in.readString();
+    @Override
+    public int describeContents() {
+        return 0;
     }
 
     @Override
@@ -108,25 +135,9 @@ public class User implements Parcelable {
         dest.writeString(user_name);
         dest.writeString(user_email);
         dest.writeString(user_password);
+        dest.writeString(user_role);
         dest.writeString(user_detailable);
         dest.writeString(user_type);
         dest.writeString(user_info);
     }
-
-    @Override
-    public int describeContents() {
-        return 0;
-    }
-
-    public static final Creator<User> CREATOR = new Creator<User>() {
-        @Override
-        public User createFromParcel(Parcel in) {
-            return new User(in);
-        }
-
-        @Override
-        public User[] newArray(int size) {
-            return new User[size];
-        }
-    };
 }

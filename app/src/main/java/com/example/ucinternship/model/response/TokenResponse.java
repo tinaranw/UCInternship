@@ -1,6 +1,10 @@
 package com.example.ucinternship.model.response;
 
+import com.example.ucinternship.model.local.User;
+import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
+
+import java.util.List;
 
 public class TokenResponse {
 
@@ -17,6 +21,10 @@ public class TokenResponse {
 
     @SerializedName("refresh_token")
     String refreshToken;
+
+//    @SerializedName("user")
+//    @Expose
+//    private List<User> userList;
 
     public String getTokenType() {
         return tokenType;
@@ -40,4 +48,12 @@ public class TokenResponse {
     public String getAuthorization(){
         return this.tokenType + " " + this.accessToken;
     }
+
+//    public List<User> getUserList() {
+//        return userList;
+//    }
+//
+//    public void setUserList(List<User> userList) {
+//        this.userList = userList;
+//    }
 }

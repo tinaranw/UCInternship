@@ -126,6 +126,30 @@
                 app:title="@string/pro_offer"
                 app:titleTextColor="@color/blue" />
 
+            <ImageView
+                android:id="@+id/noprojectoffer_img"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_no_list"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/projectoffer_rv"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/projectoffer_rv"
+                app:layout_constraintTop_toTopOf="@+id/projectoffer_rv"
+                app:layout_constraintVertical_bias="0.398" />
+
+            <TextView
+                android:id="@+id/noprojectoffer_txt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/montserrat_semibold"
+                android:text="No available projects \nat the moment"
+                android:textColor="@color/blue"
+                android:textSize="18sp"
+                app:layout_constraintBottom_toBottomOf="@+id/noprojectoffer_img"
+                app:layout_constraintEnd_toEndOf="@+id/noprojectoffer_img"
+                app:layout_constraintTop_toTopOf="@+id/noprojectoffer_img" />
+
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.core.widget.NestedScrollView>
