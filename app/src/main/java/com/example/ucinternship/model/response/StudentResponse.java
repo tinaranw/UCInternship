@@ -7,20 +7,20 @@ import java.util.List;
 
 public class StudentResponse {
     @SerializedName("data")
-    private List<Student> student_data;
+    private Student student_data;
 
     public StudentResponse() {
     }
 
-    public StudentResponse(List<Student> student_data) {
+    public StudentResponse(Student student_data) {
         this.student_data = student_data;
     }
 
-    public List<Student> getStudent_data() {
+    public Student getStudent_data() {
         return student_data;
     }
 
-    public void setStudent_data(List<Student> student_data) {
+    public void setStudent_data(Student student_data) {
         this.student_data = student_data;
     }
 }

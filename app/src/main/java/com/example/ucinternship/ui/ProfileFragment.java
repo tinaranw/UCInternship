@@ -112,16 +112,16 @@ public class ProfileFragment extends Fragment {
 
 
     }
-    private Observer<List<Student>> observeDetailViewModel = details -> {
+    private Observer<Student> observeDetailViewModel = details -> {
         if (details != null) {
-            List<Info> info = details.get(0).getStudent_info();
-            Glide.with(getActivity()).load(Constants.BASE_IMAGE_URL + details.get(0).getStudent_photo()).into(image);
-            nim.setText(details.get(0).getStudent_nim());
-            name.setText(details.get(0).getStudent_name());
-            department.setText(details.get(0).getStudent_department_name());
-            email.setText(details.get(0).getStudent_email());
-            remaining.setText(info.get(0).getInfo_time());
-            Log.d("nimku", ""+details.get(0).getStudent_nim());
+            Info info = details.getStudent_info();
+            Glide.with(getActivity()).load(Constants.BASE_IMAGE_URL + details.getStudent_photo()).into(image);
+            nim.setText(details.getStudent_nim());
+            name.setText(details.getStudent_name());
+            department.setText(details.getStudent_department_name());
+            email.setText(details.getStudent_email());
+            remaining.setText(info.getInfo_time());
+            Log.d("nimku", ""+details.getStudent_nim());
         }
     };
 

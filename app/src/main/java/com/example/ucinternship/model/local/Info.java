@@ -14,11 +14,11 @@ public class Info {
     @SerializedName("gpa")
     private String info_gpa;
     @SerializedName("scholarship")
-    private List<Scholarship> info_scholarship;
+    private Scholarship info_scholarship;
 
     public Info(){}
 
-    public Info(String info_time, String info_gpa, List<Scholarship> info_scholarship) {
+    public Info(String info_time, String info_gpa, Scholarship info_scholarship) {
         this.info_time = info_time;
         this.info_gpa = info_gpa;
         this.info_scholarship = info_scholarship;
@@ -40,11 +40,11 @@ public class Info {
         this.info_gpa = info_gpa;
     }
 
-    public List<Scholarship> getInfo_scholarship() {
+    public Scholarship getInfo_scholarship() {
         return info_scholarship;
     }
 
-    public void setInfo_scholarship(List<Scholarship> info_scholarship) {
+    public void setInfo_scholarship(Scholarship info_scholarship) {
         this.info_scholarship = info_scholarship;
     }
 }

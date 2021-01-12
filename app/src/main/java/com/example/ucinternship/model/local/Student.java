@@ -34,12 +34,12 @@ public class Student implements Parcelable{
     @SerializedName("department_initial")
     private String student_department_initial;
     @SerializedName("info")
-    private List<Info> student_info;
+    private Info student_info;
 
     public Student() {
     }
 
-    public Student(int student_user_id, String student_nim, String student_name, String student_email, String batch, String student_desc, String student_photo, String student_gender, String student_phone, String student_line, String student_department_name, String student_department_initial, List<Info> student_info) {
+    public Student(int student_user_id, String student_nim, String student_name, String student_email, String batch, String student_desc, String student_photo, String student_gender, String student_phone, String student_line, String student_department_name, String student_department_initial, Info student_info) {
         this.student_user_id = student_user_id;
         this.student_nim = student_nim;
         this.student_name = student_name;
@@ -178,11 +178,11 @@ public class Student implements Parcelable{
         this.student_department_initial = student_department_initial;
     }
 
-    public List<Info> getStudent_info() {
+    public Info getStudent_info() {
         return student_info;
     }
 
-    public void setStudent_info(List<Info> student_info) {
+    public void setStudent_info(Info student_info) {
         this.student_info = student_info;
     }
 

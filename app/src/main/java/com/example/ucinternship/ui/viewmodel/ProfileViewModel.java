@@ -23,7 +23,7 @@ public class ProfileViewModel extends ViewModel {
         repository = ProfileRepository.getInstance(token);
     }
 
-    public LiveData<List<Student>> getStudentDetails(int id) {
+    public LiveData<Student> getStudentDetails(int id) {
         return repository.getStudentDetails(id);
     }
     public LiveData<List<Supervisor>> getSupervisorDetails(int id) {

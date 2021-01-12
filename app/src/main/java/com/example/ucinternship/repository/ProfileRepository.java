@@ -39,8 +39,8 @@ public class ProfileRepository {
         }
     }
 
-    public MutableLiveData<List<Student>> getStudentDetails(int id){
-        MutableLiveData<List<Student>> listStudents = new MutableLiveData<>();
+    public MutableLiveData<Student> getStudentDetails(int id){
+        MutableLiveData<Student> listStudents = new MutableLiveData<>();
         apiService.getStudentDetails(id).enqueue(new Callback<StudentResponse>() {
             @Override
             public void onResponse(Call<StudentResponse> call, Response<StudentResponse> response) {
@@ -48,7 +48,7 @@ public class ProfileRepository {
                 if(response.isSuccessful()){
                     Log.d(TAG, "onResponse: "+ response.code());
                     if(response.body() != null){
-                        Log.d(TAG, "onResponse: "+ response.body().getStudent_data().size());
+                        Log.d(TAG, "onResponse: "+ response.body().getStudent_data());
                         listStudents.postValue(response.body().getStudent_data());
                         resetInstance();
                     }
