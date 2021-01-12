@@ -12,6 +12,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -20,12 +22,14 @@ import com.example.ucinternship.R;
 import com.example.ucinternship.model.local.Project;
 import com.example.ucinternship.ui.student.ProjectOfferFragmentDirections;
 
+import java.util.ArrayList;
 import java.util.List;
 
-public class ProjectOfferAdapter extends RecyclerView.Adapter<ProjectOfferAdapter.ProjectViewHolder> {
+public class ProjectOfferAdapter extends RecyclerView.Adapter<ProjectOfferAdapter.ProjectViewHolder> implements Filterable {
 
     private Context context;
     private List<Project> projectList;
+    private List<Project> projectListFull;
 
     public ProjectOfferAdapter(Context context) {
         this.context = context;
@@ -33,7 +37,8 @@ public class ProjectOfferAdapter extends RecyclerView.Adapter<ProjectOfferAdapte
 
     public void setProjectList(List<Project> projectList){
         this.projectList = projectList;
-        notifyDataSetChanged();
+        projectListFull = new ArrayList<>(projectList);
+//        notifyDataSetChanged();
     }
 
     @NonNull
@@ -48,7 +53,7 @@ public class ProjectOfferAdapter extends RecyclerView.Adapter<ProjectOfferAdapte
         Project p = projectList.get(i);
         Log.d("project_name", p.getProject_name());
         holder.title.setText(p.getProject_name());
-        holder.duration.setText(p.getProject_deadline());
+        holder.deadline.setText(p.getProject_deadline());
         holder.spv.setText((p.getProject_spv().getSupervisor_name()));
         if(p.getProject_status().equalsIgnoreCase("0")){
             holder.status.setText("Available");
@@ -77,17 +82,52 @@ public class ProjectOfferAdapter extends RecyclerView.Adapter<ProjectOfferAdapte
         return projectList.size();
     }
 
+    @Override
+    public Filter getFilter() {
+        return projectFilter;
+    }
+
+    private Filter projectFilter = new Filter() {
+        @Override
+        protected FilterResults performFiltering(CharSequence constraint) {
+            List<Project> filteredList = new ArrayList<>();
+            if (constraint == null || constraint.length() == 0){
+                filteredList.addAll(projectListFull);
+            } else {
+                String filterPattern = constraint.toString().toLowerCase().trim();
+
+                //foreach
+                for (Project project : projectListFull){
+                    if (project.getProject_name().toLowerCase().contains(filterPattern)){
+                        filteredList.add(project);
+                    }
+                }
+            }
+            FilterResults results = new FilterResults();
+            results.values = filteredList;
+
+            return results;
+        }
+
+        @Override
+        protected void publishResults(CharSequence constraint, FilterResults results) {
+            projectList.clear();
+            projectList.addAll((List)results.values);
+            notifyDataSetChanged();
+        }
+    };
+
     public class ProjectViewHolder extends RecyclerView.ViewHolder {
 
         ImageView icon;
-        TextView title, spv, duration, status;
+        TextView title, spv, deadline, status;
 
         public ProjectViewHolder(@NonNull View itemView) {
             super(itemView);
             icon = itemView.findViewById(R.id.icon_card_img);
             title = itemView.findViewById(R.id.title_card_txt);
             spv = itemView.findViewById(R.id.spv_card_txt);
-            duration = itemView.findViewById(R.id.duration_card_txt);
+            deadline = itemView.findViewById(R.id.deadline_card_txt);
             status = itemView.findViewById(R.id.status_card_txt);
         }
     }

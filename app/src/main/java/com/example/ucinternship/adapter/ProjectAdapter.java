@@ -52,7 +52,7 @@ public class ProjectAdapter extends RecyclerView.Adapter<ProjectAdapter.ProjectV
         Project p = projectList.get(i);
         Log.d("project_name", p.getProject_name());
         holder.title.setText(p.getProject_name());
-        holder.duration.setText(p.getProject_deadline());
+        holder.deadline.setText(p.getProject_deadline());
         holder.spv.setText(p.getProject_spv().getSupervisor_name());
         if(p.getProject_status().equalsIgnoreCase("0")){
             holder.status.setText("Available");
@@ -116,14 +116,14 @@ public class ProjectAdapter extends RecyclerView.Adapter<ProjectAdapter.ProjectV
     public class ProjectViewHolder extends RecyclerView.ViewHolder {
 
         ImageView icon;
-        TextView title, spv, duration, status;
+        TextView title, spv, deadline, status;
 
         public ProjectViewHolder(@NonNull View itemView) {
             super(itemView);
             icon = itemView.findViewById(R.id.icon_card_img);
             title = itemView.findViewById(R.id.title_card_txt);
             spv = itemView.findViewById(R.id.spv_card_txt);
-            duration = itemView.findViewById(R.id.duration_card_txt);
+            deadline = itemView.findViewById(R.id.deadline_card_txt);
             status = itemView.findViewById(R.id.status_card_txt);
         }
     }

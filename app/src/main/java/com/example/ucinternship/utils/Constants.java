@@ -6,7 +6,7 @@ public class Constants {
 //    michelle
     public final static String BASE_URL="http://192.168.1.6/UC-Internship/public/api/";
     //tinara
-    public final static String BASE_URL="http://192.168.1.4/UC-Internship/public/api/";
-    public final static String BASE_IMAGE_URL="http://192.168.1.4/UC-Internship/public/profile_picture/";
+//    public final static String BASE_URL="http://192.168.1.4/UC-Internship/public/api/";
+//    public final static String BASE_IMAGE_URL="http://192.168.1.4/UC-Internship/public/profile_picture/";
 
 }
