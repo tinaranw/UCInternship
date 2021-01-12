@@ -16,6 +16,7 @@ import android.widget.ImageView;
 import android.widget.SearchView;
 import android.widget.TextView;
 import com.example.ucinternship.R;
+import com.example.ucinternship.adapter.ProjectOfferAdapter;
 import com.example.ucinternship.model.local.Project;
 import com.example.ucinternship.ui.viewmodel.ProjectViewModel;
 import com.example.ucinternship.utils.SharedPreferenceHelper;
