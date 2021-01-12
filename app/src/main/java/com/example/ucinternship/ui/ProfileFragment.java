@@ -133,7 +133,10 @@ public class ProfileFragment extends Fragment {
             name.setText(details.getStudent_name());
             department.setText(details.getStudent_department_name());
             email.setText(details.getStudent_email());
+            phone.setText(details.getStudent_phone());
+            line.setText(details.getStudent_line());
             remaining.setText(info.getInfo_time());
+
             Log.d("nimku", "" + details.getStudent_nim());
         }
     };
@@ -145,6 +148,8 @@ public class ProfileFragment extends Fragment {
             name.setText(details.getSupervisor_name());
             department.setText(details.getSupervisor_department_name());
             email.setText(details.getSupervisor_email());
+            phone.setText(details.getSupervisor_phone());
+            line.setText(details.getSupervisor_line());
             getView().findViewById(R.id.profile_hour_inc).setVisibility(View.GONE);
         }
     };
