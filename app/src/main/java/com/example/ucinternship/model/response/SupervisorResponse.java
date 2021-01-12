@@ -7,20 +7,20 @@ import java.util.List;
 
 public class SupervisorResponse {
     @SerializedName("data")
-    private List<Supervisor> supervisor_data;
+    private Supervisor supervisor_data;
 
     public SupervisorResponse() {
     }
 
-    public SupervisorResponse(List<Supervisor> supervisor_data) {
+    public SupervisorResponse(Supervisor supervisor_data) {
         this.supervisor_data = supervisor_data;
     }
 
-    public List<Supervisor> getSupervisor_data() {
+    public Supervisor getSupervisor_data() {
         return supervisor_data;
     }
 
-    public void setSupervisor_data(List<Supervisor> supervisor_data) {
+    public void setSupervisor_data(Supervisor supervisor_data) {
         this.supervisor_data = supervisor_data;
     }
 }

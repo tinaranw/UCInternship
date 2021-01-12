@@ -61,17 +61,16 @@ public class ProfileRepository {
         });
         return listStudents;
     }
-
-    public MutableLiveData<List<Supervisor>> getSupervisorDetails(int id){
-        MutableLiveData<List<Supervisor>> listSupervisors = new MutableLiveData<>();
+    public MutableLiveData<Supervisor> getSupervisorDetails(int id){
+        MutableLiveData<Supervisor> listSupervisors = new MutableLiveData<>();
         apiService.getSupervisorDetails(id).enqueue(new Callback<SupervisorResponse>() {
             @Override
             public void onResponse(Call<SupervisorResponse> call, Response<SupervisorResponse> response) {
-                Log.d(TAG, "onResponse: "+ response.code());
+                Log.d(TAG, "onResponse1: "+ response.code());
                 if(response.isSuccessful()){
-                    Log.d(TAG, "onResponse: "+ response.code());
+                    Log.d(TAG, "onResponse2: "+ response.code());
                     if(response.body() != null){
-                        Log.d(TAG, "onResponse: "+ response.body().getSupervisor_data().size());
+                        Log.d(TAG, "onResponse3: "+ response.body().getSupervisor_data());
                         listSupervisors.postValue(response.body().getSupervisor_data());
                         resetInstance();
                     }
@@ -84,6 +83,7 @@ public class ProfileRepository {
         });
         return listSupervisors;
     }
+
 
 
 }

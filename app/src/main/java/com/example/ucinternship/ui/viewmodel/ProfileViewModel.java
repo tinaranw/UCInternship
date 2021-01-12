@@ -26,7 +26,7 @@ public class ProfileViewModel extends ViewModel {
     public LiveData<Student> getStudentDetails(int id) {
         return repository.getStudentDetails(id);
     }
-    public LiveData<List<Supervisor>> getSupervisorDetails(int id) {
+    public LiveData<Supervisor> getSupervisorDetails(int id) {
         return repository.getSupervisorDetails(id);
     }
 

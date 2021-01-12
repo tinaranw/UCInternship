@@ -117,14 +117,15 @@ public class ProfileFragment extends Fragment {
         Log.d("roleku", "" + helper.getRole());
         if (helper.getRole().equalsIgnoreCase(checkStudent.replace("'", "\\"))) {
             Log.d("checkstudent", "" + checkStudent.replace("'", "\\"));
-            profileViewModel.getStudentDetails(helper.getUserID()).observe(requireActivity(), observeDetailViewModel);
+            profileViewModel.getStudentDetails(helper.getUserID()).observe(requireActivity(), observeStudentDetailViewModel);
         } else {
+            profileViewModel.getSupervisorDetails(helper.getUserID()).observe(requireActivity(), observeSupervisorDetailViewModel);
         }
 
 
     }
 
-    private Observer<Student> observeDetailViewModel = details -> {
+    private Observer<Student> observeStudentDetailViewModel = details -> {
         if (details != null) {
             Info info = details.getStudent_info();
             Glide.with(getActivity()).load(Constants.BASE_IMAGE_URL + details.getStudent_photo()).into(image);
@@ -134,6 +135,17 @@ public class ProfileFragment extends Fragment {
             email.setText(details.getStudent_email());
             remaining.setText(info.getInfo_time());
             Log.d("nimku", "" + details.getStudent_nim());
+        }
+    };
+
+    private Observer<Supervisor> observeSupervisorDetailViewModel = details -> {
+        if (details != null) {
+            Glide.with(getActivity()).load(Constants.BASE_IMAGE_URL + details.getSupervisor_photo()).into(image);
+            nim.setText(details.getSupervisor_nip());
+            name.setText(details.getSupervisor_name());
+            department.setText(details.getSupervisor_department_name());
+            email.setText(details.getSupervisor_email());
+            getView().findViewById(R.id.profile_hour_inc).setVisibility(View.GONE);
         }
     };
 
