@@ -5,10 +5,12 @@ import android.os.Parcelable;
 
 import com.google.gson.annotations.SerializedName;
 
-public class Student implements Parcelable {
+import java.util.List;
 
-    @SerializedName("id")
-    private String student_id;
+public class Student implements Parcelable{
+
+    @SerializedName("user_id")
+    private int student_user_id;
     @SerializedName("nim")
     private String student_nim;
     @SerializedName("name")
@@ -27,13 +29,18 @@ public class Student implements Parcelable {
     private String student_phone;
     @SerializedName("line_account")
     private String student_line;
-    @SerializedName("departement_id")
-    private String student_departement;
+    @SerializedName("department_name")
+    private String student_department_name;
+    @SerializedName("department_initial")
+    private String student_department_initial;
+    @SerializedName("info")
+    private Info student_info;
 
-    public Student(){}
+    public Student() {
+    }
 
-    public Student(String student_id, String student_nim, String student_name, String student_email, String batch, String student_desc, String student_photo, String student_gender, String student_phone, String student_line, String student_departement) {
-        this.student_id = student_id;
+    public Student(int student_user_id, String student_nim, String student_name, String student_email, String batch, String student_desc, String student_photo, String student_gender, String student_phone, String student_line, String student_department_name, String student_department_initial, Info student_info) {
+        this.student_user_id = student_user_id;
         this.student_nim = student_nim;
         this.student_name = student_name;
         this.student_email = student_email;
@@ -43,11 +50,13 @@ public class Student implements Parcelable {
         this.student_gender = student_gender;
         this.student_phone = student_phone;
         this.student_line = student_line;
-        this.student_departement = student_departement;
+        this.student_department_name = student_department_name;
+        this.student_department_initial = student_department_initial;
+        this.student_info = student_info;
     }
 
     protected Student(Parcel in) {
-        student_id = in.readString();
+        student_user_id = in.readInt();
         student_nim = in.readString();
         student_name = in.readString();
         student_email = in.readString();
@@ -57,7 +66,8 @@ public class Student implements Parcelable {
         student_gender = in.readString();
         student_phone = in.readString();
         student_line = in.readString();
-        student_departement = in.readString();
+        student_department_name = in.readString();
+        student_department_initial = in.readString();
     }
 
     public static final Creator<Student> CREATOR = new Creator<Student>() {
@@ -72,12 +82,12 @@ public class Student implements Parcelable {
         }
     };
 
-    public String getStudent_id() {
-        return student_id;
+    public int getStudent_user_id() {
+        return student_user_id;
     }
 
-    public void setStudent_id(String student_id) {
-        this.student_id = student_id;
+    public void setStudent_user_id(int student_user_id) {
+        this.student_user_id = student_user_id;
     }
 
     public String getStudent_nim() {
@@ -152,12 +162,28 @@ public class Student implements Parcelable {
         this.student_line = student_line;
     }
 
-    public String getstudent_departement() {
-        return student_departement;
+    public String getStudent_department_name() {
+        return student_department_name;
     }
 
-    public void setstudent_departement(String student_departement) {
-        this.student_departement = student_departement;
+    public void setStudent_department_name(String student_department_name) {
+        this.student_department_name = student_department_name;
+    }
+
+    public String getStudent_department_initial() {
+        return student_department_initial;
+    }
+
+    public void setStudent_department_initial(String student_department_initial) {
+        this.student_department_initial = student_department_initial;
+    }
+
+    public Info getStudent_info() {
+        return student_info;
+    }
+
+    public void setStudent_info(Info student_info) {
+        this.student_info = student_info;
     }
 
 
@@ -167,17 +193,18 @@ public class Student implements Parcelable {
     }
 
     @Override
-    public void writeToParcel(Parcel dest, int flags) {
-        dest.writeString(student_id);
-        dest.writeString(student_nim);
-        dest.writeString(student_name);
-        dest.writeString(student_email);
-        dest.writeString(batch);
-        dest.writeString(student_desc);
-        dest.writeString(student_photo);
-        dest.writeString(student_gender);
-        dest.writeString(student_phone);
-        dest.writeString(student_line);
-        dest.writeString(student_departement);
+    public void writeToParcel(Parcel parcel, int i) {
+        parcel.writeInt(student_user_id);
+        parcel.writeString(student_nim);
+        parcel.writeString(student_name);
+        parcel.writeString(student_email);
+        parcel.writeString(batch);
+        parcel.writeString(student_desc);
+        parcel.writeString(student_photo);
+        parcel.writeString(student_gender);
+        parcel.writeString(student_phone);
+        parcel.writeString(student_line);
+        parcel.writeString(student_department_name);
+        parcel.writeString(student_department_initial);
     }
 }

@@ -7,8 +7,6 @@ import com.google.gson.annotations.SerializedName;
 
 public class Scholarship implements Parcelable {
 
-    @SerializedName("id")
-    private String sch_id;
     @SerializedName("name")
     private String sch_name;
     @SerializedName("grade")
@@ -21,14 +19,6 @@ public class Scholarship implements Parcelable {
     private String sch_hps;
 
     public Scholarship(){}
-
-    public String getSch_id() {
-        return sch_id;
-    }
-
-    public void setSch_id(String sch_id) {
-        this.sch_id = sch_id;
-    }
 
     public String getSch_name() {
         return sch_name;
@@ -71,8 +61,7 @@ public class Scholarship implements Parcelable {
     }
 
 
-    public Scholarship(String sch_id, String sch_name, String sch_grade, String sch_duration, String sch_min, String sch_hps) {
-        this.sch_id = sch_id;
+    public Scholarship(String sch_name, String sch_grade, String sch_duration, String sch_min, String sch_hps) {
         this.sch_name = sch_name;
         this.sch_grade = sch_grade;
         this.sch_duration = sch_duration;
@@ -83,7 +72,6 @@ public class Scholarship implements Parcelable {
 
 
     protected Scholarship(Parcel in) {
-        sch_id = in.readString();
         sch_name = in.readString();
         sch_grade = in.readString();
         sch_duration = in.readString();
@@ -93,7 +81,6 @@ public class Scholarship implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeString(sch_id);
         dest.writeString(sch_name);
         dest.writeString(sch_grade);
         dest.writeString(sch_duration);

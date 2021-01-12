@@ -1,6 +1,8 @@
 package com.example.ucinternship.network;
 
 import com.example.ucinternship.model.response.ProjectResponse;
+import com.example.ucinternship.model.response.StudentResponse;
+import com.example.ucinternship.model.response.SupervisorResponse;
 import com.example.ucinternship.model.response.TokenResponse;
 import com.example.ucinternship.utils.Constants;
 import com.google.gson.JsonObject;
@@ -13,7 +15,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class RetrofitService {
     private final Endpoints api;
-    private static com.example.ucinternship.network.RetrofitService service;
+    private static RetrofitService service;
     private static final String TAG="RetrofitService";
 
     //fungsi retrofit service itu nyambungin apps dengan DB (request)
@@ -60,6 +62,17 @@ public class RetrofitService {
 
     public Call<ProjectResponse> getProjects(){
         return api.getProjects();
+    }
+
+    public Call<ProjectResponse> getProjectOffers(){
+        return api.getProjectOffers();
+    }
+
+    public Call<StudentResponse> getStudentDetails(int id){
+        return api.getStudentDetails(id);
+    }
+    public Call<SupervisorResponse> getSupervisorDetails(int id){
+        return api.getSupervisorDetails(id);
     }
 
     public Call<JsonObject> logout(){

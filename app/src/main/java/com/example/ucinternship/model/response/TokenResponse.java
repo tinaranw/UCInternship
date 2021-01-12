@@ -1,6 +1,10 @@
 package com.example.ucinternship.model.response;
 
+import com.example.ucinternship.model.local.User;
+import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
+
+import java.util.List;
 
 public class TokenResponse {
 
@@ -18,6 +22,13 @@ public class TokenResponse {
     @SerializedName("refresh_token")
     String refreshToken;
 
+    @SerializedName("user_id")
+    int user_id;
+
+    @SerializedName("role")
+    String role;
+
+
     public String getTokenType() {
         return tokenType;
     }
@@ -34,10 +45,26 @@ public class TokenResponse {
         return refreshToken;
     }
 
+    public int getUser_id() {
+        return user_id;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
     //bentuk penulisannya
     //Bearer (tokenType) accesstoken
     //ini bisa dilihat di header authoriz
     public String getAuthorization(){
         return this.tokenType + " " + this.accessToken;
     }
+
+//    public List<User> getUserList() {
+//        return userList;
+//    }
+//
+//    public void setUserList(List<User> userList) {
+//        this.userList = userList;
+//    }
 }
