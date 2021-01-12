@@ -44,11 +44,11 @@ public class ProfileRepository {
         apiService.getStudentDetails(id).enqueue(new Callback<StudentResponse>() {
             @Override
             public void onResponse(Call<StudentResponse> call, Response<StudentResponse> response) {
-                Log.d(TAG, "onResponse: "+ response.code());
+                Log.d(TAG, "onResponse1: "+ response.code());
                 if(response.isSuccessful()){
-                    Log.d(TAG, "onResponse: "+ response.code());
+                    Log.d(TAG, "onResponse2: "+ response.code());
                     if(response.body() != null){
-                        Log.d(TAG, "onResponse: "+ response.body().getStudent_data());
+                        Log.d(TAG, "onResponse3: "+ response.body().getStudent_data());
                         listStudents.postValue(response.body().getStudent_data());
                         resetInstance();
                     }

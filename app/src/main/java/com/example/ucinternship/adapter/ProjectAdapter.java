@@ -11,6 +11,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -18,12 +20,14 @@ import com.bumptech.glide.Glide;
 import com.example.ucinternship.R;
 import com.example.ucinternship.model.local.Project;
 
+import java.util.ArrayList;
 import java.util.List;
 
-public class ProjectAdapter extends RecyclerView.Adapter<ProjectAdapter.ProjectViewHolder> {
+public class ProjectAdapter extends RecyclerView.Adapter<ProjectAdapter.ProjectViewHolder> implements Filterable {
 
     private Context context;
     private List<Project> projectList;
+    private List<Project> projectListFull;
 
     public ProjectAdapter(Context context) {
         this.context = context;
@@ -31,7 +35,8 @@ public class ProjectAdapter extends RecyclerView.Adapter<ProjectAdapter.ProjectV
 
     public void setProjectList(List<Project> projectList){
         this.projectList = projectList;
-        notifyDataSetChanged();
+        projectListFull = new ArrayList<>(projectList);
+//        notifyDataSetChanged();
     }
 
     @NonNull
@@ -70,6 +75,41 @@ public class ProjectAdapter extends RecyclerView.Adapter<ProjectAdapter.ProjectV
     public int getItemCount() {
         return projectList.size();
     }
+
+    @Override
+    public Filter getFilter() {
+        return projectFilter;
+    }
+
+    private Filter projectFilter = new Filter() {
+        @Override
+        protected FilterResults performFiltering(CharSequence constraint) {
+            List<Project> filteredList = new ArrayList<>();
+            if (constraint == null || constraint.length() == 0){
+                filteredList.addAll(projectListFull);
+            } else {
+                String filterPattern = constraint.toString().toLowerCase().trim();
+
+                //foreach
+                for (Project project : projectListFull){
+                    if (project.getProject_name().toLowerCase().contains(filterPattern)){
+                        filteredList.add(project);
+                    }
+                }
+            }
+            FilterResults results = new FilterResults();
+            results.values = filteredList;
+
+            return results;
+        }
+
+        @Override
+        protected void publishResults(CharSequence constraint, FilterResults results) {
+            projectList.clear();
+            projectList.addAll((List)results.values);
+            notifyDataSetChanged();
+        }
+    };
 
     public class ProjectViewHolder extends RecyclerView.ViewHolder {
 

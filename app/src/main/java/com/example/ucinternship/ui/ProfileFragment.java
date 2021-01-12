@@ -58,8 +58,12 @@ public class ProfileFragment extends Fragment {
     TextView department;
     @BindView(R.id.email_txt)
     TextView email;
-    @BindView(R.id.address_txt)
-    TextView address;
+    @BindView(R.id.batch_txt)
+    TextView batch;
+    @BindView(R.id.gender_txt)
+    TextView gender;
+    @BindView(R.id.line_txt)
+    TextView line;
     @BindView(R.id.phone_txt)
     TextView phone;
     @BindView(R.id.hour_remaining_txt)

@@ -80,10 +80,13 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="8dp"
+                android:layout_marginEnd="16dp"
                 android:fontFamily="@font/montserrat_semibold"
+                android:maxLines="1"
                 android:text="Michelle Alexandra"
                 android:textColor="@color/text"
-                android:textSize="24sp"
+                android:textSize="22sp"
+                app:layout_constraintEnd_toStartOf="@+id/edit_btn"
                 app:layout_constraintStart_toStartOf="@+id/card_profile"
                 app:layout_constraintTop_toTopOf="@+id/card_profile" />
 
@@ -113,36 +116,31 @@
                 android:id="@+id/email_txt"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="10dp"
                 android:fontFamily="@font/opensans_regular"
                 android:text="malexandra@student.ciputra.ac.id"
                 android:textColor="@color/text"
+                app:layout_constraintEnd_toEndOf="@+id/gender_txt"
                 app:layout_constraintStart_toStartOf="@+id/department_txt"
                 app:layout_constraintTop_toBottomOf="@+id/divider2" />
-
-            <TextView
-                android:id="@+id/address_txt"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:fontFamily="@font/opensans_regular"
-                android:text="Lidah Kulon, Surabaya 60213"
-                android:textColor="@color/text"
-                app:layout_constraintStart_toStartOf="@+id/email_txt"
-                app:layout_constraintTop_toBottomOf="@+id/email_txt" />
 
             <TextView
                 android:id="@+id/phone_txt"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
                 android:layout_marginBottom="8dp"
                 android:fontFamily="@font/opensans_regular"
+                android:maxLines="1"
                 android:text="087855878443"
                 android:textColor="@color/text"
                 app:layout_constraintBottom_toBottomOf="@+id/card_profile"
-                app:layout_constraintStart_toStartOf="@+id/address_txt"
-                app:layout_constraintTop_toBottomOf="@+id/address_txt" />
+                app:layout_constraintEnd_toStartOf="@+id/divider4"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/email_txt"
+                app:layout_constraintTop_toBottomOf="@+id/line_txt"
+                app:layout_constraintVertical_bias="1.0" />
 
             <androidx.appcompat.widget.Toolbar
                 android:id="@+id/profile_tb"
@@ -197,6 +195,14 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/profile_hour_inc" />
 
+            <View
+                android:id="@+id/divider4"
+                android:layout_width="100dp"
+                android:layout_height="25dp"
+                android:background="@drawable/card_status"
+                app:layout_constraintBottom_toBottomOf="@+id/card_profile"
+                app:layout_constraintEnd_toEndOf="@+id/card_profile" />
+
             <ImageView
                 android:id="@+id/imageView11"
                 android:layout_width="24dp"
@@ -209,15 +215,41 @@
                 app:layout_constraintTop_toTopOf="@+id/profile_img" />
 
             <TextView
-                android:id="@+id/line_txt"
+                android:id="@+id/batch_txt"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="16dp"
                 android:fontFamily="@font/opensans_regular"
+                android:maxLines="1"
+                android:text="2019"
+                android:textColor="@color/text"
+                app:layout_constraintBottom_toBottomOf="@+id/divider4"
+                app:layout_constraintEnd_toEndOf="@+id/divider4"
+                app:layout_constraintStart_toStartOf="@+id/divider4"
+                app:layout_constraintTop_toTopOf="@+id/divider4" />
+
+            <TextView
+                android:id="@+id/gender_txt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/opensans_semibold"
+                android:text="Female"
+                android:textColor="@color/text2"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toEndOf="@+id/edit_btn"
+                app:layout_constraintTop_toTopOf="@+id/department_txt" />
+
+            <TextView
+                android:id="@+id/line_txt"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:fontFamily="@font/opensans_regular"
+                android:maxLines="1"
                 android:text="michelle_dinata"
                 android:textColor="@color/text"
-                app:layout_constraintEnd_toEndOf="@+id/card_profile"
-                app:layout_constraintTop_toTopOf="@+id/phone_txt" />
+                app:layout_constraintEnd_toEndOf="@+id/email_txt"
+                app:layout_constraintStart_toStartOf="@+id/email_txt"
+                app:layout_constraintTop_toBottomOf="@+id/email_txt" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.core.widget.NestedScrollView>

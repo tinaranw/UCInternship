@@ -72,8 +72,23 @@ public class ProjectListFragment extends Fragment {
 
         rv.setLayoutManager(new LinearLayoutManager(getActivity()));
         adapter = new ProjectAdapter(getActivity());
+        searchList();
     }
 
+    public void searchList(){
+        search.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                adapter.getFilter().filter(newText);
+                return false;
+            }
+        });
+    }
 
     private Observer<List<Project>> observeViewModel = new Observer<List<Project>>() {
         @Override

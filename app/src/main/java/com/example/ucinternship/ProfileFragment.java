@@ -36,8 +36,6 @@ public class ProfileFragment extends Fragment {
     TextView departemnt;
     @BindView(R.id.email_txt)
     TextView email;
-    @BindView(R.id.address_txt)
-    TextView address;
     @BindView(R.id.phone_txt)
     TextView phone;
     @BindView(R.id.hour_remaining_txt)
