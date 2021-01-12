@@ -56,6 +56,8 @@ public class ProfileFragment extends Fragment {
     TextView name;
     @BindView(R.id.department_txt)
     TextView department;
+    @BindView(R.id.department_initial_txt)
+    TextView department_initial;
     @BindView(R.id.email_txt)
     TextView email;
     @BindView(R.id.batch_txt)
@@ -127,19 +129,20 @@ public class ProfileFragment extends Fragment {
 
     }
 
-    private Observer<Student> observeStudentDetailViewModel = details -> {
+    private final Observer<Student> observeStudentDetailViewModel = details -> {
         if (details != null) {
             Info info = details.getStudent_info();
             Glide.with(getActivity()).load(Constants.BASE_IMAGE_URL + "student/" + details.getStudent_photo()).into(image);
             nim.setText(details.getStudent_nim());
             name.setText(details.getStudent_name());
             department.setText(details.getStudent_department_name());
+            department_initial.setText("(" + details.getStudent_department_initial() + ")");
             email.setText(details.getStudent_email());
             phone.setText(details.getStudent_phone());
             line.setText(details.getStudent_line());
-            if(details.getStudent_gender().equalsIgnoreCase("m")){
+            if (details.getStudent_gender().equalsIgnoreCase("m")) {
                 gender.setText(R.string.gender_male);
-            } else{
+            } else {
                 gender.setText(R.string.gender_female);
             }
             remaining.setText(info.getInfo_time());
@@ -147,7 +150,7 @@ public class ProfileFragment extends Fragment {
         }
     };
 
-    private Observer<Supervisor> observeSupervisorDetailViewModel = details -> {
+    private final Observer<Supervisor> observeSupervisorDetailViewModel = details -> {
         if (details != null) {
             if (helper.getRole().equalsIgnoreCase(checkStaff.replace("'", "\\"))) {
                 Glide.with(getActivity()).load(Constants.BASE_IMAGE_URL + "staff/" + details.getSupervisor_photo()).into(image);
@@ -157,12 +160,13 @@ public class ProfileFragment extends Fragment {
             nim.setText(details.getSupervisor_nip());
             name.setText(details.getSupervisor_name());
             department.setText(details.getSupervisor_department_name());
+            department_initial.setText("(" + details.getSupervisor_department_initial() + ")");
             email.setText(details.getSupervisor_email());
             phone.setText(details.getSupervisor_phone());
             line.setText(details.getSupervisor_line());
-            if(details.getSupervisor_gender().equalsIgnoreCase("m")){
+            if (details.getSupervisor_gender().equalsIgnoreCase("m")) {
                 gender.setText(R.string.gender_male);
-            } else{
+            } else {
                 gender.setText(R.string.gender_female);
             }
             getView().findViewById(R.id.batch_txt).setVisibility(View.GONE);
