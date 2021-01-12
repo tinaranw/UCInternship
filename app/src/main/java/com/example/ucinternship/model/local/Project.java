@@ -19,13 +19,46 @@ public class Project implements Parcelable {
     private String project_status;
     @SerializedName("category")
     private String project_category;
-    @SerializedName("period_id")
-    private String project_period;
-    @SerializedName("supervisor_id")
-    private String project_spv;
+    @SerializedName("period")
+    private Period project_period;
+    @SerializedName("supervisor")
+    private Supervisor project_spv;
 
     public Project(){}
 
+    public Project(String project_id, String project_name, String project_description, String project_deadline, String project_status, String project_category, Period project_period, Supervisor project_spv) {
+        this.project_id = project_id;
+        this.project_name = project_name;
+        this.project_description = project_description;
+        this.project_deadline = project_deadline;
+        this.project_status = project_status;
+        this.project_category = project_category;
+        this.project_period = project_period;
+        this.project_spv = project_spv;
+    }
+
+    protected Project(Parcel in) {
+        project_id = in.readString();
+        project_name = in.readString();
+        project_description = in.readString();
+        project_deadline = in.readString();
+        project_status = in.readString();
+        project_category = in.readString();
+        project_period = in.readParcelable(Period.class.getClassLoader());
+        project_spv = in.readParcelable(Supervisor.class.getClassLoader());
+    }
+
+    public static final Creator<Project> CREATOR = new Creator<Project>() {
+        @Override
+        public Project createFromParcel(Parcel in) {
+            return new Project(in);
+        }
+
+        @Override
+        public Project[] newArray(int size) {
+            return new Project[size];
+        }
+    };
 
     public String getProject_id() {
         return project_id;
@@ -75,42 +108,25 @@ public class Project implements Parcelable {
         this.project_category = project_category;
     }
 
-    public String getProject_spv() {
-        return project_spv;
-    }
-
-    public void setProject_spv(String project_spv) {
-        this.project_spv = project_spv;
-    }
-
-    public String getProject_period() {
+    public Period getProject_period() {
         return project_period;
     }
 
-    public void setProject_period(String project_period) {
+    public void setProject_period(Period project_period) {
         this.project_period = project_period;
     }
 
-    public Project(String project_id, String project_name, String project_description, String project_deadline, String project_status, String project_category, String project_period, String project_spv) {
-        this.project_id = project_id;
-        this.project_name = project_name;
-        this.project_description = project_description;
-        this.project_deadline = project_deadline;
-        this.project_status = project_status;
-        this.project_category = project_category;
-        this.project_period = project_period;
+    public Supervisor getProject_spv() {
+        return project_spv;
+    }
+
+    public void setProject_spv(Supervisor project_spv) {
         this.project_spv = project_spv;
     }
 
-    protected Project(Parcel in) {
-        project_id = in.readString();
-        project_name = in.readString();
-        project_description = in.readString();
-        project_deadline = in.readString();
-        project_status = in.readString();
-        project_category = in.readString();
-        project_period = in.readString();
-        project_spv = in.readString();
+    @Override
+    public int describeContents() {
+        return 0;
     }
 
     @Override
@@ -121,24 +137,7 @@ public class Project implements Parcelable {
         dest.writeString(project_deadline);
         dest.writeString(project_status);
         dest.writeString(project_category);
-        dest.writeString(project_period);
-        dest.writeString(project_spv);
+        dest.writeParcelable(project_period, flags);
+        dest.writeParcelable(project_spv, flags);
     }
-
-    @Override
-    public int describeContents() {
-        return 0;
-    }
-
-    public static final Creator<Project> CREATOR = new Creator<Project>() {
-        @Override
-        public Project createFromParcel(Parcel in) {
-            return new Project(in);
-        }
-
-        @Override
-        public Project[] newArray(int size) {
-            return new Project[size];
-        }
-    };
 }

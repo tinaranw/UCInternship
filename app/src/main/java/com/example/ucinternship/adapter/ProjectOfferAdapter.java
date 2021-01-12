@@ -2,6 +2,7 @@ package com.example.ucinternship.adapter;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.navigation.NavDirections;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -21,12 +22,12 @@ import com.example.ucinternship.ui.student.ProjectOfferFragmentDirections;
 
 import java.util.List;
 
-public class ProjectAdapter extends RecyclerView.Adapter<ProjectAdapter.ProjectViewHolder> {
+public class ProjectOfferAdapter extends RecyclerView.Adapter<ProjectOfferAdapter.ProjectViewHolder> {
 
     private Context context;
     private List<Project> projectList;
 
-    public ProjectAdapter(Context context) {
+    public ProjectOfferAdapter(Context context) {
         this.context = context;
     }
 
@@ -37,18 +38,18 @@ public class ProjectAdapter extends RecyclerView.Adapter<ProjectAdapter.ProjectV
 
     @NonNull
     @Override
-    public ProjectAdapter.ProjectViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int viewType) {
+    public ProjectOfferAdapter.ProjectViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int viewType) {
         View view = LayoutInflater.from(context).inflate(R.layout.activity_project_adapter, viewGroup, false);
-        return new ProjectAdapter.ProjectViewHolder(view);
+        return new ProjectOfferAdapter.ProjectViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ProjectAdapter.ProjectViewHolder holder, int i) {
+    public void onBindViewHolder(@NonNull ProjectOfferAdapter.ProjectViewHolder holder, int i) {
         Project p = projectList.get(i);
         Log.d("project_name", p.getProject_name());
         holder.title.setText(p.getProject_name());
         holder.duration.setText(p.getProject_deadline());
-        holder.spv.setText(p.getProject_spv().getSupervisor_name());
+        holder.spv.setText((p.getProject_spv().getSupervisor_name()));
         if(p.getProject_status().equalsIgnoreCase("0")){
             holder.status.setText("Available");
         } else if(p.getProject_status().equalsIgnoreCase("1")){
@@ -65,7 +66,10 @@ public class ProjectAdapter extends RecyclerView.Adapter<ProjectAdapter.ProjectV
         } else if(p.getProject_category().equalsIgnoreCase("2")){
             holder.icon.setImageResource(R.drawable.ic_others);
         }
-
+        holder.itemView.setOnClickListener(view -> {
+            NavDirections action = ProjectOfferFragmentDirections.actionProjectOfferToDetail(p);
+            Navigation.findNavController(view).navigate(action);
+        });
     }
 
     @Override
