@@ -76,6 +76,7 @@ public class ProfileFragment extends Fragment {
     private ProfileViewModel profileViewModel;
     private SharedPreferenceHelper helper;
     Dialog dialog;
+    private String checkStudent, checkSupervisor;
 
 
     public ProfileFragment() {
@@ -94,6 +95,7 @@ public class ProfileFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         ButterKnife.bind(this, view);
+        checkStudent = "App'Models'Student";
 
         //inisialisasi sharedpref dan viewmodel -> sm spt firebase yg reference bla"
         helper = SharedPreferenceHelper.getInstance(requireActivity());
@@ -108,10 +110,16 @@ public class ProfileFragment extends Fragment {
 
         profileViewModel = ViewModelProviders.of(requireActivity()).get(ProfileViewModel.class);
         profileViewModel.init(helper.getAccessToken());
-        profileViewModel.getStudentDetails(helper.getUserID()).observe(requireActivity(), observeDetailViewModel);
+        Log.d("roleku", "" + helper.getRole());
+        if (helper.getRole().equalsIgnoreCase(checkStudent.replace("'", "\\"))) {
+            Log.d("checkstudent", "" + checkStudent.replace("'", "\\"));
+            profileViewModel.getStudentDetails(helper.getUserID()).observe(requireActivity(), observeDetailViewModel);
+        } else {
+        }
 
 
     }
+
     private Observer<Student> observeDetailViewModel = details -> {
         if (details != null) {
             Info info = details.getStudent_info();
@@ -121,7 +129,7 @@ public class ProfileFragment extends Fragment {
             department.setText(details.getStudent_department_name());
             email.setText(details.getStudent_email());
             remaining.setText(info.getInfo_time());
-            Log.d("nimku", ""+details.getStudent_nim());
+            Log.d("nimku", "" + details.getStudent_nim());
         }
     };
 
