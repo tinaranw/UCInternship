@@ -36,7 +36,7 @@ public class LoginFragment extends Fragment {
     TextInputLayout email_inp;
 
     private LoginViewModel viewModel;
-    private SharedPreferenceHelper helper;
+    private SharedPreferenceHelper helper, helperUserID, helperRole;
 
     public LoginFragment() {
         // Required empty public constructor
@@ -57,6 +57,8 @@ public class LoginFragment extends Fragment {
         //inisialisasi viewmodel dan sharedpref
         viewModel = ViewModelProviders.of(requireActivity()).get(LoginViewModel.class);
         helper =  SharedPreferenceHelper.getInstance(requireActivity());
+        helperUserID =  SharedPreferenceHelper.getInstance(requireActivity());
+        helperRole =  SharedPreferenceHelper.getInstance(requireActivity());
 
         login_btn.setOnClickListener(v -> {
             //ngecek klo misal ada user maka di lempar ke dash langsung sedangkan klo g ada masuk login (splashfragment)
@@ -78,6 +80,11 @@ public class LoginFragment extends Fragment {
                 // klo dah dpt token maka ia akan diarahkan ke nav dan nge save token nya di sharedpref
                 if(tokenResponse != null){
                     helper.saveAccessToken(tokenResponse.getAuthorization());
+                    helperUserID.saveUserID(tokenResponse.getUser_id());
+                    helperRole.saveRole(tokenResponse.getRole());
+                    Log.d("anjingras", ""+tokenResponse.getRole());
+                    Log.d("anjingr", ""+helperRole.getRole());
+                    Log.d("anjing", ""+helperUserID.getUserID());
                     NavDirections actions = LoginFragmentDirections.actionLoginFragmentToDashboardFragment();
                     Navigation.findNavController(view).navigate(actions);
                     Toast.makeText(requireActivity(),  "Success", Toast.LENGTH_SHORT).show();

@@ -22,9 +22,12 @@ public class TokenResponse {
     @SerializedName("refresh_token")
     String refreshToken;
 
-//    @SerializedName("user")
-//    @Expose
-//    private List<User> userList;
+    @SerializedName("user_id")
+    int user_id;
+
+    @SerializedName("role")
+    String role;
+
 
     public String getTokenType() {
         return tokenType;
@@ -40,6 +43,14 @@ public class TokenResponse {
 
     public String getRefreshToken() {
         return refreshToken;
+    }
+
+    public int getUser_id() {
+        return user_id;
+    }
+
+    public String getRole() {
+        return role;
     }
 
     //bentuk penulisannya

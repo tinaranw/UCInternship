@@ -38,6 +38,7 @@ public interface Endpoints {
 
     @GET("student/user/{id}")
     Call<StudentResponse> getStudentDetails(@Path("id") int id);
+
     @GET("supervisor/user/{id}")
     Call<SupervisorResponse> getSupervisorDetails(@Path("id") int id);
 }

@@ -31,6 +31,7 @@ import com.example.ucinternship.R;
 import com.example.ucinternship.model.local.Info;
 import com.example.ucinternship.model.local.Student;
 import com.example.ucinternship.model.local.Supervisor;
+import com.example.ucinternship.model.local.User;
 import com.example.ucinternship.ui.viewmodel.LogoutViewModel;
 import com.example.ucinternship.ui.viewmodel.ProfileViewModel;
 import com.example.ucinternship.utils.Constants;
@@ -74,9 +75,6 @@ public class ProfileFragment extends Fragment {
     private LogoutViewModel logoutViewModel;
     private ProfileViewModel profileViewModel;
     private SharedPreferenceHelper helper;
-    private Student student;
-    private Supervisor supervisor;
-    private Info info;
     Dialog dialog;
 
 
@@ -108,68 +106,25 @@ public class ProfileFragment extends Fragment {
             logout(view);
         });
 
-
         profileViewModel = ViewModelProviders.of(requireActivity()).get(ProfileViewModel.class);
         profileViewModel.init(helper.getAccessToken());
+        profileViewModel.getStudentDetails(helper.getUserID()).observe(requireActivity(), observeDetailViewModel);
 
-        if (getArguments() != null) {
-            student = ProfileFragmentArgs.fromBundle(getArguments()).getStudent();
-            supervisor = ProfileFragmentArgs.fromBundle(getArguments()).getSupervisor();
 
-            if (student != null) {
-//                observeViewModel(student.getStudent_user_id());
-                initStudent(student);
-            } else {
-            }
+    }
+    private Observer<List<Student>> observeDetailViewModel = details -> {
+        if (details != null) {
+            List<Info> info = details.get(0).getStudent_info();
+            Glide.with(getActivity()).load(Constants.BASE_IMAGE_URL + details.get(0).getStudent_photo()).into(image);
+            nim.setText(details.get(0).getStudent_nim());
+            name.setText(details.get(0).getStudent_name());
+            department.setText(details.get(0).getStudent_department_name());
+            email.setText(details.get(0).getStudent_email());
+            remaining.setText(info.get(0).getInfo_time());
+            Log.d("nimku", ""+details.get(0).getStudent_nim());
         }
-    }
-    private void initStudent(Student student) {
-        List<Info> info = student.getStudent_info();
-        Glide.with(getActivity()).load(Constants.BASE_IMAGE_URL + student.getStudent_photo()).into(image);
-        nim.setText(student.getStudent_nim());
-        name.setText(student.getStudent_name());
-        department.setText(student.getStudent_department_name());
-        email.setText(student.getStudent_email());
-        remaining.setText(info.get(0).getInfo_time());
-    }
+    };
 
-//    private void observeViewModel ( int id){
-//        if (student != null) {
-//            profileViewModel.getRuntime(id).observe(requireActivity(), observeRuntimeViewModel);
-//            profileViewModel.getHomepage(id).observe(requireActivity(), observeHomepageViewModel);
-//            profileViewModel.getCast(id).observe(requireActivity(), casts -> {
-//                if (casts != null) {
-//                    castAdapter.setCasts(casts);
-//                    castAdapter.notifyDataSetChanged();
-//                    rvCasts.setAdapter(castAdapter);
-//                    showLoading(false);
-//                }
-//            });
-//        } else {
-//            profileViewModel.getTVGenre(id).observe(requireActivity(), genres -> {
-//                if (genres != null) {
-//                    for (int i = 0; i < genres.size(); i++) {
-//                        Genre g = genres.get(i);
-//                        if (i < genres.size() - 1) {
-//                            detailGenre.append(g.getName() + " | ");
-//                        } else {
-//                            detailGenre.append(g.getName());
-//                        }
-//                    }
-//                }
-//            });
-//            profileViewModel.getEpisodes(id).observe(requireActivity(), observeEpisodesViewModel);
-//            profileViewModel.getTVHomepage(id).observe(requireActivity(), observeHomepageViewModel);
-//            profileViewModel.getTVCast(id).observe(requireActivity(), casts -> {
-//                if (casts != null) {
-//                    castAdapter.setCasts(casts);
-//                    castAdapter.notifyDataSetChanged();
-//                    rvCasts.setAdapter(castAdapter);
-//                    showLoading(false);
-//                }
-//            });
-//        }
-//    }
 
     //View view ini gunanya untuk nav
     public void logout(View view) {
