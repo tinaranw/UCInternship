@@ -16,7 +16,7 @@ import android.widget.ImageView;
 import android.widget.SearchView;
 import android.widget.TextView;
 import com.example.ucinternship.R;
-import com.example.ucinternship.adapter.ProjectAdapter;
+import com.example.ucinternship.adapter.ProjectOfferAdapter;
 import com.example.ucinternship.model.local.Project;
 import com.example.ucinternship.ui.viewmodel.ProjectViewModel;
 import com.example.ucinternship.utils.SharedPreferenceHelper;
@@ -45,7 +45,7 @@ public class ProjectOfferFragment extends Fragment {
     TextView noproject_txt;
 
     private ProjectViewModel viewModel;
-    private ProjectAdapter adapter;
+    private ProjectOfferAdapter adapter;
     private SharedPreferenceHelper helper;
 
     public ProjectOfferFragment() {
@@ -70,23 +70,7 @@ public class ProjectOfferFragment extends Fragment {
         viewModel.getProjectOffers().observe(requireActivity(), observeViewModel);
 
         rv.setLayoutManager(new LinearLayoutManager(getActivity()));
-        adapter = new ProjectAdapter(getActivity());
-        searchList();
-    }
-
-    public void searchList(){
-        search.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-            @Override
-            public boolean onQueryTextSubmit(String query) {
-                return false;
-            }
-
-            @Override
-            public boolean onQueryTextChange(String newText) {
-                adapter.getFilter().filter(newText);
-                return false;
-            }
-        });
+        adapter = new ProjectOfferAdapter(getActivity());
     }
 
 

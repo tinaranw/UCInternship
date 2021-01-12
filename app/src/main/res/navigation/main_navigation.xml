@@ -59,12 +59,20 @@
         <action
             android:id="@+id/action_detailProjectFragment_to_detailTaskFragment"
             app:destination="@id/detailTaskFragment" />
+        <argument
+            android:name="project"
+            app:argType="com.example.ucinternship.model.local.Project"
+            app:nullable="true" />
     </fragment>
     <fragment
         android:id="@+id/projectOfferFragment"
         android:name="com.example.ucinternship.ui.student.ProjectOfferFragment"
         android:label="fragment_project_offer"
-        tools:layout="@layout/fragment_project_offer" />
+        tools:layout="@layout/fragment_project_offer" >
+        <action
+            android:id="@+id/actionProjectOfferToDetail"
+            app:destination="@id/detailProjectFragment" />
+    </fragment>
     <fragment
         android:id="@+id/detailTaskFragment"
         android:name="com.example.ucinternship.ui.DetailTaskFragment"

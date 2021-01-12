@@ -2,6 +2,7 @@ package com.example.ucinternship.adapter;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.navigation.NavDirections;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -11,8 +12,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Filter;
-import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -21,39 +20,36 @@ import com.example.ucinternship.R;
 import com.example.ucinternship.model.local.Project;
 import com.example.ucinternship.ui.student.ProjectOfferFragmentDirections;
 
-import java.util.ArrayList;
 import java.util.List;
 
-public class ProjectAdapter extends RecyclerView.Adapter<ProjectAdapter.ProjectViewHolder> implements Filterable {
+public class ProjectOfferAdapter extends RecyclerView.Adapter<ProjectOfferAdapter.ProjectViewHolder> {
 
     private Context context;
     private List<Project> projectList;
-    private List<Project> projectListFull;
 
-    public ProjectAdapter(Context context) {
+    public ProjectOfferAdapter(Context context) {
         this.context = context;
     }
 
     public void setProjectList(List<Project> projectList){
         this.projectList = projectList;
-        projectListFull = new ArrayList<>(projectList);
-//        notifyDataSetChanged();
+        notifyDataSetChanged();
     }
 
     @NonNull
     @Override
-    public ProjectAdapter.ProjectViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int viewType) {
+    public ProjectOfferAdapter.ProjectViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int viewType) {
         View view = LayoutInflater.from(context).inflate(R.layout.activity_project_adapter, viewGroup, false);
-        return new ProjectAdapter.ProjectViewHolder(view);
+        return new ProjectOfferAdapter.ProjectViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ProjectAdapter.ProjectViewHolder holder, int i) {
+    public void onBindViewHolder(@NonNull ProjectOfferAdapter.ProjectViewHolder holder, int i) {
         Project p = projectList.get(i);
         Log.d("project_name", p.getProject_name());
         holder.title.setText(p.getProject_name());
         holder.duration.setText(p.getProject_deadline());
-        holder.spv.setText(p.getProject_spv().getSupervisor_name());
+        holder.spv.setText((p.getProject_spv().getSupervisor_name()));
         if(p.getProject_status().equalsIgnoreCase("0")){
             holder.status.setText("Available");
         } else if(p.getProject_status().equalsIgnoreCase("1")){
@@ -70,48 +66,16 @@ public class ProjectAdapter extends RecyclerView.Adapter<ProjectAdapter.ProjectV
         } else if(p.getProject_category().equalsIgnoreCase("2")){
             holder.icon.setImageResource(R.drawable.ic_others);
         }
-
+        holder.itemView.setOnClickListener(view -> {
+            NavDirections action = ProjectOfferFragmentDirections.actionProjectOfferToDetail(p);
+            Navigation.findNavController(view).navigate(action);
+        });
     }
 
     @Override
     public int getItemCount() {
         return projectList.size();
     }
-
-    @Override
-    public Filter getFilter() {
-        return projectFilter;
-    }
-
-    private Filter projectFilter = new Filter() {
-        @Override
-        protected FilterResults performFiltering(CharSequence constraint) {
-            List<Project> filteredList = new ArrayList<>();
-            if (constraint == null || constraint.length() == 0){
-                filteredList.addAll(projectListFull);
-            } else {
-                String filterPattern = constraint.toString().toLowerCase().trim();
-
-                //foreach
-                for (Project project : projectListFull){
-                    if (project.getProject_name().toLowerCase().contains(filterPattern)){
-                        filteredList.add(project);
-                    }
-                }
-            }
-            FilterResults results = new FilterResults();
-            results.values = filteredList;
-
-            return results;
-        }
-
-        @Override
-        protected void publishResults(CharSequence constraint, FilterResults results) {
-            projectList.clear();
-            projectList.addAll((List)results.values);
-            notifyDataSetChanged();
-        }
-    };
 
     public class ProjectViewHolder extends RecyclerView.ViewHolder {
 
