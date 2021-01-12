@@ -80,7 +80,7 @@ public class ProfileFragment extends Fragment {
     private ProfileViewModel profileViewModel;
     private SharedPreferenceHelper helper;
     Dialog dialog;
-    private String checkStudent, checkSupervisor;
+    private String checkStudent, checkStaff, checkLecturer;
 
 
     public ProfileFragment() {
@@ -100,6 +100,8 @@ public class ProfileFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         ButterKnife.bind(this, view);
         checkStudent = "App'Models'Student";
+        checkStaff = "App'Models'Staff";
+        checkLecturer = "App'Models'Lecturer";
 
         //inisialisasi sharedpref dan viewmodel -> sm spt firebase yg reference bla"
         helper = SharedPreferenceHelper.getInstance(requireActivity());
@@ -128,28 +130,42 @@ public class ProfileFragment extends Fragment {
     private Observer<Student> observeStudentDetailViewModel = details -> {
         if (details != null) {
             Info info = details.getStudent_info();
-            Glide.with(getActivity()).load(Constants.BASE_IMAGE_URL + details.getStudent_photo()).into(image);
+            Glide.with(getActivity()).load(Constants.BASE_IMAGE_URL + "student/" + details.getStudent_photo()).into(image);
             nim.setText(details.getStudent_nim());
             name.setText(details.getStudent_name());
             department.setText(details.getStudent_department_name());
             email.setText(details.getStudent_email());
             phone.setText(details.getStudent_phone());
             line.setText(details.getStudent_line());
+            if(details.getStudent_gender().equalsIgnoreCase("m")){
+                gender.setText(R.string.gender_male);
+            } else{
+                gender.setText(R.string.gender_female);
+            }
             remaining.setText(info.getInfo_time());
-
             Log.d("nimku", "" + details.getStudent_nim());
         }
     };
 
     private Observer<Supervisor> observeSupervisorDetailViewModel = details -> {
         if (details != null) {
-            Glide.with(getActivity()).load(Constants.BASE_IMAGE_URL + details.getSupervisor_photo()).into(image);
+            if (helper.getRole().equalsIgnoreCase(checkStaff.replace("'", "\\"))) {
+                Glide.with(getActivity()).load(Constants.BASE_IMAGE_URL + "staff/" + details.getSupervisor_photo()).into(image);
+            } else {
+                Glide.with(getActivity()).load(Constants.BASE_IMAGE_URL + "lecturer/" + details.getSupervisor_photo()).into(image);
+            }
             nim.setText(details.getSupervisor_nip());
             name.setText(details.getSupervisor_name());
             department.setText(details.getSupervisor_department_name());
             email.setText(details.getSupervisor_email());
             phone.setText(details.getSupervisor_phone());
             line.setText(details.getSupervisor_line());
+            if(details.getSupervisor_gender().equalsIgnoreCase("m")){
+                gender.setText(R.string.gender_male);
+            } else{
+                gender.setText(R.string.gender_female);
+            }
+            getView().findViewById(R.id.batch_txt).setVisibility(View.GONE);
             getView().findViewById(R.id.profile_hour_inc).setVisibility(View.GONE);
         }
     };
