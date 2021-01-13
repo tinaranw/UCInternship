@@ -32,8 +32,6 @@ public class DetailTaskFragment extends Fragment {
     TextView taskdesc;
     @BindView(R.id.task_status_txt)
     TextView taskstatus;
-    @BindView(R.id.pic_name_txt)
-    TextView taskpic;
     @BindView(R.id.progress_btn)
     Button addbtn;
 
