@@ -5,7 +5,10 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -15,10 +18,16 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.ucinternship.R;
+import com.example.ucinternship.adapter.ProjectAdapter;
+import com.example.ucinternship.adapter.TaskAdapter;
 import com.example.ucinternship.model.local.Project;
+import com.example.ucinternship.model.local.Task;
 import com.example.ucinternship.ui.viewmodel.ProjectDetailViewModel;
 import com.example.ucinternship.ui.viewmodel.ProjectViewModel;
+import com.example.ucinternship.ui.viewmodel.TaskViewModel;
 import com.example.ucinternship.utils.SharedPreferenceHelper;
+
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -41,9 +50,13 @@ public class DetailProjectFragment extends Fragment {
     TextView projectdeadline;
     @BindView(R.id.spv_name_txt)
     TextView projectspv;
+    @BindView(R.id.rv_task)
+    RecyclerView task_rv;
 
     private Project project;
     private ProjectDetailViewModel viewModel;
+    private TaskAdapter taskAdapter;
+    private TaskViewModel taskViewModel;
     private SharedPreferenceHelper helper;
 
     public DetailProjectFragment() {
@@ -70,7 +83,14 @@ public class DetailProjectFragment extends Fragment {
             project = DetailProjectFragmentArgs.fromBundle(getArguments()).getProject();
             loadProject(project);
         }
+        taskViewModel = ViewModelProviders.of(requireActivity()).get(TaskViewModel.class);
+        taskViewModel.init(helper.getAccessToken());
+        taskViewModel.getTasks().observe(requireActivity(), observeViewModel);
+
+        task_rv.setLayoutManager(new LinearLayoutManager(getActivity()));
+        taskAdapter = new TaskAdapter(getActivity());
     }
+
 
     private void loadProject(Project project){
         //load icon
@@ -101,4 +121,15 @@ public class DetailProjectFragment extends Fragment {
         projectdesc.setText(project.getProject_description());
         projectspv.setText(project.getProject_spv().getSupervisor_name());
     }
+
+    private Observer<List<Task>> observeViewModel = tasks -> {
+        if(tasks != null){
+            Log.d("TaskChecking", String.valueOf(tasks.size()));
+            taskAdapter.setTaskList(tasks);
+            taskAdapter.notifyDataSetChanged();
+            task_rv.setAdapter(taskAdapter);
+        } else {
+
+        }
+    };
 }

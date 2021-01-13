@@ -3,6 +3,7 @@ package com.example.ucinternship.network;
 import com.example.ucinternship.model.response.ProjectResponse;
 import com.example.ucinternship.model.response.StudentResponse;
 import com.example.ucinternship.model.response.SupervisorResponse;
+import com.example.ucinternship.model.response.TaskResponse;
 import com.example.ucinternship.model.response.TokenResponse;
 import com.example.ucinternship.model.response.UserResponse;
 import com.google.gson.JsonArray;
@@ -32,6 +33,9 @@ public interface Endpoints {
     //    @Headers({})
     @GET("offer")
     Call<ProjectResponse> getProjectOffers();
+
+    @GET("task")
+    Call<TaskResponse> getTasks();
 
     @POST("api-logout")
     Call<JsonObject> logout();

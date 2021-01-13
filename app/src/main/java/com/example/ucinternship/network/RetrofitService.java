@@ -3,6 +3,7 @@ package com.example.ucinternship.network;
 import com.example.ucinternship.model.response.ProjectResponse;
 import com.example.ucinternship.model.response.StudentResponse;
 import com.example.ucinternship.model.response.SupervisorResponse;
+import com.example.ucinternship.model.response.TaskResponse;
 import com.example.ucinternship.model.response.TokenResponse;
 import com.example.ucinternship.utils.Constants;
 import com.google.gson.JsonObject;
@@ -63,17 +64,19 @@ public class RetrofitService {
     public Call<ProjectResponse> getProjects(){
         return api.getProjects();
     }
-
     public Call<ProjectResponse> getProjectOffers(){
         return api.getProjectOffers();
     }
-
     public Call<StudentResponse> getStudentDetails(int id){
         return api.getStudentDetails(id);
     }
     public Call<SupervisorResponse> getSupervisorDetails(int id){
         return api.getSupervisorDetails(id);
     }
+    public Call<TaskResponse> getTasks(){
+        return api.getTasks();
+    }
+
 
     public Call<JsonObject> logout(){
         return api.logout();

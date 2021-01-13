@@ -17,7 +17,7 @@ public class Task implements Parcelable {
     private String task_deadline;
     @SerializedName("duration")
     private String task_duration;
-    @SerializedName("is_approved")
+    @SerializedName("status")
     private String task_approved;
     @SerializedName("pu_id")
     private String task_pu;
