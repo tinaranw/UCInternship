@@ -125,8 +125,7 @@ public class ProfileFragment extends Fragment {
         } else {
             profileViewModel.getSupervisorDetails(helper.getUserID()).observe(requireActivity(), observeSupervisorDetailViewModel);
         }
-
-
+        
     }
 
     private final Observer<Student> observeStudentDetailViewModel = details -> {
