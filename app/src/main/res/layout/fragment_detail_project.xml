@@ -109,6 +109,7 @@
                 android:layout_marginEnd="24dp"
                 android:fontFamily="@font/opensans_regular"
                 android:text="@string/ProjectDescriptionText"
+                android:textColor="@color/text"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="@+id/projectdesctitle_txt"
                 app:layout_constraintTop_toBottomOf="@+id/projectdesctitle_txt" />
@@ -131,6 +132,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/opensans_regular"
                 android:text="@string/ProjectDurationText"
+                android:textColor="@color/text"
                 app:layout_constraintBottom_toBottomOf="@+id/projectdurationtitle_txt"
                 app:layout_constraintStart_toStartOf="@+id/projectdeadline_txt"
                 app:layout_constraintTop_toTopOf="@+id/projectdurationtitle_txt" />
@@ -153,6 +155,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:text="@string/ProjectDeadlineText"
+                android:textColor="@color/text"
                 app:layout_constraintBottom_toBottomOf="@+id/projectdeadlinetitle_txt"
                 app:layout_constraintStart_toEndOf="@+id/projectdeadlinetitle_txt"
                 app:layout_constraintTop_toTopOf="@+id/projectdeadlinetitle_txt" />
@@ -175,7 +178,8 @@
                 android:layout_height="wrap_content"
                 android:text="Laura T"
                 app:layout_constraintStart_toStartOf="@+id/projectdeadline_txt"
-                app:layout_constraintTop_toTopOf="@+id/textView10" />
+                app:layout_constraintTop_toTopOf="@+id/textView10"
+                android:textColor="@color/text" />
 
             <androidx.appcompat.widget.Toolbar
                 android:id="@+id/pro_det_tb"

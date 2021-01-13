@@ -87,7 +87,7 @@ public class DetailProjectFragment extends Fragment {
         taskViewModel.init(helper.getAccessToken());
         taskViewModel.getTasks().observe(requireActivity(), observeViewModel);
 
-        task_rv.setLayoutManager(new LinearLayoutManager(getActivity()));
+        task_rv.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false));
         taskAdapter = new TaskAdapter(getActivity());
     }
 
