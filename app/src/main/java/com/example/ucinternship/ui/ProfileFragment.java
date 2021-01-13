@@ -119,8 +119,8 @@ public class ProfileFragment extends Fragment {
         profileViewModel = ViewModelProviders.of(requireActivity()).get(ProfileViewModel.class);
         profileViewModel.init(helper.getAccessToken());
         Log.d("roleku", "" + helper.getRole());
-        if (helper.getRole().equalsIgnoreCase(checkStudent.replace("'", "\\\\"))) {
-            Log.d("checkstudent", "" + checkStudent.replace("'", "\\\\"));
+        if (helper.getRole().equalsIgnoreCase(checkStudent.replace("'", "\\"))) {
+            Log.d("checkstudent", "" + checkStudent.replace("'", "\\"));
             profileViewModel.getStudentDetails(helper.getUserID()).observe(requireActivity(), observeStudentDetailViewModel);
         } else {
             profileViewModel.getSupervisorDetails(helper.getUserID()).observe(requireActivity(), observeSupervisorDetailViewModel);
