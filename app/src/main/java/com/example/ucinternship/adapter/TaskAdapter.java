@@ -2,6 +2,7 @@ package com.example.ucinternship.adapter;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.navigation.NavDirections;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -17,6 +18,9 @@ import com.example.ucinternship.R;
 import com.example.ucinternship.model.local.Project;
 import com.example.ucinternship.model.local.Student;
 import com.example.ucinternship.model.local.Task;
+import com.example.ucinternship.ui.DetailProjectFragmentDirections;
+import com.example.ucinternship.ui.ProjectListFragmentDirections;
+import com.example.ucinternship.ui.viewmodel.ProjectDetailViewModel;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -51,6 +55,10 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
         } else if(t.getTask_approved().equalsIgnoreCase("1")){
             holder.status.setText("Completed");
         }
+        holder.itemView.setOnClickListener(view -> {
+            NavDirections action = DetailProjectFragmentDirections.actionProjectDetailToTask(t);
+            Navigation.findNavController(view).navigate(action);
+        });
     }
 
     @Override

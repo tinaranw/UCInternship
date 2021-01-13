@@ -18,6 +18,7 @@ import com.example.ucinternship.R;
 import com.example.ucinternship.model.local.Project;
 import com.example.ucinternship.model.local.Task;
 import com.example.ucinternship.ui.viewmodel.ProjectDetailViewModel;
+import com.example.ucinternship.ui.viewmodel.TaskDetailViewModel;
 import com.example.ucinternship.utils.SharedPreferenceHelper;
 
 import butterknife.BindView;
@@ -37,7 +38,7 @@ public class DetailTaskFragment extends Fragment {
     Button addbtn;
 
     private Task task;
-    private ProjectDetailViewModel viewModel;
+    private TaskDetailViewModel viewModel;
     private SharedPreferenceHelper helper;
 
 
@@ -59,7 +60,23 @@ public class DetailTaskFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         ButterKnife.bind(this, view);
         helper = SharedPreferenceHelper.getInstance(requireActivity());
-        viewModel = ViewModelProviders.of(requireActivity()).get(ProjectDetailViewModel.class);
+        viewModel = ViewModelProviders.of(requireActivity()).get(TaskDetailViewModel.class);
         viewModel.init(helper.getAccessToken());
+
+        if (getArguments() != null) {
+            task = DetailTaskFragmentArgs.fromBundle(getArguments()).getTask();
+            loadTask(task);
+        }
+    }
+
+    private void loadTask(Task task){
+
+        tasktitle.setText(task.getTask_name());
+        taskdesc.setText(task.getTask_description());
+        if(task.getTask_approved().equalsIgnoreCase("0")){
+            taskstatus.setText("Ongoing");
+        } else if(task.getTask_approved().equalsIgnoreCase("1")){
+            taskstatus.setText("Completed");
+        }
     }
 }

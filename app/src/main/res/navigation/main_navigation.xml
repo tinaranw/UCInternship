@@ -61,7 +61,7 @@
         android:label="fragment_detail_project"
         tools:layout="@layout/fragment_detail_project" >
         <action
-            android:id="@+id/action_detailProjectFragment_to_detailTaskFragment"
+            android:id="@+id/actionProjectDetailToTask"
             app:destination="@id/detailTaskFragment" />
         <argument
             android:name="project"
@@ -85,6 +85,10 @@
         <action
             android:id="@+id/action_detailTaskFragment_to_progressFragment"
             app:destination="@id/progressFragment" />
+        <argument
+            android:name="task"
+            app:argType="com.example.ucinternship.model.local.Task"
+            app:nullable="true" />
     </fragment>
     <fragment
         android:id="@+id/progressFragment"
