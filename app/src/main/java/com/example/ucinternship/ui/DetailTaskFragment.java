@@ -5,8 +5,12 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,11 +19,18 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.ucinternship.R;
+import com.example.ucinternship.adapter.ProgressAdapter;
+import com.example.ucinternship.adapter.TaskAdapter;
+import com.example.ucinternship.model.local.Progress;
 import com.example.ucinternship.model.local.Project;
 import com.example.ucinternship.model.local.Task;
+import com.example.ucinternship.ui.viewmodel.ProgressViewModel;
 import com.example.ucinternship.ui.viewmodel.ProjectDetailViewModel;
 import com.example.ucinternship.ui.viewmodel.TaskDetailViewModel;
+import com.example.ucinternship.ui.viewmodel.TaskViewModel;
 import com.example.ucinternship.utils.SharedPreferenceHelper;
+
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -32,13 +43,15 @@ public class DetailTaskFragment extends Fragment {
     TextView taskdesc;
     @BindView(R.id.task_status_txt)
     TextView taskstatus;
-    @BindView(R.id.progress_btn)
-    Button addbtn;
+    @BindView(R.id.progress_rv)
+    RecyclerView progress_rv;
+
 
     private Task task;
     private TaskDetailViewModel viewModel;
     private SharedPreferenceHelper helper;
-
+    private ProgressAdapter progressAdapter;
+    private ProgressViewModel progressViewModel;
 
     public DetailTaskFragment() {
         // Required empty public constructor
@@ -65,6 +78,13 @@ public class DetailTaskFragment extends Fragment {
             task = DetailTaskFragmentArgs.fromBundle(getArguments()).getTask();
             loadTask(task);
         }
+
+        progressViewModel = ViewModelProviders.of(requireActivity()).get(ProgressViewModel.class);
+        progressViewModel.init(helper.getAccessToken());
+        progressViewModel.getProgresses().observe(requireActivity(), observeViewModel);
+
+        progress_rv.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false));
+        progressAdapter = new ProgressAdapter(getActivity());
     }
 
     private void loadTask(Task task){
@@ -77,4 +97,15 @@ public class DetailTaskFragment extends Fragment {
             taskstatus.setText("Completed");
         }
     }
+
+    private Observer<List<Progress>> observeViewModel = progress -> {
+        if(progress != null){
+            Log.d("ProgressChecking", String.valueOf(progress.size()));
+            progressAdapter.setProgressList(progress);
+            progressAdapter.notifyDataSetChanged();
+            progress_rv.setAdapter(progressAdapter);
+        } else {
+
+        }
+    };
 }
