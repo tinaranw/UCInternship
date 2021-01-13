@@ -44,17 +44,18 @@
                 app:layout_constraintTop_toTopOf="@+id/imageView4" />
 
             <TextView
-                android:id="@+id/nim_txt"
+                android:id="@+id/department_txt"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="24dp"
                 android:layout_marginTop="60dp"
                 android:layout_marginEnd="24dp"
                 android:fontFamily="@font/montserrat_medium"
-                android:text="0706011910003"
+                android:maxLines="2"
+                android:text="International Bussiness Management"
                 android:textAlignment="center"
                 android:textColor="@color/blue"
-                android:textSize="24sp"
+                android:textSize="20sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toEndOf="@+id/profile_img"
@@ -91,14 +92,17 @@
                 app:layout_constraintTop_toTopOf="@+id/card_profile" />
 
             <TextView
-                android:id="@+id/department_txt"
+                android:id="@+id/nim_txt"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
                 android:fontFamily="@font/opensans_semibold"
-                android:text="Informatics"
+                android:maxLines="1"
+                android:text="070601191003"
                 android:textColor="@color/text2"
                 android:textSize="16sp"
+                app:layout_constraintEnd_toStartOf="@+id/department_initial_txt"
                 app:layout_constraintStart_toStartOf="@+id/name_txt"
                 app:layout_constraintTop_toBottomOf="@+id/name_txt" />
 
@@ -106,14 +110,14 @@
                 android:id="@+id/department_initial_txt"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
                 android:fontFamily="@font/opensans_semibold"
+                android:maxLines="1"
                 android:text="(IMT)"
                 android:textColor="@color/text2"
                 android:textSize="16sp"
-                app:layout_constraintStart_toEndOf="@+id/department_txt"
-                app:layout_constraintTop_toBottomOf="@+id/name_txt" />
+                app:layout_constraintEnd_toStartOf="@+id/gender_txt"
+                app:layout_constraintTop_toTopOf="@+id/nim_txt" />
 
             <View
                 android:id="@+id/divider2"
@@ -123,7 +127,7 @@
                 android:background="@color/blue"
                 app:layout_constraintEnd_toEndOf="@+id/card_profile"
                 app:layout_constraintStart_toStartOf="@+id/card_profile"
-                app:layout_constraintTop_toBottomOf="@+id/department_txt" />
+                app:layout_constraintTop_toBottomOf="@+id/nim_txt" />
 
             <TextView
                 android:id="@+id/email_txt"
@@ -134,7 +138,7 @@
                 android:text="malexandra@student.ciputra.ac.id"
                 android:textColor="@color/text"
                 app:layout_constraintEnd_toEndOf="@+id/gender_txt"
-                app:layout_constraintStart_toStartOf="@+id/department_txt"
+                app:layout_constraintStart_toStartOf="@+id/nim_txt"
                 app:layout_constraintTop_toBottomOf="@+id/divider2" />
 
             <TextView
@@ -249,7 +253,7 @@
                 android:textColor="@color/text2"
                 android:textSize="16sp"
                 app:layout_constraintEnd_toEndOf="@+id/edit_btn"
-                app:layout_constraintTop_toTopOf="@+id/department_txt" />
+                app:layout_constraintTop_toTopOf="@+id/nim_txt" />
 
             <TextView
                 android:id="@+id/line_txt"
