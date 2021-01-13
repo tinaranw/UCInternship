@@ -50,6 +50,10 @@
         <action
             android:id="@+id/actionProjectToDetail"
             app:destination="@id/detailProjectFragment" />
+        <argument
+            android:name="project"
+            app:argType="com.example.ucinternship.model.local.Project"
+            app:nullable="true" />
     </fragment>
     <fragment
         android:id="@+id/detailProjectFragment"

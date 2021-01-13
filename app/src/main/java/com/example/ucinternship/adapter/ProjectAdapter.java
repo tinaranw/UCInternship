@@ -2,6 +2,7 @@ package com.example.ucinternship.adapter;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.navigation.NavDirections;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -19,6 +20,8 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.example.ucinternship.R;
 import com.example.ucinternship.model.local.Project;
+import com.example.ucinternship.ui.ProjectListFragment;
+import com.example.ucinternship.ui.ProjectListFragmentDirections;
 import com.example.ucinternship.ui.student.ProjectOfferFragmentDirections;
 
 import java.util.ArrayList;
@@ -70,6 +73,10 @@ public class ProjectAdapter extends RecyclerView.Adapter<ProjectAdapter.ProjectV
         } else if(p.getProject_category().equalsIgnoreCase("2")){
             holder.icon.setImageResource(R.drawable.ic_others);
         }
+        holder.itemView.setOnClickListener(view -> {
+            NavDirections action = ProjectListFragmentDirections.actionProjectToDetail(p);
+            Navigation.findNavController(view).navigate(action);
+        });
 
     }
 
