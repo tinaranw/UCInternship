@@ -40,6 +40,7 @@ public class DetailTaskFragment extends Fragment {
     private ProjectDetailViewModel viewModel;
     private SharedPreferenceHelper helper;
 
+
     public DetailTaskFragment() {
         // Required empty public constructor
     }
