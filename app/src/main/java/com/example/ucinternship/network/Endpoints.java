@@ -1,5 +1,6 @@
 package com.example.ucinternship.network;
 
+import com.example.ucinternship.model.response.ProgressResponse;
 import com.example.ucinternship.model.response.ProjectResponse;
 import com.example.ucinternship.model.response.StudentResponse;
 import com.example.ucinternship.model.response.SupervisorResponse;
@@ -36,6 +37,9 @@ public interface Endpoints {
 
     @GET("task")
     Call<TaskResponse> getTasks();
+
+    @GET("progress")
+    Call<ProgressResponse> getProgresses();
 
     @POST("api-logout")
     Call<JsonObject> logout();

@@ -15,7 +15,7 @@ public class Progress implements Parcelable {
     private String progress_start;
     @SerializedName("time_end")
     private String progress_end;
-    @SerializedName("isApproved")
+    @SerializedName("status")
     private String progress_approved;
     @SerializedName("comment")
     private String progress_comment;

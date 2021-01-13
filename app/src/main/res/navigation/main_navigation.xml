@@ -92,7 +92,12 @@
     </fragment>
     <fragment
         android:id="@+id/progressFragment"
-        android:name="com.example.ucinternship.ui.ProgressFragment"
+        android:name="com.example.ucinternship.ui.DetailProgressFragment"
         android:label="fragment_progress"
-        tools:layout="@layout/fragment_progress" />
+        tools:layout="@layout/fragment_progress" >
+        <argument
+            android:name="progress"
+            app:argType="com.example.ucinternship.model.local.Progress"
+            app:nullable="true" />
+    </fragment>
 </navigation>
