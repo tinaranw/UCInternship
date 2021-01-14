@@ -47,15 +47,15 @@
                 android:id="@+id/department_txt"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="24dp"
-                android:layout_marginTop="60dp"
-                android:layout_marginEnd="24dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="55dp"
+                android:layout_marginEnd="16dp"
                 android:fontFamily="@font/montserrat_medium"
                 android:maxLines="2"
                 android:text="International Bussiness Management"
                 android:textAlignment="center"
                 android:textColor="@color/blue"
-                android:textSize="20sp"
+                android:textSize="18sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toEndOf="@+id/profile_img"
@@ -65,9 +65,9 @@
                 android:id="@+id/card_profile"
                 android:layout_width="match_parent"
                 android:layout_height="170dp"
-                android:layout_marginStart="32dp"
+                android:layout_marginStart="16dp"
                 android:layout_marginTop="12dp"
-                android:layout_marginEnd="32dp"
+                android:layout_marginEnd="16dp"
                 android:alpha="0.5"
                 android:background="@drawable/card_profile"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -133,18 +133,20 @@
                 android:id="@+id/email_txt"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
                 android:layout_marginTop="10dp"
                 android:fontFamily="@font/opensans_regular"
                 android:text="malexandra@student.ciputra.ac.id"
                 android:textColor="@color/text"
                 app:layout_constraintEnd_toEndOf="@+id/gender_txt"
-                app:layout_constraintStart_toStartOf="@+id/nim_txt"
+                app:layout_constraintStart_toEndOf="@+id/imageView12"
                 app:layout_constraintTop_toBottomOf="@+id/divider2" />
 
             <TextView
                 android:id="@+id/phone_txt"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="8dp"
                 android:layout_marginBottom="8dp"
@@ -154,8 +156,7 @@
                 android:textColor="@color/text"
                 app:layout_constraintBottom_toBottomOf="@+id/card_profile"
                 app:layout_constraintEnd_toStartOf="@+id/divider4"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="@+id/email_txt"
+                app:layout_constraintStart_toEndOf="@+id/imageView13"
                 app:layout_constraintTop_toBottomOf="@+id/line_txt"
                 app:layout_constraintVertical_bias="1.0" />
 
@@ -236,7 +237,7 @@
                 android:id="@+id/batch_txt"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/opensans_regular"
+                android:fontFamily="@font/opensans_semibold"
                 android:maxLines="1"
                 android:text="2019"
                 android:textColor="@color/text"
@@ -268,6 +269,30 @@
                 app:layout_constraintEnd_toEndOf="@+id/email_txt"
                 app:layout_constraintStart_toStartOf="@+id/email_txt"
                 app:layout_constraintTop_toBottomOf="@+id/email_txt" />
+
+            <ImageView
+                android:id="@+id/imageView9"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:src="@drawable/ic_line_brands"
+                app:layout_constraintStart_toStartOf="@+id/imageView12"
+                app:layout_constraintTop_toTopOf="@+id/line_txt" />
+
+            <ImageView
+                android:id="@+id/imageView12"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:src="@drawable/ic_envelope_solid"
+                app:layout_constraintStart_toStartOf="@+id/nim_txt"
+                app:layout_constraintTop_toTopOf="@+id/email_txt" />
+
+            <ImageView
+                android:id="@+id/imageView13"
+                android:layout_width="19dp"
+                android:layout_height="19dp"
+                android:src="@drawable/ic_phone_alt_solid"
+                app:layout_constraintStart_toStartOf="@+id/imageView9"
+                app:layout_constraintTop_toTopOf="@+id/phone_txt" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.core.widget.NestedScrollView>
