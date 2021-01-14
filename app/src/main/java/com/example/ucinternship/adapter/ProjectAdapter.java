@@ -30,7 +30,7 @@ import java.util.List;
 public class ProjectAdapter extends RecyclerView.Adapter<ProjectAdapter.ProjectViewHolder> implements Filterable {
 
     private Context context;
-    private List<Project> projectList;
+    private List<Project> projectList = new ArrayList<>();
     private List<Project> projectListFull;
 
     public ProjectAdapter(Context context) {
