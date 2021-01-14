@@ -5,20 +5,27 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.example.ucinternship.R;
 import com.example.ucinternship.model.local.Progress;
+import com.example.ucinternship.model.local.Student;
+import com.example.ucinternship.model.local.Supervisor;
 import com.example.ucinternship.model.local.Task;
+import com.example.ucinternship.ui.viewmodel.ProfileViewModel;
 import com.example.ucinternship.ui.viewmodel.ProgressDetailViewModel;
 import com.example.ucinternship.ui.viewmodel.ProgressViewModel;
 import com.example.ucinternship.ui.viewmodel.ProjectDetailViewModel;
 import com.example.ucinternship.ui.viewmodel.TaskDetailViewModel;
+import com.example.ucinternship.utils.Constants;
 import com.example.ucinternship.utils.SharedPreferenceHelper;
 
 import butterknife.BindView;
@@ -40,6 +47,10 @@ public class DetailProgressFragment extends Fragment {
     TextView comment;
     @BindView(R.id.status_box_txt)
     TextView status;
+
+
+    private ProfileViewModel profileViewModel;
+    private String checkStudent;
 
     private Progress progress;
     private ProgressDetailViewModel viewModel;
@@ -64,11 +75,28 @@ public class DetailProgressFragment extends Fragment {
         viewModel = ViewModelProviders.of(requireActivity()).get(ProgressDetailViewModel.class);
         viewModel.init(helper.getAccessToken());
 
+        checkStudent = "App'Models'Student";
+
+        profileViewModel = ViewModelProviders.of(requireActivity()).get(ProfileViewModel.class);
+        profileViewModel.init(helper.getAccessToken());
+        Log.d("roleku", "" + helper.getRole());
+        if (helper.getRole().equalsIgnoreCase(checkStudent.replace("'", "\\"))) {
+            Log.d("checkstudent", "" + checkStudent.replace("'", "\\"));
+            profileViewModel.getStudentDetails(helper.getUserID()).observe(requireActivity(), observeStudentDetailViewModel);
+        }
+
         if (getArguments() != null) {
             progress = DetailProgressFragmentArgs.fromBundle(getArguments()).getProgress();
             loadProgress(progress);
         }
     }
+
+    private final Observer<Student> observeStudentDetailViewModel = details -> {
+        if (details != null) {
+            pic.setText(details.getStudent_name());
+            Log.d("nimku", "" + details.getStudent_nim());
+        }
+    };
 
     private void loadProgress(Progress progress){
 

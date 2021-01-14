@@ -73,6 +73,7 @@
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="24dp"
                 android:fontFamily="@font/montserrat_bold"
+                android:maxLines="2"
                 android:text="@string/DashboardNameExampleTxt"
                 android:textColor="#002842"
                 android:textSize="24sp"
