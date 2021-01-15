@@ -5,6 +5,8 @@ import android.os.Parcelable;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.util.List;
+
 public class Project implements Parcelable {
 
     @SerializedName("id")
@@ -23,10 +25,12 @@ public class Project implements Parcelable {
     private Period project_period;
     @SerializedName("supervisor")
     private Supervisor project_spv;
+    @SerializedName("applicants")
+    private List<ProjectUser> applicants;
 
     public Project(){}
 
-    public Project(String project_id, String project_name, String project_description, String project_deadline, String project_status, String project_category, Period project_period, Supervisor project_spv) {
+    public Project(String project_id, String project_name, String project_description, String project_deadline, String project_status, String project_category, Period project_period, Supervisor project_spv, List<ProjectUser> applicants) {
         this.project_id = project_id;
         this.project_name = project_name;
         this.project_description = project_description;
@@ -35,6 +39,7 @@ public class Project implements Parcelable {
         this.project_category = project_category;
         this.project_period = project_period;
         this.project_spv = project_spv;
+        this.applicants = applicants;
     }
 
     protected Project(Parcel in) {
@@ -46,6 +51,7 @@ public class Project implements Parcelable {
         project_category = in.readString();
         project_period = in.readParcelable(Period.class.getClassLoader());
         project_spv = in.readParcelable(Supervisor.class.getClassLoader());
+        applicants = in.createTypedArrayList(ProjectUser.CREATOR);
     }
 
     public static final Creator<Project> CREATOR = new Creator<Project>() {
@@ -124,6 +130,14 @@ public class Project implements Parcelable {
         this.project_spv = project_spv;
     }
 
+    public List<ProjectUser> getApplicants() {
+        return applicants;
+    }
+
+    public void setApplicants(List<ProjectUser> applicants) {
+        this.applicants = applicants;
+    }
+
     @Override
     public int describeContents() {
         return 0;
@@ -139,5 +153,6 @@ public class Project implements Parcelable {
         dest.writeString(project_category);
         dest.writeParcelable(project_period, flags);
         dest.writeParcelable(project_spv, flags);
+        dest.writeTypedList(applicants);
     }
 }

@@ -19,8 +19,10 @@ import android.widget.TextView;
 
 import com.example.ucinternship.R;
 import com.example.ucinternship.adapter.ProjectAdapter;
+import com.example.ucinternship.adapter.StudentAdapter;
 import com.example.ucinternship.adapter.TaskAdapter;
 import com.example.ucinternship.model.local.Project;
+import com.example.ucinternship.model.local.ProjectUser;
 import com.example.ucinternship.model.local.Task;
 import com.example.ucinternship.ui.viewmodel.ProjectDetailViewModel;
 import com.example.ucinternship.ui.viewmodel.ProjectViewModel;
@@ -52,10 +54,13 @@ public class DetailProjectFragment extends Fragment {
     TextView projectspv;
     @BindView(R.id.rv_task)
     RecyclerView task_rv;
+    @BindView(R.id.appliedstudents_rv)
+    RecyclerView appliedstudents_rv;
 
     private Project project;
     private ProjectDetailViewModel viewModel;
     private TaskAdapter taskAdapter;
+    private StudentAdapter studentAdapter;
     private TaskViewModel taskViewModel;
     private SharedPreferenceHelper helper;
 
@@ -81,18 +86,19 @@ public class DetailProjectFragment extends Fragment {
 
         if (getArguments() != null) {
             project = DetailProjectFragmentArgs.fromBundle(getArguments()).getProject();
-            loadProject(project);
+            loadProject(view, project);
         }
         taskViewModel = ViewModelProviders.of(requireActivity()).get(TaskViewModel.class);
         taskViewModel.init(helper.getAccessToken());
         taskViewModel.getTasks().observe(requireActivity(), observeViewModel);
+
 
         task_rv.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false));
         taskAdapter = new TaskAdapter(getActivity());
     }
 
 
-    private void loadProject(Project project){
+    private void loadProject(View view, Project project){
         //load icon
         if(project.getProject_category().equalsIgnoreCase("0")){
             icon.setImageResource(R.drawable.ic_event);
@@ -106,7 +112,8 @@ public class DetailProjectFragment extends Fragment {
         }
 
         projectname.setText(project.getProject_name());
-
+        Log.d("trial", "please work");
+        Log.d("student size", String.valueOf((project.getApplicants()).size()));
         //load icon
         if(project.getProject_status().equalsIgnoreCase("0")){
             projectstatus.setText("Available");
@@ -120,6 +127,15 @@ public class DetailProjectFragment extends Fragment {
 
         projectdesc.setText(project.getProject_description());
         projectspv.setText(project.getProject_spv().getSupervisor_name());
+
+        appliedstudents_rv.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false));
+        studentAdapter = new StudentAdapter(getActivity());
+
+        studentAdapter.setStudentList( project.getApplicants());
+        studentAdapter.notifyDataSetChanged();
+        appliedstudents_rv.setAdapter(studentAdapter);
+
+
     }
 
     private Observer<List<Task>> observeViewModel = tasks -> {
@@ -132,4 +148,5 @@ public class DetailProjectFragment extends Fragment {
 
         }
     };
+
 }
