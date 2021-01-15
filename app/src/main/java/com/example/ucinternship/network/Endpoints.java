@@ -17,6 +17,7 @@ import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
+import retrofit2.http.PUT;
 import retrofit2.http.Path;
 
 public interface Endpoints {
@@ -58,4 +59,8 @@ public interface Endpoints {
 
     @GET("supervisor/user/{id}")
     Call<SupervisorResponse> getSupervisorDetails(@Path("id") int id);
+
+    @PUT("student/user/{id}")
+    @FormUrlEncoded
+    Call<StudentResponse> updateStudent(@Path("id") int id, @Field("name") String name, @Field("phone") String phone, @Field("line_account") String line_account);
 }

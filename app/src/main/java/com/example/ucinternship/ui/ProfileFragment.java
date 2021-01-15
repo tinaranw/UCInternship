@@ -116,7 +116,10 @@ public class ProfileFragment extends Fragment {
         logout.setOnClickListener(v -> {
             logout(view);
         });
-
+        edit.setOnClickListener(v -> {
+            Intent intent = new Intent(getActivity().getApplication(), EditProfileActivity.class);
+            startActivity(intent);
+        });
         profileViewModel = ViewModelProviders.of(requireActivity()).get(ProfileViewModel.class);
         profileViewModel.init(helper.getAccessToken());
         Log.d("roleku", "" + helper.getRole());

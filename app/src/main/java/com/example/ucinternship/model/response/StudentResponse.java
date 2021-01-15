@@ -23,4 +23,5 @@ public class StudentResponse {
     public void setStudent_data(Student student_data) {
         this.student_data = student_data;
     }
+
 }

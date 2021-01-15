@@ -8,8 +8,6 @@ import java.util.List;
 
 public class TokenResponse {
 
-    //yang sesuai dengan yang ada di header (ex: postman)
-
     @SerializedName("token_type")
     String tokenType;
 
@@ -53,18 +51,8 @@ public class TokenResponse {
         return role;
     }
 
-    //bentuk penulisannya
-    //Bearer (tokenType) accesstoken
-    //ini bisa dilihat di header authoriz
     public String getAuthorization(){
         return this.tokenType + " " + this.accessToken;
     }
 
-//    public List<User> getUserList() {
-//        return userList;
-//    }
-//
-//    public void setUserList(List<User> userList) {
-//        this.userList = userList;
-//    }
 }
