@@ -6,6 +6,8 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
 import com.example.ucinternship.model.local.Project;
+import com.example.ucinternship.model.response.AcceptResponse;
+import com.example.ucinternship.model.response.PendingResponse;
 import com.example.ucinternship.network.RetrofitService;
 import com.example.ucinternship.model.response.ProjectResponse;
 import com.google.gson.Gson;
@@ -89,6 +91,54 @@ public class ProjectRepository {
             }
         });
         return listProjects;
+    }
+
+    public MutableLiveData<List<Project>> getPending(){
+        MutableLiveData<List<Project>> listPending = new MutableLiveData<>();
+
+        apiService.getPending().enqueue(new Callback<PendingResponse>() {
+            @Override
+            public void onResponse(Call<PendingResponse> call, Response<PendingResponse> response) {
+                Log.d(TAG, "onPendingResponse: "+ response.code());
+                if(response.isSuccessful()){
+                    Log.d(TAG, "onPendingResponse: "+ response.code());
+                    if(response.body() != null){
+                        Log.d(TAG, "onPendingResponse: "+ response.body().getResults().size());
+                        listPending.postValue(response.body().getResults());
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<PendingResponse> call, Throwable t) {
+                Log.d(TAG, "onFailure: "+ t.getMessage());
+            }
+        });
+        return listPending;
+    }
+
+    public MutableLiveData<List<Project>> getAccept(){
+        MutableLiveData<List<Project>> listAccept = new MutableLiveData<>();
+
+        apiService.getAccept().enqueue(new Callback<AcceptResponse>() {
+            @Override
+            public void onResponse(Call<AcceptResponse> call, Response<AcceptResponse> response) {
+                Log.d(TAG, "onResponse: "+ response.code());
+                if(response.isSuccessful()){
+                    Log.d(TAG, "onResponse: "+ response.code());
+                    if(response.body() != null){
+                        Log.d(TAG, "onResponse: "+ response.body().getResults().size());
+                        listAccept.postValue(response.body().getResults());
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<AcceptResponse> call, Throwable t) {
+                Log.d(TAG, "onFailure: "+ t.getMessage());
+            }
+        });
+        return listAccept;
     }
 
 }

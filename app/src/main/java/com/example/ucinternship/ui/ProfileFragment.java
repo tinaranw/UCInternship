@@ -13,6 +13,7 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.navigation.NavDirections;
 import androidx.navigation.Navigation;
+import androidx.recyclerview.widget.DividerItemDecoration;
 
 import android.os.Handler;
 import android.os.Looper;
@@ -169,6 +170,7 @@ public class ProfileFragment extends Fragment {
                 gender.setText(R.string.gender_female);
             }
             getView().findViewById(R.id.batch_txt).setVisibility(View.GONE);
+            getView().findViewById(R.id.divider4).setVisibility(View.GONE);
             getView().findViewById(R.id.profile_hour_inc).setVisibility(View.GONE);
         }
     };

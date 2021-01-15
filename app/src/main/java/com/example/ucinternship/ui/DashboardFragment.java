@@ -18,9 +18,21 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.example.ucinternship.R;
+<<<<<<< Updated upstream
+=======
+import com.example.ucinternship.adapter.IncomingProgressAdapter;
+import com.example.ucinternship.adapter.ProgressAdapter;
+import com.example.ucinternship.model.local.Progress;
+import com.example.ucinternship.model.local.Project;
+>>>>>>> Stashed changes
 import com.example.ucinternship.model.local.Student;
 import com.example.ucinternship.model.local.Supervisor;
 import com.example.ucinternship.ui.viewmodel.ProfileViewModel;
+<<<<<<< Updated upstream
+=======
+import com.example.ucinternship.ui.viewmodel.ProgressViewModel;
+import com.example.ucinternship.ui.viewmodel.ProjectViewModel;
+>>>>>>> Stashed changes
 import com.example.ucinternship.utils.Constants;
 import com.example.ucinternship.utils.SharedPreferenceHelper;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -35,10 +47,25 @@ public class DashboardFragment extends Fragment {
     TextView name;
     @BindView(R.id.profilepic_img)
     ImageView image;
+<<<<<<< Updated upstream
+=======
+    @BindView(R.id.recentprogress_rv)
+    RecyclerView rv;
+    @BindView(R.id.totalpending_txt)
+    TextView pending;
+    @BindView(R.id.totalaccepted_txt)
+    TextView accept;
+>>>>>>> Stashed changes
 
     private ProfileViewModel profileViewModel;
     private SharedPreferenceHelper helper;
     private String checkStudent, checkStaff, checkLecturer;
+<<<<<<< Updated upstream
+=======
+    private IncomingProgressAdapter incomingProgressAdapter;
+    private ProgressViewModel progressViewModel;
+    private ProjectViewModel projectViewModel;
+>>>>>>> Stashed changes
 
     public DashboardFragment() {
         // Required empty public constructor
@@ -64,6 +91,21 @@ public class DashboardFragment extends Fragment {
 
         profileViewModel = ViewModelProviders.of(requireActivity()).get(ProfileViewModel.class);
         profileViewModel.init(helper.getAccessToken());
+<<<<<<< Updated upstream
+=======
+
+        progressViewModel = ViewModelProviders.of(requireActivity()).get(ProgressViewModel.class);
+        progressViewModel.init(helper.getAccessToken());
+        progressViewModel.getSpvProgresses().observe(requireActivity(), observeViewModel);
+
+//        projectViewModel = ViewModelProviders.of(requireActivity()).get(ProjectViewModel.class);
+//        projectViewModel.init(helper.getAccessToken());
+//        projectViewModel.getPending().observe(requireActivity(), observePendingViewModel);
+
+        rv.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false));
+        incomingProgressAdapter = new IncomingProgressAdapter(getActivity());
+
+>>>>>>> Stashed changes
         Log.d("roleku", "" + helper.getRole());
         if (helper.getRole().equalsIgnoreCase(checkStudent.replace("'", "\\"))) {
             Log.d("checkstudent", "" + checkStudent.replace("'", "\\"));
@@ -73,12 +115,18 @@ public class DashboardFragment extends Fragment {
         }
     }
 
+//    private final Observer<Student> observePendingViewModel = details -> {
+//
+//        pending.setText(details.getStudent_name());
+//    };
+
     private final Observer<Student> observeStudentDetailViewModel = details -> {
         if (details != null) {
             Glide.with(getActivity()).load(Constants.BASE_IMAGE_URL + "student/" + details.getStudent_photo()).into(image);
             name.setText(details.getStudent_name());
             Log.d("nimku", "" + details.getStudent_nim());
         }
+        getView().findViewById(R.id.recentprog_inc).setVisibility(View.GONE);
     };
 
     private final Observer<Supervisor> observeSupervisorDetailViewModel = details -> {
@@ -89,6 +137,24 @@ public class DashboardFragment extends Fragment {
                 Glide.with(getActivity()).load(Constants.BASE_IMAGE_URL + "lecturer/" + details.getSupervisor_photo()).into(image);
             }
             name.setText(details.getSupervisor_name());
+            getView().findViewById(R.id.yourapp_inc).setVisibility(View.GONE);
         }
     };
+<<<<<<< Updated upstream
+=======
+
+    //incoming progress adapter
+    private Observer<List<Progress>> observeViewModel = progress -> {
+        if(progress != null){
+            Log.d("ProgressChecking", String.valueOf(progress.size()));
+            incomingProgressAdapter.setProgressList(progress);
+            incomingProgressAdapter.notifyDataSetChanged();
+            rv.setAdapter(incomingProgressAdapter);
+        } else {
+
+        }
+    };
+
+
+>>>>>>> Stashed changes
 }

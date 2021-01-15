@@ -1,5 +1,7 @@
 package com.example.ucinternship.network;
 
+import com.example.ucinternship.model.response.AcceptResponse;
+import com.example.ucinternship.model.response.PendingResponse;
 import com.example.ucinternship.model.response.StudentProgressResponse;
 import com.example.ucinternship.model.response.ProjectResponse;
 import com.example.ucinternship.model.response.StudentResponse;
@@ -41,6 +43,12 @@ public interface Endpoints {
 
     @GET("supervisor/progress")
     Call<SupervisorProgressResponse> getSpvProgresses();
+
+    @GET("pending")
+    Call<PendingResponse> getPending();
+
+    @GET("accept")
+    Call<AcceptResponse> getAccept();
 
     @POST("api-logout")
     Call<JsonObject> logout();
