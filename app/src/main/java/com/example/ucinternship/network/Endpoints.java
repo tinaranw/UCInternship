@@ -1,23 +1,21 @@
 package com.example.ucinternship.network;
 
-import com.example.ucinternship.model.response.ProgressResponse;
+import com.example.ucinternship.model.response.StudentProgressResponse;
 import com.example.ucinternship.model.response.ProjectResponse;
 import com.example.ucinternship.model.response.StudentResponse;
+import com.example.ucinternship.model.response.SupervisorProgressResponse;
 import com.example.ucinternship.model.response.SupervisorResponse;
 import com.example.ucinternship.model.response.TaskResponse;
 import com.example.ucinternship.model.response.TokenResponse;
 import com.example.ucinternship.model.response.UserResponse;
-import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 
 import retrofit2.Call;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
-import retrofit2.http.Headers;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
-import retrofit2.http.Query;
 
 public interface Endpoints {
 
@@ -38,8 +36,11 @@ public interface Endpoints {
     @GET("task")
     Call<TaskResponse> getTasks();
 
-    @GET("progress")
-    Call<ProgressResponse> getProgresses();
+    @GET("student/progress")
+    Call<StudentProgressResponse> getProgresses();
+
+    @GET("supervisor/progress")
+    Call<SupervisorProgressResponse> getSpvProgresses();
 
     @POST("api-logout")
     Call<JsonObject> logout();

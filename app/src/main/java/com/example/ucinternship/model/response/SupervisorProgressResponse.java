@@ -5,7 +5,8 @@ import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
-public class ProgressResponse {
+public class SupervisorProgressResponse {
+
     @SerializedName("data")
     private List<Progress> results;
     public List<Progress> getResults(){

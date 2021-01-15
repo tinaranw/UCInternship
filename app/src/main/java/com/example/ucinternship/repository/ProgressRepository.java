@@ -5,7 +5,7 @@ import android.util.Log;
 import androidx.lifecycle.MutableLiveData;
 
 import com.example.ucinternship.model.local.Progress;
-import com.example.ucinternship.model.response.ProgressResponse;
+import com.example.ucinternship.model.response.StudentProgressResponse;
 import com.example.ucinternship.network.RetrofitService;
 
 import java.util.List;
@@ -39,9 +39,9 @@ public class ProgressRepository {
 
     public MutableLiveData<List<Progress>> getProgresses(){
         MutableLiveData<List<Progress>> listProgress = new MutableLiveData<>();
-        apiService.getProgresses().enqueue(new Callback<ProgressResponse>() {
+        apiService.getProgresses().enqueue(new Callback<StudentProgressResponse>() {
             @Override
-            public void onResponse(Call<ProgressResponse> call, Response<ProgressResponse> response) {
+            public void onResponse(Call<StudentProgressResponse> call, Response<StudentProgressResponse> response) {
                 Log.d(TAG, "onResponseProgressResponse: "+ response.code());
                 if(response.isSuccessful()){
                     Log.d(TAG, "onResponseProgressSuccessful: "+ response.code());
@@ -54,7 +54,7 @@ public class ProgressRepository {
             }
 
             @Override
-            public void onFailure(Call<ProgressResponse> call, Throwable t) {
+            public void onFailure(Call<StudentProgressResponse> call, Throwable t) {
 
             }
         });

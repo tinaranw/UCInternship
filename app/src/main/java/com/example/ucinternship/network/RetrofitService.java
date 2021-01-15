@@ -1,6 +1,6 @@
 package com.example.ucinternship.network;
 
-import com.example.ucinternship.model.response.ProgressResponse;
+import com.example.ucinternship.model.response.StudentProgressResponse;
 import com.example.ucinternship.model.response.ProjectResponse;
 import com.example.ucinternship.model.response.StudentResponse;
 import com.example.ucinternship.model.response.SupervisorResponse;
@@ -77,7 +77,7 @@ public class RetrofitService {
     public Call<TaskResponse> getTasks(){
         return api.getTasks();
     }
-    public Call<ProgressResponse> getProgresses(){
+    public Call<StudentProgressResponse> getProgresses(){
         return api.getProgresses();
     }
 
