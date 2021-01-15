@@ -3,10 +3,18 @@ package com.example.ucinternship.utils;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
+import android.util.Log;
+
+import androidx.lifecycle.MutableLiveData;
 
 import com.example.ucinternship.model.local.User;
+import com.example.ucinternship.model.response.SupervisorResponse;
 
 import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class SharedPreferenceHelper {
     private static final String PREFS = "pref";
@@ -76,4 +84,5 @@ public class SharedPreferenceHelper {
     public Boolean getLogin() {
         return prefs.getBoolean(LOGIN, false);
     }
+
 }

@@ -63,4 +63,8 @@ public interface Endpoints {
     @PUT("student/user/{id}")
     @FormUrlEncoded
     Call<StudentResponse> updateStudent(@Path("id") int id, @Field("name") String name, @Field("phone") String phone, @Field("line_account") String line_account);
+
+    @PUT("supervisor/user/{id}")
+    @FormUrlEncoded
+    Call<SupervisorResponse> updateSupervisor(@Path("id") int id, @Field("name") String name, @Field("phone") String phone, @Field("line_account") String line_account);
 }

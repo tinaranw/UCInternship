@@ -85,18 +85,31 @@ public class EditProfileActivity extends AppCompatActivity {
             String name = name_txtil.getEditText().getText().toString().trim();
             String phone = phone_txtil.getEditText().getText().toString().trim();
             String line_account = line_txtil.getEditText().getText().toString().trim();
-            //email dan pass berupa string
-            viewModel.updateStudent(helper.getUserID(),name,phone,line_account).observe(this, tokenResponse -> {
-                if(tokenResponse != null){
-                    Intent intent = new Intent(this, MainActivity.class);
-                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                    this.finish();
-                    startActivity(intent);
-                    Toast.makeText(this,  "Profile Updated.", Toast.LENGTH_SHORT).show();
-                } else {
-                    Toast.makeText(this,  "Failed to Update Profile.", Toast.LENGTH_SHORT).show();
-                }
-            });
+            if (helper.getRole().equalsIgnoreCase(checkStudent.replace("'", "\\"))) {
+                viewModel.updateStudent(helper.getUserID(),name,phone,line_account).observe(this, tokenResponse -> {
+                    if(tokenResponse != null){
+                        Intent intent = new Intent(this, MainActivity.class);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                        this.finish();
+                        startActivity(intent);
+                        Toast.makeText(this,  "Profile Updated.", Toast.LENGTH_SHORT).show();
+                    } else {
+                        Toast.makeText(this,  "Failed to Update Profile.", Toast.LENGTH_SHORT).show();
+                    }
+                });
+            } else {
+                viewModel.updateSupervisor(helper.getUserID(),name,phone,line_account).observe(this, tokenResponse -> {
+                    if(tokenResponse != null){
+                        Intent intent = new Intent(this, MainActivity.class);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                        this.finish();
+                        startActivity(intent);
+                        Toast.makeText(this,  "Profile Updated.", Toast.LENGTH_SHORT).show();
+                    } else {
+                        Toast.makeText(this,  "Failed to Update Profile.", Toast.LENGTH_SHORT).show();
+                    }
+                });
+            }
         }
     }
 

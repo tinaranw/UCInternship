@@ -113,6 +113,30 @@ public class ProfileRepository {
         });
         return studentResponse;
     }
+    public MutableLiveData<SupervisorResponse> updateSupervisor(int id, String name, String phone, String line_account) {
+        MutableLiveData<SupervisorResponse> supervisorResponse = new MutableLiveData<>();
+        apiService.updateSupervisor(id, name, phone, line_account).enqueue(new Callback<SupervisorResponse>() {
+            @Override
+            public void onResponse(Call<SupervisorResponse> call, Response<SupervisorResponse> response) {
+                if (response.isSuccessful()) {
+                    Log.d(TAG, "onResponse: " + response.code());
+                    if (response.code() == 200) {
+                        if (response.body() != null) {
+                            supervisorResponse.postValue(response.body());
+                        }
+                    }
+                } else {
+                    Log.d(TAG, "onResponse: " + response.code());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<SupervisorResponse> call, Throwable t) {
+                Log.d(TAG, "onFailure: " + t.getMessage());
+            }
+        });
+        return supervisorResponse;
+    }
 
 
 }
