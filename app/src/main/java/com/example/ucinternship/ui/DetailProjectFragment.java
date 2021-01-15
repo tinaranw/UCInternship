@@ -20,6 +20,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.ucinternship.R;
+import com.example.ucinternship.adapter.AcceptedStudentAdapter;
 import com.example.ucinternship.adapter.ProjectAdapter;
 import com.example.ucinternship.adapter.StudentAdapter;
 import com.example.ucinternship.adapter.TaskAdapter;
@@ -58,11 +59,14 @@ public class DetailProjectFragment extends Fragment {
     RecyclerView task_rv;
     @BindView(R.id.appliedstudents_rv)
     RecyclerView appliedstudents_rv;
+    @BindView(R.id.acceptedstudents_rv)
+    RecyclerView acceptedstudents_rv;
 
     private Project project;
     private ProjectDetailViewModel viewModel;
     private TaskAdapter taskAdapter;
     private StudentAdapter studentAdapter;
+    private AcceptedStudentAdapter acceptedStudentAdapter;
     private TaskViewModel taskViewModel;
     private SharedPreferenceHelper helper;
 
@@ -93,7 +97,6 @@ public class DetailProjectFragment extends Fragment {
         taskViewModel = ViewModelProviders.of(requireActivity()).get(TaskViewModel.class);
         taskViewModel.init(helper.getAccessToken());
         taskViewModel.getTasks().observe(requireActivity(), observeViewModel);
-
 
         task_rv.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false));
         taskAdapter = new TaskAdapter(getActivity());
@@ -134,9 +137,16 @@ public class DetailProjectFragment extends Fragment {
         appliedstudents_rv.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false));
         studentAdapter = new StudentAdapter(getActivity());
 
+        acceptedstudents_rv.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false));
+        acceptedStudentAdapter = new AcceptedStudentAdapter(getActivity());
+
         studentAdapter.setStudentList( project.getApplicants());
         studentAdapter.notifyDataSetChanged();
         appliedstudents_rv.setAdapter(studentAdapter);
+
+        acceptedStudentAdapter.setAcceptedStudentList( project.getApplicants());
+        acceptedStudentAdapter.notifyDataSetChanged();
+        acceptedstudents_rv.setAdapter(acceptedStudentAdapter);
 
 
     }
