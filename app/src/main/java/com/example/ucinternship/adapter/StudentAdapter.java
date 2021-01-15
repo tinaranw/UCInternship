@@ -26,7 +26,7 @@ public class StudentAdapter extends RecyclerView.Adapter<StudentAdapter.StudentV
 
     private Context context;
     private List<ProjectUser> studentList;
-
+    int count;
 
     public StudentAdapter(Context context) {
         this.context = context;
@@ -47,7 +47,11 @@ public class StudentAdapter extends RecyclerView.Adapter<StudentAdapter.StudentV
     @Override
     public void onBindViewHolder(@NonNull StudentAdapter.StudentViewHolder holder, int i) {
         ProjectUser projectUser = studentList.get(i);
-        holder.name.setText(projectUser.getUser().getUser_name());
+        count = 0;
+        if(projectUser.getStatus().equals("0")){
+            count++;
+            holder.name.setText(projectUser.getUser().getUser_name());
+        }
 
     }
 
