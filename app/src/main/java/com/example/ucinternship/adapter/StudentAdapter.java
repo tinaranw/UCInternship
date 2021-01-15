@@ -15,17 +15,26 @@ import android.widget.TextView;
 
 import com.example.ucinternship.R;
 import com.example.ucinternship.model.local.Progress;
+import com.example.ucinternship.model.local.Project;
+import com.example.ucinternship.model.local.ProjectUser;
 import com.example.ucinternship.model.local.Student;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class StudentAdapter extends RecyclerView.Adapter<StudentAdapter.StudentViewHolder> {
 
     private Context context;
-    private List<Student> studentList;
+    private List<ProjectUser> studentList;
+
 
     public StudentAdapter(Context context) {
         this.context = context;
+    }
+
+    public void setStudentList(List<ProjectUser> studentList){
+        this.studentList = studentList;
+        notifyDataSetChanged();
     }
 
     @NonNull
@@ -37,13 +46,14 @@ public class StudentAdapter extends RecyclerView.Adapter<StudentAdapter.StudentV
 
     @Override
     public void onBindViewHolder(@NonNull StudentAdapter.StudentViewHolder holder, int i) {
-        Student s = studentList.get(i);
+        ProjectUser projectUser = studentList.get(i);
+        holder.name.setText(projectUser.getUser().getUser_name());
 
     }
 
     @Override
     public int getItemCount() {
-        return 0;
+        return studentList.size();
     }
 
     public class StudentViewHolder extends RecyclerView.ViewHolder {

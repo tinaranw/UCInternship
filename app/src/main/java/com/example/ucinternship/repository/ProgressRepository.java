@@ -6,6 +6,7 @@ import androidx.lifecycle.MutableLiveData;
 
 import com.example.ucinternship.model.local.Progress;
 import com.example.ucinternship.model.response.StudentProgressResponse;
+import com.example.ucinternship.model.response.SupervisorProgressResponse;
 import com.example.ucinternship.network.RetrofitService;
 
 import java.util.List;
@@ -42,11 +43,11 @@ public class ProgressRepository {
         apiService.getProgresses().enqueue(new Callback<StudentProgressResponse>() {
             @Override
             public void onResponse(Call<StudentProgressResponse> call, Response<StudentProgressResponse> response) {
-                Log.d(TAG, "onResponseProgressResponse: "+ response.code());
+                Log.d(TAG, "onResponseStudentProgressResponse: "+ response.code());
                 if(response.isSuccessful()){
-                    Log.d(TAG, "onResponseProgressSuccessful: "+ response.code());
+                    Log.d(TAG, "onResponseStudentProgressSuccessful: "+ response.code());
                     if(response.body() != null){
-                        Log.d(TAG, "onResponseProgressList: "+ response.body().getResults().size());
+                        Log.d(TAG, "onResponseStudentProgressList: "+ response.body().getResults().size());
                         listProgress.postValue(response.body().getResults());
                         resetInstance();
                     }
@@ -60,4 +61,29 @@ public class ProgressRepository {
         });
         return listProgress;
     }
+
+    public MutableLiveData<List<Progress>> getSpvProgresses(){
+        MutableLiveData<List<Progress>> listSpvProgress = new MutableLiveData<>();
+        apiService.getSpvProgresses().enqueue(new Callback<SupervisorProgressResponse>() {
+            @Override
+            public void onResponse(Call<SupervisorProgressResponse> call, Response<SupervisorProgressResponse> response) {
+                Log.d(TAG, "onResponseSpvProgressResponse: "+ response.code());
+                if(response.isSuccessful()){
+                    Log.d(TAG, "onResponseSpvProgressSuccessful: "+ response.code());
+                    if(response.body() != null){
+                        Log.d(TAG, "onResponseSpvProgressList: "+ response.body().getResults().size());
+                        listSpvProgress.postValue(response.body().getResults());
+                        resetInstance();
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<SupervisorProgressResponse> call, Throwable t) {
+
+            }
+        });
+        return listSpvProgress;
+    }
+
 }

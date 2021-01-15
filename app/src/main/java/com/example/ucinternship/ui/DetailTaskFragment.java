@@ -24,6 +24,7 @@ import com.example.ucinternship.adapter.TaskAdapter;
 import com.example.ucinternship.model.local.Progress;
 import com.example.ucinternship.model.local.Project;
 import com.example.ucinternship.model.local.Task;
+import com.example.ucinternship.ui.viewmodel.ProfileViewModel;
 import com.example.ucinternship.ui.viewmodel.ProgressViewModel;
 import com.example.ucinternship.ui.viewmodel.ProjectDetailViewModel;
 import com.example.ucinternship.ui.viewmodel.TaskDetailViewModel;
@@ -52,7 +53,8 @@ public class DetailTaskFragment extends Fragment {
     private SharedPreferenceHelper helper;
     private ProgressAdapter progressAdapter;
     private ProgressViewModel progressViewModel;
-
+    private ProfileViewModel profileViewModel;
+    private String checkStudent, checkStaff, checkLecturer;
     public DetailTaskFragment() {
         // Required empty public constructor
     }
@@ -81,7 +83,19 @@ public class DetailTaskFragment extends Fragment {
 
         progressViewModel = ViewModelProviders.of(requireActivity()).get(ProgressViewModel.class);
         progressViewModel.init(helper.getAccessToken());
-        progressViewModel.getProgresses().observe(requireActivity(), observeViewModel);
+
+        checkStudent = "App'Models'Student";
+        checkStaff = "App'Models'Staff";
+        checkLecturer = "App'Models'Lecturer";
+
+        profileViewModel = ViewModelProviders.of(requireActivity()).get(ProfileViewModel.class);
+        profileViewModel.init(helper.getAccessToken());
+        Log.d("roleku", "" + helper.getRole());
+        if (helper.getRole().equalsIgnoreCase(checkStudent.replace("'", "\\"))) {
+            progressViewModel.getProgresses().observe(requireActivity(), observeViewModel);
+        } else {
+            progressViewModel.getSpvProgresses().observe(requireActivity(), observeViewModel);
+        }
 
         progress_rv.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false));
         progressAdapter = new ProgressAdapter(getActivity());

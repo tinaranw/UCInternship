@@ -5,6 +5,7 @@ import com.example.ucinternship.model.response.PendingResponse;
 import com.example.ucinternship.model.response.StudentProgressResponse;
 import com.example.ucinternship.model.response.ProjectResponse;
 import com.example.ucinternship.model.response.StudentResponse;
+import com.example.ucinternship.model.response.SupervisorProgressResponse;
 import com.example.ucinternship.model.response.SupervisorResponse;
 import com.example.ucinternship.model.response.TaskResponse;
 import com.example.ucinternship.model.response.TokenResponse;
@@ -102,6 +103,11 @@ public class RetrofitService {
         return api.getAccept();
     }
 >>>>>>> Stashed changes
+
+    public Call<SupervisorProgressResponse> getSpvProgresses(){
+        return api.getSpvProgresses();
+    }
+
 
 
     public Call<JsonObject> logout() {
