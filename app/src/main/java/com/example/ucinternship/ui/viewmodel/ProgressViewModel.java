@@ -23,6 +23,10 @@ public class ProgressViewModel  extends ViewModel {
         return repository.getProgresses();
     }
 
+    public LiveData<List<Progress>> getSpvProgresses() {
+        return repository.getSpvProgresses();
+    }
+
     @Override
     protected void onCleared() {
         super.onCleared();

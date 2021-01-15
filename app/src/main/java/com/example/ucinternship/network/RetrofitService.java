@@ -3,6 +3,7 @@ package com.example.ucinternship.network;
 import com.example.ucinternship.model.response.StudentProgressResponse;
 import com.example.ucinternship.model.response.ProjectResponse;
 import com.example.ucinternship.model.response.StudentResponse;
+import com.example.ucinternship.model.response.SupervisorProgressResponse;
 import com.example.ucinternship.model.response.SupervisorResponse;
 import com.example.ucinternship.model.response.TaskResponse;
 import com.example.ucinternship.model.response.TokenResponse;
@@ -79,6 +80,11 @@ public class RetrofitService {
     }
     public Call<StudentProgressResponse> getProgresses(){
         return api.getProgresses();
+    }
+
+
+    public Call<SupervisorProgressResponse> getSpvProgresses(){
+        return api.getSpvProgresses();
     }
 
 
