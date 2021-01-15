@@ -56,8 +56,6 @@ public class DashboardFragment extends Fragment {
     TextView pending;
     @BindView(R.id.totalaccepted_txt)
     TextView accept;
-    @BindView(R.id.recentprogress_rv)
-    RecyclerView rv;
 
     private ProfileViewModel profileViewModel;
     private SharedPreferenceHelper helper;

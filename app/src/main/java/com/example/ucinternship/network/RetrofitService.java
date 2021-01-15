@@ -89,8 +89,6 @@ public class RetrofitService {
         return api.getProgresses();
     }
 
-<<<<<<< Updated upstream
-=======
     public Call<SupervisorProgressResponse> getSpvProgresses() {
         return api.getSpvProgresses();
     }
@@ -101,11 +99,6 @@ public class RetrofitService {
 
     public Call<AcceptResponse> getAccept() {
         return api.getAccept();
-    }
->>>>>>> Stashed changes
-
-    public Call<SupervisorProgressResponse> getSpvProgresses(){
-        return api.getSpvProgresses();
     }
 
 
