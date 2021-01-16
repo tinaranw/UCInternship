@@ -21,21 +21,20 @@ public class Project implements Parcelable {
     private String project_status;
     @SerializedName("category")
     private String project_category;
-
-
-    @SerializedName("pending")
-    private List<ProjectUser> pending;
-
     @SerializedName("period")
     private Period project_period;
     @SerializedName("supervisor")
     private Supervisor project_spv;
     @SerializedName("applicants")
     private List<ProjectUser> applicants;
+    @SerializedName("pending")
+    private List<ProjectUser> pending_students;
+    @SerializedName("accepted")
+    private List<ProjectUser> accepted_students;
 
     public Project(){}
 
-    public Project(String project_id, String project_name, String project_description, String project_deadline, String project_status, String project_category, Period project_period, Supervisor project_spv, List<ProjectUser> applicants) {
+    public Project(String project_id, String project_name, String project_description, String project_deadline, String project_status, String project_category, Period project_period, Supervisor project_spv, List<ProjectUser> applicants, List<ProjectUser> pending_students, List<ProjectUser> accepted_students) {
         this.project_id = project_id;
         this.project_name = project_name;
         this.project_description = project_description;
@@ -45,6 +44,8 @@ public class Project implements Parcelable {
         this.project_period = project_period;
         this.project_spv = project_spv;
         this.applicants = applicants;
+        this.pending_students = pending_students;
+        this.accepted_students = accepted_students;
     }
 
     protected Project(Parcel in) {
@@ -57,6 +58,8 @@ public class Project implements Parcelable {
         project_period = in.readParcelable(Period.class.getClassLoader());
         project_spv = in.readParcelable(Supervisor.class.getClassLoader());
         applicants = in.createTypedArrayList(ProjectUser.CREATOR);
+        pending_students = in.createTypedArrayList(ProjectUser.CREATOR);
+        accepted_students = in.createTypedArrayList(ProjectUser.CREATOR);
     }
 
     public static final Creator<Project> CREATOR = new Creator<Project>() {
@@ -143,6 +146,22 @@ public class Project implements Parcelable {
         this.applicants = applicants;
     }
 
+    public List<ProjectUser> getPending_students() {
+        return pending_students;
+    }
+
+    public void setPending_students(List<ProjectUser> pending_students) {
+        this.pending_students = pending_students;
+    }
+
+    public List<ProjectUser> getAccepted_students() {
+        return accepted_students;
+    }
+
+    public void setAccepted_students(List<ProjectUser> accepted_students) {
+        this.accepted_students = accepted_students;
+    }
+
     @Override
     public int describeContents() {
         return 0;
@@ -159,5 +178,7 @@ public class Project implements Parcelable {
         dest.writeParcelable(project_period, flags);
         dest.writeParcelable(project_spv, flags);
         dest.writeTypedList(applicants);
+        dest.writeTypedList(pending_students);
+        dest.writeTypedList(accepted_students);
     }
 }

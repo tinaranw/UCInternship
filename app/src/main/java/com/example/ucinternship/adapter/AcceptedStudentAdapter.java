@@ -1,6 +1,7 @@
 package com.example.ucinternship.adapter;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -41,9 +42,11 @@ public class AcceptedStudentAdapter extends RecyclerView.Adapter<AcceptedStudent
     @Override
     public void onBindViewHolder(@NonNull AcceptedStudentAdapter.AcceptedStudentViewHolder holder, int i) {
         ProjectUser projectUser = acceptedStudentList.get(i);
-        count = 0;
+        Log.d("countAcceptedListSize", String.valueOf(count));
         if(projectUser.getStatus().equals("1")){
             count++;
+            Log.d("countAcceptedListSize", String.valueOf(count));
+
             holder.name.setText(projectUser.getUser().getUser_name());
         }
     }
@@ -51,6 +54,7 @@ public class AcceptedStudentAdapter extends RecyclerView.Adapter<AcceptedStudent
     @Override
     public int getItemCount() {
         return acceptedStudentList.size();
+
     }
 
     public class AcceptedStudentViewHolder extends RecyclerView.ViewHolder {

@@ -140,11 +140,11 @@ public class DetailProjectFragment extends Fragment {
         acceptedstudents_rv.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false));
         acceptedStudentAdapter = new AcceptedStudentAdapter(getActivity());
 
-        studentAdapter.setStudentList( project.getApplicants());
+        studentAdapter.setStudentList( project.getPending_students());
         studentAdapter.notifyDataSetChanged();
         appliedstudents_rv.setAdapter(studentAdapter);
 
-        acceptedStudentAdapter.setAcceptedStudentList( project.getApplicants());
+        acceptedStudentAdapter.setAcceptedStudentList( project.getAccepted_students());
         acceptedStudentAdapter.notifyDataSetChanged();
         acceptedstudents_rv.setAdapter(acceptedStudentAdapter);
 
