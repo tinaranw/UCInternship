@@ -141,4 +141,75 @@ public class ProjectRepository {
         return listAccept;
     }
 
+    public MutableLiveData<List<Project>> getEvent(){
+        MutableLiveData<List<Project>> listEvent = new MutableLiveData<>();
+
+        apiService.getEvent().enqueue(new Callback<ProjectResponse>() {
+            @Override
+            public void onResponse(Call<ProjectResponse> call, Response<ProjectResponse> response) {
+                Log.d(TAG, "onResponse: "+ response.code());
+                if(response.isSuccessful()){
+                    Log.d(TAG, "onResponse: "+ response.code());
+                    if(response.body() != null){
+                        Log.d(TAG, "onResponse: "+ response.body().getResults().size());
+                        listEvent.postValue(response.body().getResults());
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ProjectResponse> call, Throwable t) {
+                Log.d(TAG, "onFailure: "+ t.getMessage());
+            }
+        });
+        return listEvent;
+    }
+
+    public MutableLiveData<List<Project>> getEducation(){
+        MutableLiveData<List<Project>> listEducation = new MutableLiveData<>();
+
+        apiService.getEducation().enqueue(new Callback<ProjectResponse>() {
+            @Override
+            public void onResponse(Call<ProjectResponse> call, Response<ProjectResponse> response) {
+                Log.d(TAG, "onResponse: "+ response.code());
+                if(response.isSuccessful()){
+                    Log.d(TAG, "onResponse: "+ response.code());
+                    if(response.body() != null){
+                        Log.d(TAG, "onResponse: "+ response.body().getResults().size());
+                        listEducation.postValue(response.body().getResults());
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ProjectResponse> call, Throwable t) {
+                Log.d(TAG, "onFailure: "+ t.getMessage());
+            }
+        });
+        return listEducation;
+    }
+
+    public MutableLiveData<List<Project>> getOther(){
+        MutableLiveData<List<Project>> listOther = new MutableLiveData<>();
+
+        apiService.getOther().enqueue(new Callback<ProjectResponse>() {
+            @Override
+            public void onResponse(Call<ProjectResponse> call, Response<ProjectResponse> response) {
+                Log.d(TAG, "onResponse: "+ response.code());
+                if(response.isSuccessful()){
+                    Log.d(TAG, "onResponse: "+ response.code());
+                    if(response.body() != null){
+                        Log.d(TAG, "onResponse: "+ response.body().getResults().size());
+                        listOther.postValue(response.body().getResults());
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ProjectResponse> call, Throwable t) {
+                Log.d(TAG, "onFailure: "+ t.getMessage());
+            }
+        });
+        return listOther;
+    }
 }
