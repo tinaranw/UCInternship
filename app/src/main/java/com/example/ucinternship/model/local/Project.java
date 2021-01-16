@@ -21,6 +21,11 @@ public class Project implements Parcelable {
     private String project_status;
     @SerializedName("category")
     private String project_category;
+
+
+    @SerializedName("pending")
+    private List<ProjectUser> pending;
+
     @SerializedName("period")
     private Period project_period;
     @SerializedName("supervisor")

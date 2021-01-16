@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -25,6 +26,7 @@ import com.example.ucinternship.model.local.Project;
 import com.example.ucinternship.ui.viewmodel.ProjectViewModel;
 import com.example.ucinternship.utils.SharedPreferenceHelper;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
@@ -45,11 +47,12 @@ public class ProjectListFragment extends Fragment {
     @BindView(R.id.projectlist_rv)
     RecyclerView rv;
     @BindView(R.id.projectsearchbar_search)
-    SearchView search;
+    SearchView searchview;
 
     private ProjectViewModel viewModel;
     private ProjectAdapter adapter;
     private SharedPreferenceHelper helper;
+    private ArrayList<ProjectAdapter> projectAdapterArrayList;
 
     public ProjectListFragment() {
         // Required empty public constructor
@@ -59,7 +62,9 @@ public class ProjectListFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
+        setHasOptionsMenu(true);
         return inflater.inflate(R.layout.fragment_project_list, container, false);
+
     }
 
     @Override
@@ -74,11 +79,32 @@ public class ProjectListFragment extends Fragment {
 
         rv.setLayoutManager(new LinearLayoutManager(getActivity()));
         adapter = new ProjectAdapter(getActivity());
-        searchList();
+//        searchList();
     }
 
-    public void searchList(){
-        search.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+//    public void searchList(){
+//        search.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+//            @Override
+//            public boolean onQueryTextSubmit(String query) {
+//                return false;
+//            }
+//
+//            @Override
+//            public boolean onQueryTextChange(String newText) {
+//                adapter.getFilter().filter(newText);
+//                return false;
+//            }
+//        });
+//    }
+
+
+    @Override
+    public void onCreateOptionsMenu( Menu menu, MenuInflater inflater) {
+        inflater.inflate(R.menu.menu, menu);
+        MenuItem searchItem = menu.findItem(R.id.search);
+        SearchView searchView = new SearchView(getActivity());
+        searchView.setQueryHint("Cari Sesuatu....");
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
                 return false;
@@ -86,10 +112,19 @@ public class ProjectListFragment extends Fragment {
 
             @Override
             public boolean onQueryTextChange(String newText) {
-                adapter.getFilter().filter(newText);
-                return false;
+                newText = newText.toLowerCase();
+                ArrayList<Project> filter = new ArrayList<>();
+                for(Project data : filter){
+                    String name = data.getProject_name().toLowerCase();
+                    if(name.contains(newText)){
+                        filter.add(data);
+                    }
+                }
+                adapter.setProjectList(filter);
+                return true;
             }
         });
+        searchItem.setActionView(searchView);
     }
 
     private Observer<List<Project>> observeViewModel = new Observer<List<Project>>() {

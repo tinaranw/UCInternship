@@ -45,8 +45,6 @@ public class EditProfileActivity extends AppCompatActivity implements TextWatche
     @BindView(R.id.line_txtil)
     TextInputLayout line_txtil;
 
-    @BindView(R.id.camera_btn)
-    ImageView camera_btn;
 
 
     private ProfileViewModel viewModel;

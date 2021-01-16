@@ -63,6 +63,7 @@ public class DashboardFragment extends Fragment {
     private IncomingProgressAdapter incomingProgressAdapter;
     private ProgressViewModel progressViewModel;
     private ProjectViewModel projectViewModel;
+    private Project project;
 
     public DashboardFragment() {
         // Required empty public constructor
@@ -93,9 +94,13 @@ public class DashboardFragment extends Fragment {
         progressViewModel.init(helper.getAccessToken());
         progressViewModel.getSpvProgresses().observe(requireActivity(), observeViewModel);
 
-//        projectViewModel = ViewModelProviders.of(requireActivity()).get(ProjectViewModel.class);
-//        projectViewModel.init(helper.getAccessToken());
-//        projectViewModel.getPending().observe(requireActivity(), observePendingViewModel);
+        projectViewModel = ViewModelProviders.of(requireActivity()).get(ProjectViewModel.class);
+        projectViewModel.init(helper.getAccessToken());
+        projectViewModel.getPending().observe(requireActivity(), observePendingViewModel);
+
+        projectViewModel = ViewModelProviders.of(requireActivity()).get(ProjectViewModel.class);
+        projectViewModel.init(helper.getAccessToken());
+        projectViewModel.getAccept().observe(requireActivity(), observeAcceptViewModel);
 
         rv.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false));
         incomingProgressAdapter = new IncomingProgressAdapter(getActivity());
@@ -109,10 +114,18 @@ public class DashboardFragment extends Fragment {
         }
     }
 
-//    private final Observer<Student> observePendingViewModel = details -> {
-//
-//        pending.setText(details.getStudent_name());
-//    };
+    private Observer<List<Project>> observePendingViewModel = new Observer<List<Project>>() {
+        @Override
+        public void onChanged(List<Project> projects) {
+                pending.setText(String.valueOf(projects.size()));
+        }
+    };
+    private Observer<List<Project>> observeAcceptViewModel = new Observer<List<Project>>() {
+        @Override
+        public void onChanged(List<Project> projects) {
+            accept.setText(String.valueOf(projects.size()));
+        }
+    };;
 
     private final Observer<Student> observeStudentDetailViewModel = details -> {
         if (details != null) {

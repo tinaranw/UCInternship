@@ -99,11 +99,11 @@ public class ProjectRepository {
         apiService.getPending().enqueue(new Callback<PendingResponse>() {
             @Override
             public void onResponse(Call<PendingResponse> call, Response<PendingResponse> response) {
-                Log.d(TAG, "onPendingResponse: "+ response.code());
+                Log.d(TAG, "onPendingResponse1: "+ response.code());
                 if(response.isSuccessful()){
-                    Log.d(TAG, "onPendingResponse: "+ response.code());
+                    Log.d(TAG, "onPendingResponse2: "+ response.code());
                     if(response.body() != null){
-                        Log.d(TAG, "onPendingResponse: "+ response.body().getResults().size());
+                        Log.d(TAG, "onPendingResponse3: "+ response.body().getResults().size());
                         listPending.postValue(response.body().getResults());
                     }
                 }
@@ -123,11 +123,11 @@ public class ProjectRepository {
         apiService.getAccept().enqueue(new Callback<AcceptResponse>() {
             @Override
             public void onResponse(Call<AcceptResponse> call, Response<AcceptResponse> response) {
-                Log.d(TAG, "onResponse: "+ response.code());
+                Log.d(TAG, "onResponseAccept1: "+ response.code());
                 if(response.isSuccessful()){
-                    Log.d(TAG, "onResponse: "+ response.code());
+                    Log.d(TAG, "onResponseAccept2: "+ response.code());
                     if(response.body() != null){
-                        Log.d(TAG, "onResponse: "+ response.body().getResults().size());
+                        Log.d(TAG, "onResponseAccept3: "+ response.body().getResults().size());
                         listAccept.postValue(response.body().getResults());
                     }
                 }

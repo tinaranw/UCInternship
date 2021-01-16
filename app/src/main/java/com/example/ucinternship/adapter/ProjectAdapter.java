@@ -27,11 +27,11 @@ import com.example.ucinternship.ui.student.ProjectOfferFragmentDirections;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ProjectAdapter extends RecyclerView.Adapter<ProjectAdapter.ProjectViewHolder> implements Filterable {
+public class ProjectAdapter extends RecyclerView.Adapter<ProjectAdapter.ProjectViewHolder> {
 
     private Context context;
     private List<Project> projectList = new ArrayList<>();
-    private List<Project> projectListFull;
+//    private List<Project> projectListFull;
 
     public ProjectAdapter(Context context) {
         this.context = context;
@@ -39,8 +39,8 @@ public class ProjectAdapter extends RecyclerView.Adapter<ProjectAdapter.ProjectV
 
     public void setProjectList(List<Project> projectList){
         this.projectList = projectList;
-        projectListFull = new ArrayList<>(projectList);
-//        notifyDataSetChanged();
+//        projectListFull = new ArrayList<>(projectList);
+        notifyDataSetChanged();
     }
 
     @NonNull
@@ -85,40 +85,40 @@ public class ProjectAdapter extends RecyclerView.Adapter<ProjectAdapter.ProjectV
         return projectList.size();
     }
 
-    @Override
-    public Filter getFilter() {
-        return projectFilter;
-    }
-
-    private Filter projectFilter = new Filter() {
-        @Override
-        protected FilterResults performFiltering(CharSequence constraint) {
-            List<Project> filteredList = new ArrayList<>();
-            if (constraint == null || constraint.length() == 0){
-                filteredList.addAll(projectListFull);
-            } else {
-                String filterPattern = constraint.toString().toLowerCase().trim();
-
-                //foreach
-                for (Project project : projectListFull){
-                    if (project.getProject_name().toLowerCase().contains(filterPattern)){
-                        filteredList.add(project);
-                    }
-                }
-            }
-            FilterResults results = new FilterResults();
-            results.values = filteredList;
-
-            return results;
-        }
-
-        @Override
-        protected void publishResults(CharSequence constraint, FilterResults results) {
-            projectList.clear();
-            projectList.addAll((List)results.values);
-            notifyDataSetChanged();
-        }
-    };
+//    @Override
+//    public Filter getFilter() {
+//        return projectFilter;
+//    }
+//
+//    private Filter projectFilter = new Filter() {
+//        @Override
+//        protected FilterResults performFiltering(CharSequence constraint) {
+//            List<Project> filteredList = new ArrayList<>();
+//            if (constraint == null || constraint.length() == 0){
+//                filteredList.addAll(projectListFull);
+//            } else {
+//                String filterPattern = constraint.toString().toLowerCase().trim();
+//
+//                //foreach
+//                for (Project project : projectListFull){
+//                    if (project.getProject_name().toLowerCase().contains(filterPattern)){
+//                        filteredList.add(project);
+//                    }
+//                }
+//            }
+//            FilterResults results = new FilterResults();
+//            results.values = filteredList;
+//
+//            return results;
+//        }
+//
+//        @Override
+//        protected void publishResults(CharSequence constraint, FilterResults results) {
+//            projectList.clear();
+//            projectList.addAll((List)results.values);
+//            notifyDataSetChanged();
+//        }
+//    };
 
     public class ProjectViewHolder extends RecyclerView.ViewHolder {
 

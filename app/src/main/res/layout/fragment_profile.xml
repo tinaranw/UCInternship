@@ -222,17 +222,6 @@
                 app:layout_constraintBottom_toBottomOf="@+id/card_profile"
                 app:layout_constraintEnd_toEndOf="@+id/card_profile" />
 
-            <ImageView
-                android:id="@+id/imageView11"
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:background="@drawable/button_cam"
-                android:elevation="5dp"
-                android:src="@drawable/ic_baseline_camera_alt_24"
-                app:layout_constraintEnd_toEndOf="@+id/profile_img"
-                app:layout_constraintStart_toEndOf="@+id/profile_img"
-                app:layout_constraintTop_toTopOf="@+id/profile_img" />
-
             <TextView
                 android:id="@+id/batch_txt"
                 android:layout_width="wrap_content"
