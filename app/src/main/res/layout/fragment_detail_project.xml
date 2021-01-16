@@ -196,7 +196,7 @@
                 app:titleTextColor="@color/blue" />
 
             <include
-                android:id="@+id/include"
+                android:id="@+id/incomingapplicationsdetail_inc"
                 layout="@layout/appliedstudents_inc"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -208,7 +208,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/textView10" />
 
             <include
-                android:id="@+id/include2"
+                android:id="@+id/acceptedstudentsdetail_inc"
                 layout="@layout/acceptedstudents_inc"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -217,7 +217,7 @@
                 android:layout_marginEnd="16dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/include" />
+                app:layout_constraintTop_toBottomOf="@+id/incomingapplicationsdetail_inc" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rv_task"
@@ -231,7 +231,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/include2"
+                app:layout_constraintTop_toBottomOf="@+id/acceptedstudentsdetail_inc"
                 tools:listitem="@layout/activity_task_adapter">
 
             </androidx.recyclerview.widget.RecyclerView>
