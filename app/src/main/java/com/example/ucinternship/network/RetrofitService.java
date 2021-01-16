@@ -101,6 +101,18 @@ public class RetrofitService {
         return api.getAccept();
     }
 
+    public Call<ProjectResponse> getEvent() {
+        return api.getEvent();
+    }
+
+    public Call<ProjectResponse> getEducation() {
+        return api.getEducation();
+    }
+
+    public Call<ProjectResponse> getOther() {
+        return api.getOther();
+    }
+
     public Call<StudentResponse> updateStudent(int id, String phone, String line_account) {
         return api.updateStudent(id, phone, line_account);
     }

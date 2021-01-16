@@ -77,6 +77,18 @@ public class ProjectListFragment extends Fragment {
         viewModel.init(helper.getAccessToken());
         viewModel.getProjects().observe(requireActivity(), observeViewModel);
 
+        event.setOnClickListener(v -> {
+            viewModel.getEvent().observe(requireActivity(), observeViewModelEvent);
+        });
+
+        education.setOnClickListener(v -> {
+            viewModel.getEducation().observe(requireActivity(), observeViewModelEducation);
+        });
+
+        other.setOnClickListener(v -> {
+            viewModel.getOther().observe(requireActivity(), observeViewModelOther);
+        });
+
         rv.setLayoutManager(new LinearLayoutManager(getActivity()));
         adapter = new ProjectAdapter(getActivity());
         searchList();
@@ -127,6 +139,54 @@ public class ProjectListFragment extends Fragment {
 //    }
 
     private Observer<List<Project>> observeViewModel = new Observer<List<Project>>() {
+        @Override
+        public void onChanged(List<Project> projects) {
+            if(projects != null){
+                adapter.setProjectList(projects);
+                adapter.notifyDataSetChanged();
+                rv.setAdapter(adapter);
+                noproject.setVisibility(View.INVISIBLE);
+                noproject_txt.setVisibility(View.INVISIBLE);
+            } else {
+                noproject.setVisibility(View.VISIBLE);
+                noproject_txt.setVisibility(View.VISIBLE);
+            }
+        }
+    };
+
+    private Observer<List<Project>> observeViewModelEvent = new Observer<List<Project>>() {
+        @Override
+        public void onChanged(List<Project> projects) {
+            if(projects != null){
+                adapter.setProjectList(projects);
+                adapter.notifyDataSetChanged();
+                rv.setAdapter(adapter);
+                noproject.setVisibility(View.INVISIBLE);
+                noproject_txt.setVisibility(View.INVISIBLE);
+            } else {
+                noproject.setVisibility(View.VISIBLE);
+                noproject_txt.setVisibility(View.VISIBLE);
+            }
+        }
+    };
+
+    private Observer<List<Project>> observeViewModelEducation = new Observer<List<Project>>() {
+        @Override
+        public void onChanged(List<Project> projects) {
+            if(projects != null){
+                adapter.setProjectList(projects);
+                adapter.notifyDataSetChanged();
+                rv.setAdapter(adapter);
+                noproject.setVisibility(View.INVISIBLE);
+                noproject_txt.setVisibility(View.INVISIBLE);
+            } else {
+                noproject.setVisibility(View.VISIBLE);
+                noproject_txt.setVisibility(View.VISIBLE);
+            }
+        }
+    };
+
+    private Observer<List<Project>> observeViewModelOther = new Observer<List<Project>>() {
         @Override
         public void onChanged(List<Project> projects) {
             if(projects != null){

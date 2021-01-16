@@ -29,6 +29,15 @@ public interface Endpoints {
     @GET("project")
     Call<ProjectResponse> getProjects();
 
+    @GET("projects/event")
+    Call<ProjectResponse> getEvent();
+
+    @GET("projects/education")
+    Call<ProjectResponse> getEducation();
+
+    @GET("projects/other")
+    Call<ProjectResponse> getOther();
+
     @POST("user")
     Call<UserResponse> user();
 
