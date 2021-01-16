@@ -135,7 +135,12 @@ public class ProfileFragment extends Fragment {
     private final Observer<Student> observeStudentDetailViewModel = details -> {
         if (details != null) {
             Info info = details.getStudent_info();
-            Glide.with(getActivity()).load(Constants.BASE_IMAGE_URL + "student/" + details.getStudent_photo()).into(image);
+            if(details.getStudent_photo() == null){
+                image.setImageResource(R.drawable.ic_asset_7);
+            } else {
+                Glide.with(getActivity()).load(Constants.BASE_IMAGE_URL + "student/" + details.getStudent_photo()).into(image);
+            }
+
             nim.setText(details.getStudent_nim());
             name.setText(details.getStudent_name());
             department.setText(details.getStudent_department_name());
@@ -156,9 +161,17 @@ public class ProfileFragment extends Fragment {
     private final Observer<Supervisor> observeSupervisorDetailViewModel = details -> {
         if (details != null) {
             if (helper.getRole().equalsIgnoreCase(checkStaff.replace("'", "\\"))) {
-                Glide.with(getActivity()).load(Constants.BASE_IMAGE_URL + "staff/" + details.getSupervisor_photo()).into(image);
+                if(details.getSupervisor_photo() == null){
+                    image.setImageResource(R.drawable.ic_asset_7);
+                } else {
+                    Glide.with(getActivity()).load(Constants.BASE_IMAGE_URL + "staff/" + details.getSupervisor_photo()).into(image);
+                }
             } else {
-                Glide.with(getActivity()).load(Constants.BASE_IMAGE_URL + "lecturer/" + details.getSupervisor_photo()).into(image);
+                if(details.getSupervisor_photo() == null){
+                    image.setImageResource(R.drawable.ic_asset_7);
+                } else {
+                    Glide.with(getActivity()).load(Constants.BASE_IMAGE_URL + "lecturer/" + details.getSupervisor_photo()).into(image);
+                }
             }
             nim.setText(details.getSupervisor_nip());
             name.setText(details.getSupervisor_name());

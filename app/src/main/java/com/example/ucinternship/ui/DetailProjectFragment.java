@@ -55,6 +55,8 @@ public class DetailProjectFragment extends Fragment {
     TextView projectdeadline;
     @BindView(R.id.spv_name_txt)
     TextView projectspv;
+    @BindView(R.id.projectattachmentnotice_txt)
+    TextView projectattnotice;
     @BindView(R.id.rv_task)
     RecyclerView task_rv;
     @BindView(R.id.appliedstudents_rv)
@@ -69,6 +71,7 @@ public class DetailProjectFragment extends Fragment {
     private AcceptedStudentAdapter acceptedStudentAdapter;
     private TaskViewModel taskViewModel;
     private SharedPreferenceHelper helper;
+    private String checkStudent, checkStaff, checkLecturer;
 
     public DetailProjectFragment() {
         // Required empty public constructor
@@ -85,6 +88,10 @@ public class DetailProjectFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         ButterKnife.bind(this, view);
+
+        checkStudent = "App'Models'Student";
+        checkStaff = "App'Models'Staff";
+        checkLecturer = "App'Models'Lecturer";
 
         helper = SharedPreferenceHelper.getInstance(requireActivity());
         viewModel = ViewModelProviders.of(requireActivity()).get(ProjectDetailViewModel.class);
@@ -117,6 +124,14 @@ public class DetailProjectFragment extends Fragment {
             projectcategory.setText("Other");
         }
 
+        if(project.getAttachments().size() == 0){
+            projectattnotice.setText("No project attachments.");
+        } else if (project.getAttachments().size() == 1) {
+            projectattnotice.setText("There is 1 file attached to this project. Check the website to view them.");
+        } else {
+            projectattnotice.setText("There are currently " + project.getAttachments().size() + " files attached to this project. Check the website to view them.");
+        }
+
         projectname.setText(project.getProject_name());
         Log.d("trial", "please work");
         Log.d("student size", String.valueOf((project.getApplicants()).size()));
@@ -134,20 +149,25 @@ public class DetailProjectFragment extends Fragment {
         projectdesc.setText(project.getProject_description());
         projectspv.setText(project.getProject_spv().getSupervisor_name());
 
-        appliedstudents_rv.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false));
-        studentAdapter = new StudentAdapter(getActivity());
+        if(helper.getRole().equalsIgnoreCase(checkStudent.replace("'", "\\"))){
 
-        acceptedstudents_rv.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false));
-        acceptedStudentAdapter = new AcceptedStudentAdapter(getActivity());
+            getView().findViewById(R.id.incomingapplicationsdetail_inc).setVisibility(View.GONE);
+            getView().findViewById(R.id.acceptedstudentsdetail_inc).setVisibility(View.GONE);
+        } else {
+            appliedstudents_rv.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false));
+            studentAdapter = new StudentAdapter(getActivity());
 
-        studentAdapter.setStudentList( project.getApplicants());
-        studentAdapter.notifyDataSetChanged();
-        appliedstudents_rv.setAdapter(studentAdapter);
+            acceptedstudents_rv.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false));
+            acceptedStudentAdapter = new AcceptedStudentAdapter(getActivity());
 
-        acceptedStudentAdapter.setAcceptedStudentList( project.getApplicants());
-        acceptedStudentAdapter.notifyDataSetChanged();
-        acceptedstudents_rv.setAdapter(acceptedStudentAdapter);
+            studentAdapter.setStudentList( project.getPending_students());
+            studentAdapter.notifyDataSetChanged();
+            appliedstudents_rv.setAdapter(studentAdapter);
 
+            acceptedStudentAdapter.setAcceptedStudentList( project.getAccepted_students());
+            acceptedStudentAdapter.notifyDataSetChanged();
+            acceptedstudents_rv.setAdapter(acceptedStudentAdapter);
+        }
 
     }
 
