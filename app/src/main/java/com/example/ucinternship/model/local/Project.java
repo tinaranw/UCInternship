@@ -31,10 +31,12 @@ public class Project implements Parcelable {
     private List<ProjectUser> pending_students;
     @SerializedName("accepted")
     private List<ProjectUser> accepted_students;
+    @SerializedName("attachments")
+    private List<ProjectAttachment> attachments;
 
     public Project(){}
 
-    public Project(String project_id, String project_name, String project_description, String project_deadline, String project_status, String project_category, Period project_period, Supervisor project_spv, List<ProjectUser> applicants, List<ProjectUser> pending_students, List<ProjectUser> accepted_students) {
+    public Project(String project_id, String project_name, String project_description, String project_deadline, String project_status, String project_category, Period project_period, Supervisor project_spv, List<ProjectUser> applicants, List<ProjectUser> pending_students, List<ProjectUser> accepted_students, List<ProjectAttachment> attachments) {
         this.project_id = project_id;
         this.project_name = project_name;
         this.project_description = project_description;
@@ -46,6 +48,7 @@ public class Project implements Parcelable {
         this.applicants = applicants;
         this.pending_students = pending_students;
         this.accepted_students = accepted_students;
+        this.attachments = attachments;
     }
 
     protected Project(Parcel in) {
@@ -60,6 +63,7 @@ public class Project implements Parcelable {
         applicants = in.createTypedArrayList(ProjectUser.CREATOR);
         pending_students = in.createTypedArrayList(ProjectUser.CREATOR);
         accepted_students = in.createTypedArrayList(ProjectUser.CREATOR);
+        attachments = in.createTypedArrayList(ProjectAttachment.CREATOR);
     }
 
     public static final Creator<Project> CREATOR = new Creator<Project>() {
@@ -162,6 +166,14 @@ public class Project implements Parcelable {
         this.accepted_students = accepted_students;
     }
 
+    public List<ProjectAttachment> getAttachments() {
+        return attachments;
+    }
+
+    public void setAttachments(List<ProjectAttachment> attachments) {
+        this.attachments = attachments;
+    }
+
     @Override
     public int describeContents() {
         return 0;
@@ -180,5 +192,6 @@ public class Project implements Parcelable {
         dest.writeTypedList(applicants);
         dest.writeTypedList(pending_students);
         dest.writeTypedList(accepted_students);
+        dest.writeTypedList(attachments);
     }
 }

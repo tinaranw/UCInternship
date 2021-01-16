@@ -55,6 +55,8 @@ public class DetailProjectFragment extends Fragment {
     TextView projectdeadline;
     @BindView(R.id.spv_name_txt)
     TextView projectspv;
+    @BindView(R.id.projectattachmentnotice_txt)
+    TextView projectattnotice;
     @BindView(R.id.rv_task)
     RecyclerView task_rv;
     @BindView(R.id.appliedstudents_rv)
@@ -122,6 +124,14 @@ public class DetailProjectFragment extends Fragment {
             projectcategory.setText("Other");
         }
 
+        if(project.getAttachments().size() == 0){
+            projectattnotice.setText("No project attachments.");
+        } else if (project.getAttachments().size() == 1) {
+            projectattnotice.setText("There is 1 file attached to this project. Check the website to view them.");
+        } else {
+            projectattnotice.setText("There are currently " + project.getAttachments().size() + " files attached to this project. Check the website to view them.");
+        }
+
         projectname.setText(project.getProject_name());
         Log.d("trial", "please work");
         Log.d("student size", String.valueOf((project.getApplicants()).size()));
@@ -158,8 +168,6 @@ public class DetailProjectFragment extends Fragment {
             acceptedStudentAdapter.notifyDataSetChanged();
             acceptedstudents_rv.setAdapter(acceptedStudentAdapter);
         }
-
-
 
     }
 
