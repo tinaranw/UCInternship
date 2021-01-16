@@ -70,8 +70,12 @@ public class EditProfileActivity extends AppCompatActivity implements TextWatche
             viewModel.getSupervisorDetails(helper.getUserID()).observe(this, observeSupervisorDetailViewModel);
         }
         update_btn.setOnClickListener(v -> {
+
             update();
         });
+        phone_txtil.getEditText().addTextChangedListener(this);
+        line_txtil.getEditText().addTextChangedListener(this);
+
     }
 
     public void update(){
