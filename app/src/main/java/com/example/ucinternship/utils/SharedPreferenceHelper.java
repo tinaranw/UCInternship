@@ -71,9 +71,10 @@ public class SharedPreferenceHelper {
         return prefsRole.getString(PREFSROLE, "");
     }
 
-
     public void clearPref() {
-        spEditor.clear().apply();
+        spEditor.clear().commit();
+        spIDEditor.clear().commit();
+        spRoleEditor.clear().commit();
     }
 
     public void saveSPBoolean(String keySP, boolean value) {

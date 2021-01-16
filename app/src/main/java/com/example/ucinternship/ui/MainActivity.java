@@ -43,14 +43,14 @@ public class MainActivity extends AppCompatActivity {
 
         navController = Navigation.findNavController(this, R.id.fragment);
 
-        //check user's detailable
-//        helper = SharedPreferenceHelper.getInstance(this);
-//        if (helper.getRole().equalsIgnoreCase(checkStudent.replace("'", "\\"))) {
-//            Log.d("checkstudent", "" + helper.getRole().equalsIgnoreCase(checkStudent.replace("'", "\\")));
-//            navigationView.getMenu().findItem(R.id.projectOfferFragment).setVisible(true);
-//        } else {
-//            navigationView.getMenu().findItem(R.id.projectOfferFragment).setVisible(false);
-//        }
+//        check user's detailable
+        helper = SharedPreferenceHelper.getInstance(this);
+        if (helper.getRole().equalsIgnoreCase(checkStudent.replace("'", "\\"))) {
+            Log.d("checkstudent", "" + helper.getRole().equalsIgnoreCase(checkStudent.replace("'", "\\")));
+            navigationView.getMenu().findItem(R.id.projectOfferFragment).setVisible(true);
+        } else {
+            navigationView.getMenu().findItem(R.id.projectOfferFragment).setVisible(false);
+        }
 
         navController.addOnDestinationChangedListener((controller, destination, arguments) -> {
             if(destination.getId() == R.id.dashboardFragment ||destination.getId() == R.id.projectOfferFragment || destination.getId() == R.id.projectListFragment || destination.getId() == R.id.profileFragment){
