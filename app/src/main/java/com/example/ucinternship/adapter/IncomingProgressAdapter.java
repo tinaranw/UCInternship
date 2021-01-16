@@ -7,10 +7,14 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.navigation.NavDirections;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.ucinternship.R;
 import com.example.ucinternship.model.local.Progress;
+import com.example.ucinternship.ui.DashboardFragmentDirections;
+import com.example.ucinternship.ui.DetailProjectFragmentDirections;
 
 import java.util.List;
 
@@ -40,6 +44,10 @@ public class IncomingProgressAdapter extends RecyclerView.Adapter<IncomingProgre
         Progress p = progressList.get(i);
         holder.name.setText(p.getProgress_description());
         holder.desc.setText(p.getProgress_description());
+        holder.itemView.setOnClickListener(view -> {
+            NavDirections action = DashboardFragmentDirections.actionDashboardToProgressDetail(p);
+            Navigation.findNavController(view).navigate(action);
+        });
     }
 
     @Override
