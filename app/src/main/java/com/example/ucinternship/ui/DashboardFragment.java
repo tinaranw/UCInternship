@@ -129,7 +129,11 @@ public class DashboardFragment extends Fragment {
 
     private final Observer<Student> observeStudentDetailViewModel = details -> {
         if (details != null) {
-            Glide.with(getActivity()).load(Constants.BASE_IMAGE_URL + "student/" + details.getStudent_photo()).into(image);
+            if(details.getStudent_photo() == null){
+                image.setImageResource(R.drawable.ic_asset_7);
+            } else {
+                Glide.with(getActivity()).load(Constants.BASE_IMAGE_URL + "student/" + details.getStudent_photo()).into(image);
+            }
             name.setText(details.getStudent_name());
             Log.d("nimku", "" + details.getStudent_nim());
         }
@@ -139,9 +143,17 @@ public class DashboardFragment extends Fragment {
     private final Observer<Supervisor> observeSupervisorDetailViewModel = details -> {
         if (details != null) {
             if (helper.getRole().equalsIgnoreCase(checkStaff.replace("'", "\\"))) {
-                Glide.with(getActivity()).load(Constants.BASE_IMAGE_URL + "staff/" + details.getSupervisor_photo()).into(image);
+                if(details.getSupervisor_photo() == null){
+                    image.setImageResource(R.drawable.ic_asset_7);
+                } else {
+                    Glide.with(getActivity()).load(Constants.BASE_IMAGE_URL + "staff/" + details.getSupervisor_photo()).into(image);
+                }
             } else {
-                Glide.with(getActivity()).load(Constants.BASE_IMAGE_URL + "lecturer/" + details.getSupervisor_photo()).into(image);
+                if(details.getSupervisor_photo() == null){
+                    image.setImageResource(R.drawable.ic_asset_7);
+                } else {
+                    Glide.with(getActivity()).load(Constants.BASE_IMAGE_URL + "lecturer/" + details.getSupervisor_photo()).into(image);
+                }
             }
             name.setText(details.getSupervisor_name());
             getView().findViewById(R.id.yourapp_inc).setVisibility(View.GONE);
