@@ -97,34 +97,34 @@ public class ProjectListFragment extends Fragment {
         });
     }
 
-    @Override
-    public void onCreateOptionsMenu( Menu menu, MenuInflater inflater) {
-        inflater.inflate(R.menu.menu, menu);
-        MenuItem searchItem = menu.findItem(R.id.search);
-        SearchView searchView = new SearchView(getActivity());
-        searchView.setQueryHint("Cari Sesuatu....");
-        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-            @Override
-            public boolean onQueryTextSubmit(String query) {
-                return false;
-            }
-
-            @Override
-            public boolean onQueryTextChange(String newText) {
-                newText = newText.toLowerCase();
-                ArrayList<Project> filter = new ArrayList<>();
-                for(Project data : filter){
-                    String name = data.getProject_name().toLowerCase();
-                    if(name.contains(newText)){
-                        filter.add(data);
-                    }
-                }
-                adapter.setProjectList(filter);
-                return true;
-            }
-        });
-        searchItem.setActionView(searchView);
-    }
+//    @Override
+//    public void onCreateOptionsMenu( Menu menu, MenuInflater inflater) {
+//        inflater.inflate(R.menu.menu, menu);
+//        MenuItem searchItem = menu.findItem(R.id.search);
+//        SearchView searchView = new SearchView(getActivity());
+//        searchView.setQueryHint("Cari Sesuatu....");
+//        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+//            @Override
+//            public boolean onQueryTextSubmit(String query) {
+//                return false;
+//            }
+//
+//            @Override
+//            public boolean onQueryTextChange(String newText) {
+//                newText = newText.toLowerCase();
+//                ArrayList<Project> filter = new ArrayList<>();
+//                for(Project data : filter){
+//                    String name = data.getProject_name().toLowerCase();
+//                    if(name.contains(newText)){
+//                        filter.add(data);
+//                    }
+//                }
+//                adapter.setProjectList(filter);
+//                return true;
+//            }
+//        });
+//        searchItem.setActionView(searchView);
+//    }
 
     private Observer<List<Project>> observeViewModel = new Observer<List<Project>>() {
         @Override
