@@ -47,7 +47,7 @@ public class ProjectListFragment extends Fragment {
     @BindView(R.id.projectlist_rv)
     RecyclerView rv;
     @BindView(R.id.projectsearchbar_search)
-    SearchView searchview;
+    SearchView search;
 
     private ProjectViewModel viewModel;
     private ProjectAdapter adapter;
@@ -79,24 +79,23 @@ public class ProjectListFragment extends Fragment {
 
         rv.setLayoutManager(new LinearLayoutManager(getActivity()));
         adapter = new ProjectAdapter(getActivity());
-//        searchList();
+        searchList();
     }
 
-//    public void searchList(){
-//        search.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-//            @Override
-//            public boolean onQueryTextSubmit(String query) {
-//                return false;
-//            }
-//
-//            @Override
-//            public boolean onQueryTextChange(String newText) {
-//                adapter.getFilter().filter(newText);
-//                return false;
-//            }
-//        });
-//    }
+    public void searchList(){
+        search.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
 
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                adapter.getFilter().filter(newText);
+                return false;
+            }
+        });
+    }
 
     @Override
     public void onCreateOptionsMenu( Menu menu, MenuInflater inflater) {

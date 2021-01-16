@@ -103,7 +103,8 @@
                     android:layout_height="wrap_content"
                     android:background="@drawable/roundedrectangle"
                     android:fontFamily="@font/opensans_regular"
-                    android:hint="@string/EmailHintTxt" />
+                    android:hint="@string/EmailHintTxt"
+                    android:inputType="textWebEmailAddress" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <ImageView
