@@ -89,9 +89,9 @@ public class ProfileRepository {
         return listSupervisors;
     }
 
-    public MutableLiveData<StudentResponse> updateStudent(int id, String name, String phone, String line_account) {
+    public MutableLiveData<StudentResponse> updateStudent(int id, String phone, String line_account) {
         MutableLiveData<StudentResponse> studentResponse = new MutableLiveData<>();
-        apiService.updateStudent(id, name, phone, line_account).enqueue(new Callback<StudentResponse>() {
+        apiService.updateStudent(id, phone, line_account).enqueue(new Callback<StudentResponse>() {
             @Override
             public void onResponse(Call<StudentResponse> call, Response<StudentResponse> response) {
                 if (response.isSuccessful()) {
@@ -113,9 +113,9 @@ public class ProfileRepository {
         });
         return studentResponse;
     }
-    public MutableLiveData<SupervisorResponse> updateSupervisor(int id, String name, String phone, String line_account) {
+    public MutableLiveData<SupervisorResponse> updateSupervisor(int id, String phone, String line_account) {
         MutableLiveData<SupervisorResponse> supervisorResponse = new MutableLiveData<>();
-        apiService.updateSupervisor(id, name, phone, line_account).enqueue(new Callback<SupervisorResponse>() {
+        apiService.updateSupervisor(id, phone, line_account).enqueue(new Callback<SupervisorResponse>() {
             @Override
             public void onResponse(Call<SupervisorResponse> call, Response<SupervisorResponse> response) {
                 if (response.isSuccessful()) {

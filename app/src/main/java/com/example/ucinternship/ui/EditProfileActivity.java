@@ -8,6 +8,8 @@ import androidx.navigation.Navigation;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -28,7 +30,7 @@ import com.google.android.material.textfield.TextInputLayout;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class EditProfileActivity extends AppCompatActivity {
+public class EditProfileActivity extends AppCompatActivity implements TextWatcher {
 
 
     @BindView(R.id.edit_profilepic_img)
@@ -36,12 +38,6 @@ public class EditProfileActivity extends AppCompatActivity {
 
     @BindView(R.id.update_btn)
     Button update_btn;
-
-    @BindView(R.id.name_txtil)
-    TextInputLayout name_txtil;
-
-    @BindView(R.id.address_txtil)
-    TextInputLayout address_txtil;
 
     @BindView(R.id.phone_txtil)
     TextInputLayout phone_txtil;
@@ -55,7 +51,7 @@ public class EditProfileActivity extends AppCompatActivity {
 
     private ProfileViewModel viewModel;
     private SharedPreferenceHelper helper;
-    private String checkStudent, checkStaff, checkLecturer;
+    private String checkStudent, checkStaff, checkLecturer, phone, line;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,12 +77,12 @@ public class EditProfileActivity extends AppCompatActivity {
     }
 
     public void update(){
-        if(!name_txtil.getEditText().getText().toString().isEmpty() && !phone_txtil.getEditText().getText().toString().isEmpty() && !line_txtil.getEditText().getText().toString().isEmpty()){
-            String name = name_txtil.getEditText().getText().toString().trim();
+        if(!phone_txtil.getEditText().getText().toString().isEmpty() && !line_txtil.getEditText().getText().toString().isEmpty()){
+//            String name = name_txtil.getEditText().getText().toString().trim();
             String phone = phone_txtil.getEditText().getText().toString().trim();
             String line_account = line_txtil.getEditText().getText().toString().trim();
             if (helper.getRole().equalsIgnoreCase(checkStudent.replace("'", "\\"))) {
-                viewModel.updateStudent(helper.getUserID(),name,phone,line_account).observe(this, tokenResponse -> {
+                viewModel.updateStudent(helper.getUserID(),phone,line_account).observe(this, tokenResponse -> {
                     if(tokenResponse != null){
                         Intent intent = new Intent(this, MainActivity.class);
                         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
@@ -98,7 +94,7 @@ public class EditProfileActivity extends AppCompatActivity {
                     }
                 });
             } else {
-                viewModel.updateSupervisor(helper.getUserID(),name,phone,line_account).observe(this, tokenResponse -> {
+                viewModel.updateSupervisor(helper.getUserID(),phone,line_account).observe(this, tokenResponse -> {
                     if(tokenResponse != null){
                         Intent intent = new Intent(this, MainActivity.class);
                         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
@@ -116,7 +112,7 @@ public class EditProfileActivity extends AppCompatActivity {
     private final Observer<Student> observeStudentDetailViewModel = details -> {
         if (details != null) {
             Glide.with(this).load(Constants.BASE_IMAGE_URL + "student/" + details.getStudent_photo()).into(image);
-            name_txtil.getEditText().setText(details.getStudent_name());
+//            name_txtil.getEditText().setText(details.getStudent_name());
             phone_txtil.getEditText().setText(details.getStudent_phone());
             line_txtil.getEditText().setText(details.getStudent_line());
         }
@@ -129,10 +125,31 @@ public class EditProfileActivity extends AppCompatActivity {
             } else {
                 Glide.with(this).load(Constants.BASE_IMAGE_URL + "lecturer/" + details.getSupervisor_photo()).into(image);
             }
-            name_txtil.getEditText().setText(details.getSupervisor_name());
+//            name_txtil.getEditText().setText(details.getSupervisor_name());
             phone_txtil.getEditText().setText(details.getSupervisor_phone());
             line_txtil.getEditText().setText(details.getSupervisor_line());
         }
     };
 
+    @Override
+    public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+    }
+
+    @Override
+    public void onTextChanged(CharSequence s, int start, int before, int count) {
+        phone = phone_txtil.getEditText().getText().toString().trim();
+        line = line_txtil.getEditText().getText().toString().trim();
+
+        if (!phone.isEmpty() && !line.isEmpty()) {
+            update_btn.setEnabled(true);
+        } else {
+            update_btn.setEnabled(false);
+        }
+    }
+
+    @Override
+    public void afterTextChanged(Editable s) {
+
+    }
 }

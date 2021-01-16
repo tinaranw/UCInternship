@@ -33,11 +33,11 @@ public class ProfileViewModel extends ViewModel {
     public LiveData<Supervisor> getSupervisorDetails(int id) {
         return repository.getSupervisorDetails(id);
     }
-    public MutableLiveData<StudentResponse> updateStudent(int id, String name, String phone, String line_account) {
-        return repository.updateStudent(id, name, phone, line_account);
+    public MutableLiveData<StudentResponse> updateStudent(int id, String phone, String line_account) {
+        return repository.updateStudent(id, phone, line_account);
     }
-    public MutableLiveData<SupervisorResponse> updateSupervisor(int id, String name, String phone, String line_account) {
-        return repository.updateSupervisor(id, name, phone, line_account);
+    public MutableLiveData<SupervisorResponse> updateSupervisor(int id, String phone, String line_account) {
+        return repository.updateSupervisor(id, phone, line_account);
     }
 
     @Override

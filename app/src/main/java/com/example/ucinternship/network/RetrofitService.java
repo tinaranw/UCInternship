@@ -101,11 +101,11 @@ public class RetrofitService {
         return api.getAccept();
     }
 
-    public Call<StudentResponse> updateStudent(int id, String name, String phone, String line_account) {
-        return api.updateStudent(id, name, phone, line_account);
+    public Call<StudentResponse> updateStudent(int id, String phone, String line_account) {
+        return api.updateStudent(id, phone, line_account);
     }
-    public Call<SupervisorResponse> updateSupervisor(int id, String name, String phone, String line_account) {
-        return api.updateSupervisor(id, name, phone, line_account);
+    public Call<SupervisorResponse> updateSupervisor(int id, String phone, String line_account) {
+        return api.updateSupervisor(id, phone, line_account);
     }
 
 
