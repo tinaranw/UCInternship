@@ -28,14 +28,14 @@ import java.util.List;
 public class ProjectOfferAdapter extends RecyclerView.Adapter<ProjectOfferAdapter.ProjectViewHolder> implements Filterable {
 
     private Context context;
-    private List<Project> projectList;
+    private List<Project> projectList  = new ArrayList<>();
     private List<Project> projectListFull;
 
     public ProjectOfferAdapter(Context context) {
         this.context = context;
     }
 
-    public void setProjectList(List<Project> projectList){
+    public void setProjectList(List<Project> projectList) {
         this.projectList = projectList;
         projectListFull = new ArrayList<>(projectList);
 //        notifyDataSetChanged();
@@ -55,20 +55,20 @@ public class ProjectOfferAdapter extends RecyclerView.Adapter<ProjectOfferAdapte
         holder.title.setText(p.getProject_name());
         holder.deadline.setText(p.getProject_deadline());
         holder.spv.setText((p.getProject_spv().getSupervisor_name()));
-        if(p.getProject_status().equalsIgnoreCase("0")){
+        if (p.getProject_status().equalsIgnoreCase("0")) {
             holder.status.setText("Available");
-        } else if(p.getProject_status().equalsIgnoreCase("1")){
+        } else if (p.getProject_status().equalsIgnoreCase("1")) {
             holder.status.setText("Ongoing");
-        } else if(p.getProject_status().equalsIgnoreCase("2")){
+        } else if (p.getProject_status().equalsIgnoreCase("2")) {
             holder.status.setText("Completed");
-        } else if(p.getProject_status().equalsIgnoreCase("3")){
+        } else if (p.getProject_status().equalsIgnoreCase("3")) {
             holder.status.setText("Suspended");
         }
-        if(p.getProject_category().equalsIgnoreCase("0")){
+        if (p.getProject_category().equalsIgnoreCase("0")) {
             holder.icon.setImageResource(R.drawable.ic_event);
-        } else if(p.getProject_category().equalsIgnoreCase("1")){
+        } else if (p.getProject_category().equalsIgnoreCase("1")) {
             holder.icon.setImageResource(R.drawable.ic_material);
-        } else if(p.getProject_category().equalsIgnoreCase("2")){
+        } else if (p.getProject_category().equalsIgnoreCase("2")) {
             holder.icon.setImageResource(R.drawable.ic_others);
         }
         holder.itemView.setOnClickListener(view -> {
@@ -91,14 +91,14 @@ public class ProjectOfferAdapter extends RecyclerView.Adapter<ProjectOfferAdapte
         @Override
         protected FilterResults performFiltering(CharSequence constraint) {
             List<Project> filteredList = new ArrayList<>();
-            if (constraint == null || constraint.length() == 0){
+            if (constraint == null || constraint.length() == 0) {
                 filteredList.addAll(projectListFull);
             } else {
                 String filterPattern = constraint.toString().toLowerCase().trim();
 
                 //foreach
-                for (Project project : projectListFull){
-                    if (project.getProject_name().toLowerCase().contains(filterPattern)){
+                for (Project project : projectListFull) {
+                    if (project.getProject_name().toLowerCase().contains(filterPattern)) {
                         filteredList.add(project);
                     }
                 }
