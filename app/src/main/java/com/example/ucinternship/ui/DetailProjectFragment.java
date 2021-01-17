@@ -5,6 +5,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.LifecycleOwner;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.navigation.NavController;
@@ -27,6 +28,7 @@ import com.example.ucinternship.adapter.TaskAdapter;
 import com.example.ucinternship.model.local.Project;
 import com.example.ucinternship.model.local.ProjectUser;
 import com.example.ucinternship.model.local.Task;
+import com.example.ucinternship.ui.viewmodel.ProfileViewModel;
 import com.example.ucinternship.ui.viewmodel.ProjectDetailViewModel;
 import com.example.ucinternship.ui.viewmodel.ProjectViewModel;
 import com.example.ucinternship.ui.viewmodel.TaskViewModel;
@@ -37,7 +39,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class DetailProjectFragment extends Fragment {
+public class DetailProjectFragment extends Fragment implements LifecycleOwner {
 
     @BindView(R.id.detailproject_icon)
     ImageView icon;
@@ -72,6 +74,7 @@ public class DetailProjectFragment extends Fragment {
     private TaskViewModel taskViewModel;
     private SharedPreferenceHelper helper;
     private String checkStudent, checkStaff, checkLecturer;
+    private ProjectDetailViewModel projectDetailViewModel;
 
     public DetailProjectFragment() {
         // Required empty public constructor
@@ -84,10 +87,15 @@ public class DetailProjectFragment extends Fragment {
         return inflater.inflate(R.layout.fragment_detail_project, container, false);
     }
 
+
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         ButterKnife.bind(this, view);
+        helper = SharedPreferenceHelper.getInstance(requireActivity());
+        projectDetailViewModel = ViewModelProviders.of(this).get(ProjectDetailViewModel.class);
+        Log.d("tokendetailproj", helper.getAccessToken());
+        projectDetailViewModel.init(helper.getAccessToken());
 
         checkStudent = "App'Models'Student";
         checkStaff = "App'Models'Staff";
@@ -181,5 +189,7 @@ public class DetailProjectFragment extends Fragment {
 
         }
     };
+
+
 
 }

@@ -79,7 +79,7 @@ public class DashboardFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        ButterKnife.bind(this,view);
+        ButterKnife.bind(this, view);
 
         checkStudent = "App'Models'Student";
         checkStaff = "App'Models'Staff";
@@ -117,7 +117,7 @@ public class DashboardFragment extends Fragment {
     private Observer<List<Project>> observePendingViewModel = new Observer<List<Project>>() {
         @Override
         public void onChanged(List<Project> projects) {
-                pending.setText(String.valueOf(projects.size()));
+            pending.setText(String.valueOf(projects.size()));
         }
     };
     private Observer<List<Project>> observeAcceptViewModel = new Observer<List<Project>>() {
@@ -125,11 +125,12 @@ public class DashboardFragment extends Fragment {
         public void onChanged(List<Project> projects) {
             accept.setText(String.valueOf(projects.size()));
         }
-    };;
+    };
+    ;
 
     private final Observer<Student> observeStudentDetailViewModel = details -> {
         if (details != null) {
-            if(details.getStudent_photo() == null){
+            if (details.getStudent_photo() == null) {
                 image.setImageResource(R.drawable.ic_asset_7);
             } else {
                 Glide.with(getActivity()).load(Constants.BASE_IMAGE_URL + "student/" + details.getStudent_photo()).into(image);
@@ -142,18 +143,10 @@ public class DashboardFragment extends Fragment {
 
     private final Observer<Supervisor> observeSupervisorDetailViewModel = details -> {
         if (details != null) {
-            if (helper.getRole().equalsIgnoreCase(checkStaff.replace("'", "\\"))) {
-                if(details.getSupervisor_photo() == null){
-                    image.setImageResource(R.drawable.ic_asset_7);
-                } else {
-                    Glide.with(getActivity()).load(Constants.BASE_IMAGE_URL + "staff/" + details.getSupervisor_photo()).into(image);
-                }
+            if (details.getSupervisor_photo() == null) {
+                image.setImageResource(R.drawable.ic_asset_7);
             } else {
-                if(details.getSupervisor_photo() == null){
-                    image.setImageResource(R.drawable.ic_asset_7);
-                } else {
-                    Glide.with(getActivity()).load(Constants.BASE_IMAGE_URL + "lecturer/" + details.getSupervisor_photo()).into(image);
-                }
+                Glide.with(getActivity()).load(Constants.BASE_IMAGE_URL + "supervisor/" + details.getSupervisor_photo()).into(image);
             }
             name.setText(details.getSupervisor_name());
             getView().findViewById(R.id.yourapp_inc).setVisibility(View.GONE);
@@ -162,7 +155,7 @@ public class DashboardFragment extends Fragment {
 
     //incoming progress adapter
     private Observer<List<Progress>> observeViewModel = progress -> {
-        if(progress != null){
+        if (progress != null) {
             Log.d("ProgressChecking", String.valueOf(progress.size()));
             incomingProgressAdapter.setProgressList(progress);
             incomingProgressAdapter.notifyDataSetChanged();

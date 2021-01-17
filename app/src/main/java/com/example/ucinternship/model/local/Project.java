@@ -10,7 +10,7 @@ import java.util.List;
 public class Project implements Parcelable {
 
     @SerializedName("id")
-    private String project_id;
+    private int project_id;
     @SerializedName("name")
     private String project_name;
     @SerializedName("description")
@@ -36,7 +36,7 @@ public class Project implements Parcelable {
 
     public Project(){}
 
-    public Project(String project_id, String project_name, String project_description, String project_deadline, String project_status, String project_category, Period project_period, Supervisor project_spv, List<ProjectUser> applicants, List<ProjectUser> pending_students, List<ProjectUser> accepted_students, List<ProjectAttachment> attachments) {
+    public Project(int project_id, String project_name, String project_description, String project_deadline, String project_status, String project_category, Period project_period, Supervisor project_spv, List<ProjectUser> applicants, List<ProjectUser> pending_students, List<ProjectUser> accepted_students, List<ProjectAttachment> attachments) {
         this.project_id = project_id;
         this.project_name = project_name;
         this.project_description = project_description;
@@ -52,7 +52,7 @@ public class Project implements Parcelable {
     }
 
     protected Project(Parcel in) {
-        project_id = in.readString();
+        project_id = in.readInt();
         project_name = in.readString();
         project_description = in.readString();
         project_deadline = in.readString();
@@ -78,11 +78,11 @@ public class Project implements Parcelable {
         }
     };
 
-    public String getProject_id() {
+    public int getProject_id() {
         return project_id;
     }
 
-    public void setProject_id(String project_id) {
+    public void setProject_id( int project_id) {
         this.project_id = project_id;
     }
 
@@ -181,7 +181,7 @@ public class Project implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeString(project_id);
+        dest.writeInt(project_id);
         dest.writeString(project_name);
         dest.writeString(project_description);
         dest.writeString(project_deadline);

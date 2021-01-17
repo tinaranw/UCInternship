@@ -27,7 +27,7 @@ import com.example.ucinternship.ui.student.ProjectOfferFragmentDirections;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ProjectAdapter extends RecyclerView.Adapter<ProjectAdapter.ProjectViewHolder>  implements Filterable {
+public class ProjectAdapter extends RecyclerView.Adapter<ProjectAdapter.ProjectViewHolder> implements Filterable {
 
     private Context context;
     private List<Project> projectList = new ArrayList<>();
@@ -37,7 +37,7 @@ public class ProjectAdapter extends RecyclerView.Adapter<ProjectAdapter.ProjectV
         this.context = context;
     }
 
-    public void setProjectList(List<Project> projectList){
+    public void setProjectList(List<Project> projectList) {
         this.projectList = projectList;
         projectListFull = new ArrayList<>(projectList);
 //        notifyDataSetChanged();
@@ -57,20 +57,20 @@ public class ProjectAdapter extends RecyclerView.Adapter<ProjectAdapter.ProjectV
         holder.title.setText(p.getProject_name());
         holder.deadline.setText(p.getProject_deadline());
         holder.spv.setText(p.getProject_spv().getSupervisor_name());
-        if(p.getProject_status().equalsIgnoreCase("0")){
+        if (p.getProject_status().equalsIgnoreCase("0")) {
             holder.status.setText("Available");
-        } else if(p.getProject_status().equalsIgnoreCase("1")){
+        } else if (p.getProject_status().equalsIgnoreCase("1")) {
             holder.status.setText("Ongoing");
-        } else if(p.getProject_status().equalsIgnoreCase("2")){
+        } else if (p.getProject_status().equalsIgnoreCase("2")) {
             holder.status.setText("Completed");
-        } else if(p.getProject_status().equalsIgnoreCase("3")){
+        } else if (p.getProject_status().equalsIgnoreCase("3")) {
             holder.status.setText("Suspended");
         }
-        if(p.getProject_category().equalsIgnoreCase("0")){
+        if (p.getProject_category().equalsIgnoreCase("0")) {
             holder.icon.setImageResource(R.drawable.ic_event);
-        } else if(p.getProject_category().equalsIgnoreCase("1")){
+        } else if (p.getProject_category().equalsIgnoreCase("1")) {
             holder.icon.setImageResource(R.drawable.ic_material);
-        } else if(p.getProject_category().equalsIgnoreCase("2")){
+        } else if (p.getProject_category().equalsIgnoreCase("2")) {
             holder.icon.setImageResource(R.drawable.ic_others);
         }
         holder.itemView.setOnClickListener(view -> {
@@ -90,18 +90,18 @@ public class ProjectAdapter extends RecyclerView.Adapter<ProjectAdapter.ProjectV
         return projectFilter;
     }
 
-    private Filter projectFilter = new Filter() {
+    private final Filter projectFilter = new Filter() {
         @Override
         protected FilterResults performFiltering(CharSequence constraint) {
             List<Project> filteredList = new ArrayList<>();
-            if (constraint == null || constraint.length() == 0){
+            if (constraint == null || constraint.length() == 0) {
                 filteredList.addAll(projectListFull);
             } else {
                 String filterPattern = constraint.toString().toLowerCase().trim();
 
                 //foreach
-                for (Project project : projectListFull){
-                    if (project.getProject_name().toLowerCase().contains(filterPattern)){
+                for (Project project : projectListFull) {
+                    if (project.getProject_name().toLowerCase().contains(filterPattern)) {
                         filteredList.add(project);
                     }
                 }
@@ -114,9 +114,11 @@ public class ProjectAdapter extends RecyclerView.Adapter<ProjectAdapter.ProjectV
 
         @Override
         protected void publishResults(CharSequence constraint, FilterResults results) {
-            projectList.clear();
-            projectList.addAll((List)results.values);
-            notifyDataSetChanged();
+            if (results.count > 0) {
+                projectList.clear();
+                projectList.addAll((List) results.values);
+                notifyDataSetChanged();
+            }
         }
     };
 

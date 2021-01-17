@@ -2,6 +2,7 @@ package com.example.ucinternship.network;
 
 import com.example.ucinternship.model.response.AcceptResponse;
 import com.example.ucinternship.model.response.PendingResponse;
+import com.example.ucinternship.model.response.ProjectUserResponse;
 import com.example.ucinternship.model.response.StudentProgressResponse;
 import com.example.ucinternship.model.response.ProjectResponse;
 import com.example.ucinternship.model.response.StudentResponse;
@@ -76,4 +77,12 @@ public interface Endpoints {
     @PUT("supervisor/user/{id}")
     @FormUrlEncoded
     Call<SupervisorResponse> updateSupervisor(@Path("id") int id, @Field("phone") String phone, @Field("line_account") String line_account);
+
+    @POST("supervisor/applicant/accept")
+    @FormUrlEncoded
+    Call<ProjectUserResponse> acceptStudent(@Field("user_id") int user_id, @Field("project_id") int project_id);
+
+    @POST("supervisor/applicant/decline")
+    @FormUrlEncoded
+    Call<ProjectUserResponse> declineStudent(@Field("user_id") int user_id, @Field("project_id") int project_id);
 }

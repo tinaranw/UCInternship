@@ -99,6 +99,7 @@ public class ProfileRepository {
                     if (response.code() == 200) {
                         if (response.body() != null) {
                             studentResponse.postValue(response.body());
+                            Log.d(TAG, "onResponsea: " + response.code() + response.message() + response.body() + response.errorBody() + response.headers());
                         }
                     }
                 } else {
@@ -113,20 +114,21 @@ public class ProfileRepository {
         });
         return studentResponse;
     }
+
     public MutableLiveData<SupervisorResponse> updateSupervisor(int id, String phone, String line_account) {
         MutableLiveData<SupervisorResponse> supervisorResponse = new MutableLiveData<>();
         apiService.updateSupervisor(id, phone, line_account).enqueue(new Callback<SupervisorResponse>() {
             @Override
             public void onResponse(Call<SupervisorResponse> call, Response<SupervisorResponse> response) {
                 if (response.isSuccessful()) {
-                    Log.d(TAG, "onResponse: " + response.code());
+                    Log.d(TAG, "onResponseb: " + response.code() + " asd " + response.message() + " asd " + response.body() + " asd " + response.errorBody() + " asd " + response.headers());
                     if (response.code() == 200) {
                         if (response.body() != null) {
                             supervisorResponse.postValue(response.body());
                         }
                     }
                 } else {
-                    Log.d(TAG, "onResponse: " + response.code());
+                    Log.d(TAG, "onResponsea: " + response.code());
                 }
             }
 

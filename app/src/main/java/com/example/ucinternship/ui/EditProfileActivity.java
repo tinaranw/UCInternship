@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModelProviders;
 import androidx.navigation.NavDirections;
 import androidx.navigation.Navigation;
 
+import android.app.FragmentManager;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
@@ -46,10 +47,10 @@ public class EditProfileActivity extends AppCompatActivity implements TextWatche
     TextInputLayout line_txtil;
 
 
-
     private ProfileViewModel viewModel;
     private SharedPreferenceHelper helper;
     private String checkStudent, checkStaff, checkLecturer, phone, line;
+    FragmentManager fm = getFragmentManager();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,6 +64,7 @@ public class EditProfileActivity extends AppCompatActivity implements TextWatche
         viewModel = ViewModelProviders.of(this).get(ProfileViewModel.class);
         helper = SharedPreferenceHelper.getInstance(this);
         viewModel.init(helper.getAccessToken());
+        Log.d("tokeneditprofile", helper.getAccessToken());
         if (helper.getRole().equalsIgnoreCase(checkStudent.replace("'", "\\"))) {
             Log.d("checkstudent", "" + checkStudent.replace("'", "\\"));
             viewModel.getStudentDetails(helper.getUserID()).observe(this, observeStudentDetailViewModel);
@@ -70,7 +72,6 @@ public class EditProfileActivity extends AppCompatActivity implements TextWatche
             viewModel.getSupervisorDetails(helper.getUserID()).observe(this, observeSupervisorDetailViewModel);
         }
         update_btn.setOnClickListener(v -> {
-
             update();
         });
         phone_txtil.getEditText().addTextChangedListener(this);
@@ -78,33 +79,34 @@ public class EditProfileActivity extends AppCompatActivity implements TextWatche
 
     }
 
-    public void update(){
-        if(!phone_txtil.getEditText().getText().toString().isEmpty() && !line_txtil.getEditText().getText().toString().isEmpty()){
-//            String name = name_txtil.getEditText().getText().toString().trim();
+    public void update() {
+        if (!phone_txtil.getEditText().getText().toString().isEmpty() && !line_txtil.getEditText().getText().toString().isEmpty()) {
             String phone = phone_txtil.getEditText().getText().toString().trim();
             String line_account = line_txtil.getEditText().getText().toString().trim();
             if (helper.getRole().equalsIgnoreCase(checkStudent.replace("'", "\\"))) {
-                viewModel.updateStudent(helper.getUserID(),phone,line_account).observe(this, tokenResponse -> {
-                    if(tokenResponse != null){
-                        Intent intent = new Intent(this, MainActivity.class);
-                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                        this.finish();
-                        startActivity(intent);
-                        Toast.makeText(this,  "Profile Updated.", Toast.LENGTH_SHORT).show();
+                viewModel.updateStudent(helper.getUserID(), phone, line_account).observe(this, tokenResponse -> {
+                    if (tokenResponse != null) {
+                        if (fm.getBackStackEntryCount() > 0) {
+                            fm.popBackStack();
+                        } else {
+                            super.onBackPressed();
+                        }
+                        Toast.makeText(this, "Profile Updated.", Toast.LENGTH_SHORT).show();
                     } else {
-                        Toast.makeText(this,  "Failed to Update Profile.", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(this, "Failed to Update Profile.", Toast.LENGTH_SHORT).show();
                     }
                 });
             } else {
-                viewModel.updateSupervisor(helper.getUserID(),phone,line_account).observe(this, tokenResponse -> {
-                    if(tokenResponse != null){
-                        Intent intent = new Intent(this, MainActivity.class);
-                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                        this.finish();
-                        startActivity(intent);
-                        Toast.makeText(this,  "Profile Updated.", Toast.LENGTH_SHORT).show();
+                viewModel.updateSupervisor(helper.getUserID(), phone, line_account).observe(this, tokenResponse -> {
+                    if (tokenResponse != null) {
+                        if (fm.getBackStackEntryCount() > 0) {
+                            fm.popBackStack();
+                        } else {
+                            super.onBackPressed();
+                        }
+                        Toast.makeText(this, "Profile Updated.", Toast.LENGTH_SHORT).show();
                     } else {
-                        Toast.makeText(this,  "Failed to Update Profile.", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(this, "Failed to Update Profile.", Toast.LENGTH_SHORT).show();
                     }
                 });
             }
@@ -114,7 +116,6 @@ public class EditProfileActivity extends AppCompatActivity implements TextWatche
     private final Observer<Student> observeStudentDetailViewModel = details -> {
         if (details != null) {
             Glide.with(this).load(Constants.BASE_IMAGE_URL + "student/" + details.getStudent_photo()).into(image);
-//            name_txtil.getEditText().setText(details.getStudent_name());
             phone_txtil.getEditText().setText(details.getStudent_phone());
             line_txtil.getEditText().setText(details.getStudent_line());
         }
@@ -122,12 +123,7 @@ public class EditProfileActivity extends AppCompatActivity implements TextWatche
 
     private final Observer<Supervisor> observeSupervisorDetailViewModel = details -> {
         if (details != null) {
-            if (helper.getRole().equalsIgnoreCase(checkStaff.replace("'", "\\"))) {
-                Glide.with(this).load(Constants.BASE_IMAGE_URL + "staff/" + details.getSupervisor_photo()).into(image);
-            } else {
-                Glide.with(this).load(Constants.BASE_IMAGE_URL + "lecturer/" + details.getSupervisor_photo()).into(image);
-            }
-//            name_txtil.getEditText().setText(details.getSupervisor_name());
+            Glide.with(this).load(Constants.BASE_IMAGE_URL + "supervisor/" + details.getSupervisor_photo()).into(image);
             phone_txtil.getEditText().setText(details.getSupervisor_phone());
             line_txtil.getEditText().setText(details.getSupervisor_line());
         }

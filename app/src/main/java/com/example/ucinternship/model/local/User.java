@@ -8,7 +8,7 @@ import com.google.gson.annotations.SerializedName;
 public class User implements Parcelable {
 
     @SerializedName("id")
-    private String user_id;
+    private int user_id;
     @SerializedName("name")
     private String user_name;
     @SerializedName("email")
@@ -26,7 +26,7 @@ public class User implements Parcelable {
 
     public User(){}
 
-    public User(String user_id, String user_name, String user_email, String user_password, String user_role, String user_detailable, String user_type, String user_info) {
+    public User(int user_id, String user_name, String user_email, String user_password, String user_role, String user_detailable, String user_type, String user_info) {
         this.user_id = user_id;
         this.user_name = user_name;
         this.user_email = user_email;
@@ -38,7 +38,7 @@ public class User implements Parcelable {
     }
 
     protected User(Parcel in) {
-        user_id = in.readString();
+        user_id = in.readInt();
         user_name = in.readString();
         user_email = in.readString();
         user_password = in.readString();
@@ -60,11 +60,11 @@ public class User implements Parcelable {
         }
     };
 
-    public String getUser_id() {
+    public int getUser_id() {
         return user_id;
     }
 
-    public void setUser_id(String user_id) {
+    public void setUser_id(int user_id) {
         this.user_id = user_id;
     }
 
@@ -131,7 +131,7 @@ public class User implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeString(user_id);
+        dest.writeInt(user_id);
         dest.writeString(user_name);
         dest.writeString(user_email);
         dest.writeString(user_password);

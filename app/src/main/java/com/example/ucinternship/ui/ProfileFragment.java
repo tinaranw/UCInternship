@@ -129,13 +129,13 @@ public class ProfileFragment extends Fragment {
         } else {
             profileViewModel.getSupervisorDetails(helper.getUserID()).observe(requireActivity(), observeSupervisorDetailViewModel);
         }
-        
+
     }
 
     private final Observer<Student> observeStudentDetailViewModel = details -> {
         if (details != null) {
             Info info = details.getStudent_info();
-            if(details.getStudent_photo() == null){
+            if (details.getStudent_photo() == null) {
                 image.setImageResource(R.drawable.ic_asset_7);
             } else {
                 Glide.with(getActivity()).load(Constants.BASE_IMAGE_URL + "student/" + details.getStudent_photo()).into(image);
@@ -160,18 +160,10 @@ public class ProfileFragment extends Fragment {
 
     private final Observer<Supervisor> observeSupervisorDetailViewModel = details -> {
         if (details != null) {
-            if (helper.getRole().equalsIgnoreCase(checkStaff.replace("'", "\\"))) {
-                if(details.getSupervisor_photo() == null){
-                    image.setImageResource(R.drawable.ic_asset_7);
-                } else {
-                    Glide.with(getActivity()).load(Constants.BASE_IMAGE_URL + "staff/" + details.getSupervisor_photo()).into(image);
-                }
+            if (details.getSupervisor_photo() == null) {
+                image.setImageResource(R.drawable.ic_asset_7);
             } else {
-                if(details.getSupervisor_photo() == null){
-                    image.setImageResource(R.drawable.ic_asset_7);
-                } else {
-                    Glide.with(getActivity()).load(Constants.BASE_IMAGE_URL + "lecturer/" + details.getSupervisor_photo()).into(image);
-                }
+                Glide.with(getActivity()).load(Constants.BASE_IMAGE_URL + "supervisor/" + details.getSupervisor_photo()).into(image);
             }
             nim.setText(details.getSupervisor_nip());
             name.setText(details.getSupervisor_name());
