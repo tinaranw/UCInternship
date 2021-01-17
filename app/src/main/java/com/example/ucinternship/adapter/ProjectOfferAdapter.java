@@ -87,7 +87,7 @@ public class ProjectOfferAdapter extends RecyclerView.Adapter<ProjectOfferAdapte
         return projectFilter;
     }
 
-    private Filter projectFilter = new Filter() {
+    private final Filter projectFilter = new Filter() {
         @Override
         protected FilterResults performFiltering(CharSequence constraint) {
             List<Project> filteredList = new ArrayList<>();
@@ -111,9 +111,11 @@ public class ProjectOfferAdapter extends RecyclerView.Adapter<ProjectOfferAdapte
 
         @Override
         protected void publishResults(CharSequence constraint, FilterResults results) {
-            projectList.clear();
-            projectList.addAll((List)results.values);
-            notifyDataSetChanged();
+            if (projectList.size() > 0) {
+                projectList.clear();
+                projectList.addAll((List) results.values);
+                notifyDataSetChanged();
+            }
         }
     };
 

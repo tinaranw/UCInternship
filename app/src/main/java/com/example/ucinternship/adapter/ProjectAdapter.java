@@ -114,7 +114,7 @@ public class ProjectAdapter extends RecyclerView.Adapter<ProjectAdapter.ProjectV
 
         @Override
         protected void publishResults(CharSequence constraint, FilterResults results) {
-            if (results.count > 0) {
+            if (projectList.size() > 0) {
                 projectList.clear();
                 projectList.addAll((List) results.values);
                 notifyDataSetChanged();
