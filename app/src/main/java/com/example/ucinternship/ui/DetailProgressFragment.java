@@ -116,11 +116,14 @@ public class DetailProgressFragment extends Fragment {
         end.setText(progress.getProgress_end());
         comment.setText(progress.getProgress_comment());
         if(progress.getProgress_approved().equalsIgnoreCase("0")){
-            status.setText("Ongoing");
+            status.setText("Pending");
+
         } else if(progress.getProgress_approved().equalsIgnoreCase("1")){
             status.setText("Accepted");
+            getView().findViewById(R.id.add_comment_button).setVisibility(View.GONE);
         }else if(progress.getProgress_approved().equalsIgnoreCase("2")){
             status.setText("Declined");
+            getView().findViewById(R.id.add_comment_button).setVisibility(View.GONE);
         }
     }
 }
