@@ -1,6 +1,7 @@
 package com.example.ucinternship.adapter;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -52,6 +53,7 @@ public class ProgressAdapter extends RecyclerView.Adapter<ProgressAdapter.Progre
         }
 
         holder.itemView.setOnClickListener(view -> {
+            Log.d("progressID", "progress adapter - "+p.getProgress_id());
             NavDirections action = DetailTaskFragmentDirections.actionDetailTaskFragmentToProgressFragment(p);
             Navigation.findNavController(view).navigate(action);
         });

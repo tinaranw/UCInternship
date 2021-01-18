@@ -8,7 +8,7 @@ import com.google.gson.annotations.SerializedName;
 public class Task implements Parcelable {
 
     @SerializedName("id")
-    private String task_id;
+    private int task_id;
     @SerializedName("name")
     private String task_name;
     @SerializedName("description")
@@ -16,7 +16,7 @@ public class Task implements Parcelable {
     @SerializedName("deadline")
     private String task_deadline;
     @SerializedName("duration")
-    private String task_duration;
+    private float task_duration;
     @SerializedName("status")
     private String task_approved;
     @SerializedName("pu_id")
@@ -24,11 +24,11 @@ public class Task implements Parcelable {
 
     public Task(){}
 
-    public String getTask_id() {
+    public int getTask_id() {
         return task_id;
     }
 
-    public void setTask_id(String task_id) {
+    public void setTask_id(int task_id) {
         this.task_id = task_id;
     }
 
@@ -56,11 +56,11 @@ public class Task implements Parcelable {
         this.task_deadline = task_deadline;
     }
 
-    public String getTask_duration() {
+    public float getTask_duration() {
         return task_duration;
     }
 
-    public void setTask_duration(String task_duration) {
+    public void setTask_duration(float task_duration) {
         this.task_duration = task_duration;
     }
 
@@ -80,7 +80,7 @@ public class Task implements Parcelable {
         this.task_pu = task_pu;
     }
 
-    public Task(String task_id, String task_name, String task_description, String task_deadline, String task_duration, String task_approved, String task_pu) {
+    public Task(int task_id, String task_name, String task_description, String task_deadline, float task_duration, String task_approved, String task_pu) {
         this.task_id = task_id;
         this.task_name = task_name;
         this.task_description = task_description;
@@ -91,22 +91,22 @@ public class Task implements Parcelable {
     }
 
     protected Task(Parcel in) {
-        task_id = in.readString();
+        task_id = in.readInt();
         task_name = in.readString();
         task_description = in.readString();
         task_deadline = in.readString();
-        task_duration = in.readString();
+        task_duration = in.readFloat();
         task_approved = in.readString();
         task_pu = in.readString();
     }
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeString(task_id);
+        dest.writeInt(task_id);
         dest.writeString(task_name);
         dest.writeString(task_description);
         dest.writeString(task_deadline);
-        dest.writeString(task_duration);
+        dest.writeFloat(task_duration);
         dest.writeString(task_approved);
         dest.writeString(task_pu);
     }

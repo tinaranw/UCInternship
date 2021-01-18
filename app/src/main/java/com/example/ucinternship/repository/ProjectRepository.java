@@ -9,7 +9,7 @@ import com.example.ucinternship.model.local.Project;
 import com.example.ucinternship.model.response.AcceptResponse;
 import com.example.ucinternship.model.response.PendingResponse;
 import com.example.ucinternship.model.response.ProjectUserResponse;
-import com.example.ucinternship.model.response.SupervisorResponse;
+import com.example.ucinternship.model.response.TaskResponse;
 import com.example.ucinternship.network.RetrofitService;
 import com.example.ucinternship.model.response.ProjectResponse;
 import com.google.gson.Gson;
