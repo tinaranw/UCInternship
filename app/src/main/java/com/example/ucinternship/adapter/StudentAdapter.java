@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -69,17 +70,19 @@ public class StudentAdapter extends RecyclerView.Adapter<StudentAdapter.StudentV
 //            projectDetailViewModel.acceptStudent(projectUser.getUser().getUser_id(), projectUser.getProject_id());
             count++;
             holder.name.setText(projectUser.getUser().getUser_name());
-            holder.accept.setOnClickListener(view ->
-                    projectDetailViewModel.acceptStudent(projectUser.getUser().getUser_id(), projectUser.getProject_id()).observe((LifecycleOwner) context, response -> {
-                        if (response != null) {
-                            Toast.makeText(context, "Student Accepted.", Toast.LENGTH_SHORT).show();
-                        } else {
-                            Toast.makeText(context, "Failed to Accept Student.", Toast.LENGTH_SHORT).show();
-                        }
-                    })
+            holder.accept.setOnClickListener(view -> {
+                Log.d("projectid+userid", "student adapter - "+projectUser.getProject_id()+projectUser.getUser_id());
+                        projectDetailViewModel.acceptStudent(projectUser.getUser_id(), projectUser.getProject_id()).observe((LifecycleOwner) context, response -> {
+                            if (response != null) {
+                                Toast.makeText(context, "Student Accepted.", Toast.LENGTH_SHORT).show();
+                            } else {
+                                Toast.makeText(context, "Failed to Accept Student.", Toast.LENGTH_SHORT).show();
+                            }
+                        });
+                    }
             );
             holder.cancel.setOnClickListener(view ->
-                    projectDetailViewModel.declineStudent(projectUser.getUser().getUser_id(), projectUser.getProject_id()).observe((LifecycleOwner) context, response -> {
+                    projectDetailViewModel.declineStudent(projectUser.getUser_id(), projectUser.getProject_id()).observe((LifecycleOwner) context, response -> {
                         if (response != null) {
                             Toast.makeText(context, "Student Declined.", Toast.LENGTH_SHORT).show();
                         } else {
