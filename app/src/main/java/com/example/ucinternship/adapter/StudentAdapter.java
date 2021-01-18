@@ -71,8 +71,8 @@ public class StudentAdapter extends RecyclerView.Adapter<StudentAdapter.StudentV
             count++;
             holder.name.setText(projectUser.getUser().getUser_name());
             holder.accept.setOnClickListener(view -> {
-                Log.d("projectid+userid", "student adapter - "+projectUser.getProject_id()+projectUser.getUser().getUser_id());
-                        projectDetailViewModel.acceptStudent(projectUser.getUser().getUser_id(), projectUser.getProject_id()).observe((LifecycleOwner) context, response -> {
+                Log.d("projectid+userid", "student adapter - "+projectUser.getProject_id()+projectUser.getUser_id());
+                        projectDetailViewModel.acceptStudent(projectUser.getUser_id(), projectUser.getProject_id()).observe((LifecycleOwner) context, response -> {
                             if (response != null) {
                                 Toast.makeText(context, "Student Accepted.", Toast.LENGTH_SHORT).show();
                             } else {
@@ -82,7 +82,7 @@ public class StudentAdapter extends RecyclerView.Adapter<StudentAdapter.StudentV
                     }
             );
             holder.cancel.setOnClickListener(view ->
-                    projectDetailViewModel.declineStudent(projectUser.getUser().getUser_id(), projectUser.getProject_id()).observe((LifecycleOwner) context, response -> {
+                    projectDetailViewModel.declineStudent(projectUser.getUser_id(), projectUser.getProject_id()).observe((LifecycleOwner) context, response -> {
                         if (response != null) {
                             Toast.makeText(context, "Student Declined.", Toast.LENGTH_SHORT).show();
                         } else {

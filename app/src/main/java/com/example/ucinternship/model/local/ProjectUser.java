@@ -13,6 +13,8 @@ public class ProjectUser implements Parcelable {
     private int pu_id;
     @SerializedName("user")
     private User user;
+    @SerializedName("user_id")
+    private int user_id;
     @SerializedName("project_id")
     private int project_id;
     @SerializedName("status")
@@ -32,9 +34,10 @@ public class ProjectUser implements Parcelable {
         this.project_id = project_id;
     }
 
-    public ProjectUser(int pu_id, User user, int project_id, String status, List<Task> tasks) {
+    public ProjectUser(int pu_id, User user, int user_id, int project_id, String status, List<Task> tasks) {
         this.pu_id = pu_id;
         this.user = user;
+        this.user_id = user_id;
         this.project_id = project_id;
         this.status = status;
         this.tasks = tasks;
@@ -43,6 +46,7 @@ public class ProjectUser implements Parcelable {
     protected ProjectUser(Parcel in) {
         pu_id = in.readInt();
         user = in.readParcelable(User.class.getClassLoader());
+        user_id = in.readInt();
         project_id = in.readInt();
         status = in.readString();
         tasks = in.createTypedArrayList(Task.CREATOR);
@@ -59,6 +63,14 @@ public class ProjectUser implements Parcelable {
             return new ProjectUser[size];
         }
     };
+
+    public int getUser_id() {
+        return user_id;
+    }
+
+    public void setUser_id(int user_id) {
+        this.user_id = user_id;
+    }
 
     public int getPu_id() {
         return pu_id;
@@ -101,6 +113,7 @@ public class ProjectUser implements Parcelable {
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeInt(pu_id);
         dest.writeParcelable(user, flags);
+        dest.writeInt(user_id);
         dest.writeInt(project_id);
         dest.writeString(status);
         dest.writeTypedList(tasks);

@@ -8,9 +8,9 @@ import java.util.List;
 
 public class ProjectUserResponse {
     @SerializedName("data")
-    private List<ProjectUser> results;
+    private ProjectUser results;
 
-    public List<ProjectUser> getResults(){
+    public ProjectUser getResults(){
         return results;
     }
 }
