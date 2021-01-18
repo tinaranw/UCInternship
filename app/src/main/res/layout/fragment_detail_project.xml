@@ -117,29 +117,6 @@
                 app:layout_constraintTop_toBottomOf="@+id/projectdesctitle_txt" />
 
             <TextView
-                android:id="@+id/projectdurationtitle_txt"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:fontFamily="@font/montserrat_medium"
-                android:text="@string/ProjectDurationTitleText"
-                android:textColor="#C45E38"
-                android:textSize="18sp"
-                app:layout_constraintStart_toStartOf="@+id/projectdesc_txt"
-                app:layout_constraintTop_toBottomOf="@+id/projectdesc_txt" />
-
-            <TextView
-                android:id="@+id/projectduration_txt"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/opensans_regular"
-                android:text="@string/ProjectDurationText"
-                android:textColor="@color/text"
-                app:layout_constraintBottom_toBottomOf="@+id/projectdurationtitle_txt"
-                app:layout_constraintStart_toStartOf="@+id/projectdeadline_txt"
-                app:layout_constraintTop_toTopOf="@+id/projectdurationtitle_txt" />
-
-            <TextView
                 android:id="@+id/projectdeadlinetitle_txt"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -148,8 +125,8 @@
                 android:text="@string/ProjectDeadlineTitleText"
                 android:textColor="#C45E38"
                 android:textSize="18sp"
-                app:layout_constraintStart_toStartOf="@+id/projectdurationtitle_txt"
-                app:layout_constraintTop_toBottomOf="@+id/projectdurationtitle_txt" />
+                app:layout_constraintStart_toStartOf="@+id/projectdesc_txt"
+                app:layout_constraintTop_toBottomOf="@+id/projectdesc_txt" />
 
             <TextView
                 android:id="@+id/projectdeadline_txt"

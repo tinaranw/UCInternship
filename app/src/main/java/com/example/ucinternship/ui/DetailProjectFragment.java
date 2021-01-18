@@ -1,26 +1,34 @@
 package com.example.ucinternship.ui;
 
+import android.app.Dialog;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.LifecycleOwner;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.navigation.NavController;
+import androidx.navigation.NavDirections;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.os.Handler;
+import android.os.Looper;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.example.ucinternship.Glovar;
 import com.example.ucinternship.R;
 import com.example.ucinternship.adapter.AcceptedStudentAdapter;
 import com.example.ucinternship.adapter.ProjectAdapter;
@@ -36,6 +44,7 @@ import com.example.ucinternship.ui.viewmodel.ProjectViewModel;
 import com.example.ucinternship.ui.viewmodel.TaskViewModel;
 import com.example.ucinternship.utils.Constants;
 import com.example.ucinternship.utils.SharedPreferenceHelper;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.List;
 
@@ -54,8 +63,6 @@ public class DetailProjectFragment extends Fragment implements LifecycleOwner {
     TextView projectcategory;
     @BindView(R.id.projectdesc_txt)
     TextView projectdesc;
-    @BindView(R.id.projectduration_txt)
-    TextView projectduration;
     @BindView(R.id.projectdeadline_txt)
     TextView projectdeadline;
     @BindView(R.id.spv_name_txt)
@@ -68,7 +75,10 @@ public class DetailProjectFragment extends Fragment implements LifecycleOwner {
     RecyclerView appliedstudents_rv;
     @BindView(R.id.acceptedstudents_rv)
     RecyclerView acceptedstudents_rv;
+    @BindView(R.id.apply_project_btn)
+    FloatingActionButton apply;
 
+    Dialog dialog;
     private Project project;
     private ProjectDetailViewModel viewModel;
     private TaskAdapter taskAdapter;
@@ -100,6 +110,7 @@ public class DetailProjectFragment extends Fragment implements LifecycleOwner {
         Log.d("tokendetailproj", helper.getAccessToken());
         projectDetailViewModel.init(helper.getAccessToken());
 
+        dialog = Glovar.loadingDialog(getActivity());
         checkStudent = "App'Models'Student";
         checkStaff = "App'Models'Staff";
         checkLecturer = "App'Models'Lecturer";
@@ -117,6 +128,10 @@ public class DetailProjectFragment extends Fragment implements LifecycleOwner {
         taskViewModel.getTaskLists(project.getProject_id()).observe(requireActivity(), observeViewModel);
         task_rv.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false));
         taskAdapter = new TaskAdapter(getActivity());
+
+        apply.setOnClickListener(v -> {
+            apply();
+        });
 
     }
 
@@ -205,6 +220,27 @@ public class DetailProjectFragment extends Fragment implements LifecycleOwner {
 
         }
     };
+
+    public void apply(){
+
+        new AlertDialog.Builder(getActivity())
+                .setTitle("Confirmation")
+                .setIcon(R.drawable.ic_logo)
+                .setMessage("Do you want to apply to this project?")
+                .setCancelable(false)
+                .setPositiveButton("Yes", (dialogInterface, i) -> {
+                    dialog.show();
+                    new Handler(Looper.getMainLooper()).postDelayed(() -> {
+                        dialog.cancel();
+
+
+                    }, 2000);
+                })
+                .setNegativeButton("No", (dialog, which) -> dialog.cancel())
+                .create()
+                .show();
+
+    }
 
 
 
