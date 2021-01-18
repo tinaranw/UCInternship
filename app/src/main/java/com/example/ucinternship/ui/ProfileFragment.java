@@ -92,7 +92,7 @@ public class ProfileFragment extends Fragment {
     private Task task;
     Dialog dialog;
     private String checkStudent, checkStaff, checkLecturer;
-    int timeCompleted;
+    float timeCompleted;
 
 
     public ProfileFragment() {
@@ -204,6 +204,8 @@ public class ProfileFragment extends Fragment {
                  ) {
                 timeCompleted += task.getTask_duration();
             }
+            Log.d("TimeCompleted", String.valueOf(timeCompleted));
+            completed.setText(Float.toString(timeCompleted));
         } else {
 
         }
