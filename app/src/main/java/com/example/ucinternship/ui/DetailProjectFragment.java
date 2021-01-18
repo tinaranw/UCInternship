@@ -177,6 +177,16 @@ public class DetailProjectFragment extends Fragment implements LifecycleOwner {
             acceptedstudents_rv.setAdapter(acceptedStudentAdapter);
         }
 
+        if(project.getProject_status().equals("0")){
+            getView().findViewById(R.id.rv_task).setVisibility(View.GONE);
+        } else  if(project.getProject_status().equals("1")){
+            Log.d("projectstatus", project.getProject_status());
+        } else  if(project.getProject_status().equals("2")){
+            Log.d("projectstatus", project.getProject_status());
+        } else {
+            Log.d("projectstatus", project.getProject_status());
+        }
+
     }
 
     private Observer<List<Task>> observeViewModel = tasks -> {
