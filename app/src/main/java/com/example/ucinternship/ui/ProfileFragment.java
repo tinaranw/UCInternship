@@ -32,11 +32,17 @@ import com.example.ucinternship.R;
 import com.example.ucinternship.model.local.Info;
 import com.example.ucinternship.model.local.Student;
 import com.example.ucinternship.model.local.Supervisor;
+import com.example.ucinternship.model.local.Task;
 import com.example.ucinternship.model.local.User;
 import com.example.ucinternship.ui.viewmodel.LogoutViewModel;
 import com.example.ucinternship.ui.viewmodel.ProfileViewModel;
+import com.example.ucinternship.ui.viewmodel.TaskDetailViewModel;
+import com.example.ucinternship.ui.viewmodel.TaskViewModel;
 import com.example.ucinternship.utils.Constants;
 import com.example.ucinternship.utils.SharedPreferenceHelper;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 import java.util.List;
 import java.util.Objects;
@@ -81,9 +87,12 @@ public class ProfileFragment extends Fragment {
     //kita perlu declare ini, krn fragment butuh data dari sini
     private LogoutViewModel logoutViewModel;
     private ProfileViewModel profileViewModel;
+    private TaskViewModel taskViewModel;
     private SharedPreferenceHelper helper;
+    private Task task;
     Dialog dialog;
     private String checkStudent, checkStaff, checkLecturer;
+    int timeCompleted;
 
 
     public ProfileFragment() {
@@ -112,6 +121,11 @@ public class ProfileFragment extends Fragment {
 
         //untuk token sharedpref
         logoutViewModel.init(helper.getAccessToken());
+
+        taskViewModel = ViewModelProviders.of(requireActivity()).get(TaskViewModel.class);
+        taskViewModel.init(helper.getAccessToken());
+        taskViewModel.getTasks().observe(requireActivity(), observeCompletedViewModel);
+
         dialog = Glovar.loadingDialog(getActivity());
         logout.setOnClickListener(v -> {
             logout(view);
@@ -180,6 +194,18 @@ public class ProfileFragment extends Fragment {
             getView().findViewById(R.id.batch_txt).setVisibility(View.GONE);
             getView().findViewById(R.id.divider4).setVisibility(View.GONE);
             getView().findViewById(R.id.profile_hour_inc).setVisibility(View.GONE);
+        }
+    };
+
+    private Observer<List<Task>> observeCompletedViewModel = tasks -> {
+        if(tasks != null){
+            Log.d("TaskChecking", String.valueOf(tasks.size()));
+            for (Task task:tasks
+                 ) {
+                timeCompleted += task.getTask_duration();
+            }
+        } else {
+
         }
     };
 
