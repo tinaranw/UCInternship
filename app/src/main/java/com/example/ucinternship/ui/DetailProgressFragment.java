@@ -7,6 +7,8 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
+import androidx.navigation.NavDirections;
+import androidx.navigation.Navigation;
 
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -20,6 +22,7 @@ import com.example.ucinternship.model.local.Progress;
 import com.example.ucinternship.model.local.Student;
 import com.example.ucinternship.model.local.Supervisor;
 import com.example.ucinternship.model.local.Task;
+import com.example.ucinternship.ui.student.ProjectOfferFragmentDirections;
 import com.example.ucinternship.ui.viewmodel.ProfileViewModel;
 import com.example.ucinternship.ui.viewmodel.ProgressDetailViewModel;
 import com.example.ucinternship.ui.viewmodel.ProgressViewModel;
@@ -27,6 +30,7 @@ import com.example.ucinternship.ui.viewmodel.ProjectDetailViewModel;
 import com.example.ucinternship.ui.viewmodel.TaskDetailViewModel;
 import com.example.ucinternship.utils.Constants;
 import com.example.ucinternship.utils.SharedPreferenceHelper;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -47,6 +51,8 @@ public class DetailProgressFragment extends Fragment {
     TextView comment;
     @BindView(R.id.status_box_txt)
     TextView status;
+    @BindView(R.id.add_comment_button)
+    FloatingActionButton commentBtn;
 
 
     private ProfileViewModel profileViewModel;
@@ -89,6 +95,11 @@ public class DetailProgressFragment extends Fragment {
             progress = DetailProgressFragmentArgs.fromBundle(getArguments()).getProgress();
             loadProgress(progress);
         }
+
+        commentBtn.setOnClickListener(v -> {
+            NavDirections action = DetailProgressFragmentDirections.ActionDetailProgressToAddComment(progress);
+            Navigation.findNavController(view).navigate(action);
+        });
     }
 
     private final Observer<Student> observeStudentDetailViewModel = details -> {
