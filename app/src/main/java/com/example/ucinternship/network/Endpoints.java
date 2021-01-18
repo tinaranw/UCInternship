@@ -2,6 +2,7 @@ package com.example.ucinternship.network;
 
 import com.example.ucinternship.model.response.AcceptResponse;
 import com.example.ucinternship.model.response.PendingResponse;
+import com.example.ucinternship.model.response.ProgressResponse;
 import com.example.ucinternship.model.response.ProjectUserResponse;
 import com.example.ucinternship.model.response.StudentProgressResponse;
 import com.example.ucinternship.model.response.ProjectResponse;
@@ -98,4 +99,12 @@ public interface Endpoints {
     @POST("project/tasks")
     @FormUrlEncoded
     Call<TaskResponse> getTaskLists(@Field("project_id") int project_id);
+
+    @POST("progress/approve")
+    @FormUrlEncoded
+    Call<ProgressResponse> approveProgress(@Field("progress_id") int progress_id, @Field("comment") String comment);
+
+    @POST("progress/decline")
+    @FormUrlEncoded
+    Call<ProgressResponse> declineProgress(@Field("progress_id") int progress_id, @Field("comment") String comment);
 }

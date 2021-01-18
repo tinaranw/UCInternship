@@ -5,6 +5,8 @@ import android.util.Log;
 import androidx.lifecycle.MutableLiveData;
 
 import com.example.ucinternship.model.local.Progress;
+import com.example.ucinternship.model.response.ProgressResponse;
+import com.example.ucinternship.model.response.ProgressResponse;
 import com.example.ucinternship.model.response.StudentProgressResponse;
 import com.example.ucinternship.model.response.SupervisorProgressResponse;
 import com.example.ucinternship.network.RetrofitService;
@@ -84,6 +86,54 @@ public class ProgressRepository {
             }
         });
         return listSpvProgress;
+    }
+    public MutableLiveData<ProgressResponse> approveProgress(int progress_id, String comment) {
+        MutableLiveData<ProgressResponse> progressResponse = new MutableLiveData<>();
+        apiService.approveProgress(progress_id, comment).enqueue(new Callback<ProgressResponse>() {
+            @Override
+            public void onResponse(Call<ProgressResponse> call, Response<ProgressResponse> response) {
+                if (response.isSuccessful()) {
+                    Log.d(TAG, "onResponse: " + response.code());
+                    if (response.code() == 200) {
+                        if (response.body() != null) {
+                            progressResponse.postValue(response.body());
+                        }
+                    }
+                } else {
+                    Log.d(TAG, "onResponse: " + response.code());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ProgressResponse> call, Throwable t) {
+                Log.d(TAG, "onFailure: " + t.getMessage());
+            }
+        });
+        return progressResponse;
+    }
+    public MutableLiveData<ProgressResponse> declineProgress(int progress_id, String comment) {
+        MutableLiveData<ProgressResponse> progressResponse = new MutableLiveData<>();
+        apiService.declineProgress(progress_id, comment).enqueue(new Callback<ProgressResponse>() {
+            @Override
+            public void onResponse(Call<ProgressResponse> call, Response<ProgressResponse> response) {
+                if (response.isSuccessful()) {
+                    Log.d(TAG, "onResponse: " + response.code());
+                    if (response.code() == 200) {
+                        if (response.body() != null) {
+                            progressResponse.postValue(response.body());
+                        }
+                    }
+                } else {
+                    Log.d(TAG, "onResponse: " + response.code());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ProgressResponse> call, Throwable t) {
+                Log.d(TAG, "onFailure: " + t.getMessage());
+            }
+        });
+        return progressResponse;
     }
 
 }

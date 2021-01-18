@@ -8,7 +8,7 @@ import com.google.gson.annotations.SerializedName;
 public class Progress implements Parcelable {
 
     @SerializedName("id")
-    private String progress_id;
+    private int progress_id;
     @SerializedName("description")
     private String progress_description;
     @SerializedName("time_start")
@@ -24,11 +24,11 @@ public class Progress implements Parcelable {
 
     public Progress(){}
 
-    public String getProgress_id() {
+    public int getProgress_id() {
         return progress_id;
     }
 
-    public void setProgress_id(String progress_id) {
+    public void setProgress_id(int progress_id) {
         this.progress_id = progress_id;
     }
 
@@ -81,7 +81,7 @@ public class Progress implements Parcelable {
     }
 
 
-    public Progress(String progress_id, String progress_description, String progress_start, String progress_end, String progress_approved, String progress_comment, String progress_task) {
+    public Progress(int progress_id, String progress_description, String progress_start, String progress_end, String progress_approved, String progress_comment, String progress_task) {
         this.progress_id = progress_id;
         this.progress_description = progress_description;
         this.progress_start = progress_start;
@@ -92,7 +92,7 @@ public class Progress implements Parcelable {
     }
 
     protected Progress(Parcel in) {
-        progress_id = in.readString();
+        progress_id = in.readInt();
         progress_description = in.readString();
         progress_start = in.readString();
         progress_end = in.readString();
@@ -103,7 +103,7 @@ public class Progress implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeString(progress_id);
+        dest.writeInt(progress_id);
         dest.writeString(progress_description);
         dest.writeString(progress_start);
         dest.writeString(progress_end);

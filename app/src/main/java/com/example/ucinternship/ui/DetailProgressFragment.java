@@ -93,6 +93,7 @@ public class DetailProgressFragment extends Fragment {
 
         if (getArguments() != null) {
             progress = DetailProgressFragmentArgs.fromBundle(getArguments()).getProgress();
+            Log.d("progressID", "detail progress - "+progress.getProgress_id());
             loadProgress(progress);
         }
 

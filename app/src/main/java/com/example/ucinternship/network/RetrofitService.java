@@ -2,6 +2,7 @@ package com.example.ucinternship.network;
 
 import com.example.ucinternship.model.response.AcceptResponse;
 import com.example.ucinternship.model.response.PendingResponse;
+import com.example.ucinternship.model.response.ProgressResponse;
 import com.example.ucinternship.model.response.ProjectUserResponse;
 import com.example.ucinternship.model.response.StudentProgressResponse;
 import com.example.ucinternship.model.response.ProjectResponse;
@@ -140,6 +141,12 @@ public class RetrofitService {
     }
     public Call<ProjectUserResponse> declineStudent(int user_id, int project_id) {
         return api.declineStudent(user_id, project_id);
+    }
+    public Call<ProgressResponse> approveProgress(int progress_id, String comment) {
+        return api.approveProgress(progress_id, comment);
+    }
+    public Call<ProgressResponse> declineProgress(int progress_id, String comment) {
+        return api.declineProgress(progress_id, comment);
     }
 
 
