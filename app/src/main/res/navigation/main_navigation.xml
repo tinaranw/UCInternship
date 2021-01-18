@@ -45,6 +45,10 @@
         <action
             android:id="@+id/actionProfileToSplash"
             app:destination="@id/splashFragment" />
+        <argument
+            android:name="task"
+            app:argType="com.example.ucinternship.model.local.Task"
+            app:nullable="true" />
     </fragment>
     <fragment
         android:id="@+id/projectListFragment"
