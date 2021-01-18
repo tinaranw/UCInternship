@@ -46,6 +46,15 @@ public interface Endpoints {
     @GET("offer")
     Call<ProjectResponse> getProjectOffers();
 
+    @GET("offers/event")
+    Call<ProjectResponse> getEventOffer();
+
+    @GET("offers/education")
+    Call<ProjectResponse> getEducationOffer();
+
+    @GET("offers/other")
+    Call<ProjectResponse> getOtherOffer();
+
     @GET("task")
     Call<TaskResponse> getTasks();
 

@@ -215,6 +215,78 @@ public class ProjectRepository {
         return listOther;
     }
 
+    public MutableLiveData<List<Project>> getEventOffer() {
+        MutableLiveData<List<Project>> listEventOffer = new MutableLiveData<>();
+
+        apiService.getEventOffer().enqueue(new Callback<ProjectResponse>() {
+            @Override
+            public void onResponse(Call<ProjectResponse> call, Response<ProjectResponse> response) {
+                Log.d(TAG, "onResponse: " + response.code());
+                if (response.isSuccessful()) {
+                    Log.d(TAG, "onResponse: " + response.code());
+                    if (response.body() != null) {
+                        Log.d(TAG, "onResponse: " + response.body().getResults().size());
+                        listEventOffer.postValue(response.body().getResults());
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ProjectResponse> call, Throwable t) {
+                Log.d(TAG, "onFailure: " + t.getMessage());
+            }
+        });
+        return listEventOffer;
+    }
+
+    public MutableLiveData<List<Project>> getEducationOffer() {
+        MutableLiveData<List<Project>> listEducationOffer = new MutableLiveData<>();
+
+        apiService.getEducationOffer().enqueue(new Callback<ProjectResponse>() {
+            @Override
+            public void onResponse(Call<ProjectResponse> call, Response<ProjectResponse> response) {
+                Log.d(TAG, "onResponse: " + response.code());
+                if (response.isSuccessful()) {
+                    Log.d(TAG, "onResponse: " + response.code());
+                    if (response.body() != null) {
+                        Log.d(TAG, "onResponse: " + response.body().getResults().size());
+                        listEducationOffer.postValue(response.body().getResults());
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ProjectResponse> call, Throwable t) {
+                Log.d(TAG, "onFailure: " + t.getMessage());
+            }
+        });
+        return listEducationOffer;
+    }
+
+    public MutableLiveData<List<Project>> getOtherOffer() {
+        MutableLiveData<List<Project>> listOtherOffer = new MutableLiveData<>();
+
+        apiService.getOtherOffer().enqueue(new Callback<ProjectResponse>() {
+            @Override
+            public void onResponse(Call<ProjectResponse> call, Response<ProjectResponse> response) {
+                Log.d(TAG, "onResponse: " + response.code());
+                if (response.isSuccessful()) {
+                    Log.d(TAG, "onResponse: " + response.code());
+                    if (response.body() != null) {
+                        Log.d(TAG, "onResponse: " + response.body().getResults().size());
+                        listOtherOffer.postValue(response.body().getResults());
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ProjectResponse> call, Throwable t) {
+                Log.d(TAG, "onFailure: " + t.getMessage());
+            }
+        });
+        return listOtherOffer;
+    }
+
 
     public MutableLiveData<ProjectUserResponse> acceptStudent(int user_id, int project_id) {
         MutableLiveData<ProjectUserResponse> supervisorResponse = new MutableLiveData<>();

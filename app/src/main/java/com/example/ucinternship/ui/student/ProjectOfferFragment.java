@@ -69,6 +69,18 @@ public class ProjectOfferFragment extends Fragment {
         viewModel.init(helper.getAccessToken());
         viewModel.getProjectOffers().observe(requireActivity(), observeViewModel);
 
+        event.setOnClickListener(v -> {
+            viewModel.getEventOffer().observe(requireActivity(), observeViewModelEvent);
+        });
+
+        education.setOnClickListener(v -> {
+            viewModel.getEducationOffer().observe(requireActivity(), observeViewModelEvent);
+        });
+
+        other.setOnClickListener(v -> {
+            viewModel.getOtherOffer().observe(requireActivity(), observeViewModelEvent);
+        });
+
         rv.setLayoutManager(new LinearLayoutManager(getActivity()));
         adapter = new ProjectOfferAdapter(getActivity());
         searchList();
@@ -88,6 +100,22 @@ public class ProjectOfferFragment extends Fragment {
             }
         });
     }
+
+    private Observer<List<Project>> observeViewModelEvent = new Observer<List<Project>>() {
+        @Override
+        public void onChanged(List<Project> projects) {
+            if(projects != null){
+                adapter.setProjectList(projects);
+                adapter.notifyDataSetChanged();
+                rv.setAdapter(adapter);
+                noproject.setVisibility(View.INVISIBLE);
+                noproject_txt.setVisibility(View.INVISIBLE);
+            } else {
+                noproject.setVisibility(View.VISIBLE);
+                noproject_txt.setVisibility(View.VISIBLE);
+            }
+        }
+    };
 
     private Observer<List<Project>> observeViewModel = new Observer<List<Project>>() {
         @Override

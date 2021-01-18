@@ -66,7 +66,7 @@ public class StudentAdapter extends RecyclerView.Adapter<StudentAdapter.StudentV
         ProjectUser projectUser = studentList.get(i);
         count = 0;
         if (projectUser.getStatus().equals("0")) {
-            projectDetailViewModel.acceptStudent(projectUser.getUser().getUser_id(), projectUser.getProject_id());
+//            projectDetailViewModel.acceptStudent(projectUser.getUser().getUser_id(), projectUser.getProject_id());
             count++;
             holder.name.setText(projectUser.getUser().getUser_name());
             holder.accept.setOnClickListener(view ->
