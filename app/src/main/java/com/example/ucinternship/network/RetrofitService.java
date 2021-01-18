@@ -85,6 +85,9 @@ public class RetrofitService {
     public Call<TaskResponse> getTasks() {
         return api.getTasks();
     }
+    public Call<TaskResponse> getTaskLists(int project_id) {
+        return api.getTaskLists( project_id);
+    }
 
     public Call<StudentProgressResponse> getProgresses() {
         return api.getProgresses();

@@ -20,6 +20,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.example.ucinternship.R;
 import com.example.ucinternship.adapter.AcceptedStudentAdapter;
 import com.example.ucinternship.adapter.ProjectAdapter;
@@ -27,11 +28,13 @@ import com.example.ucinternship.adapter.StudentAdapter;
 import com.example.ucinternship.adapter.TaskAdapter;
 import com.example.ucinternship.model.local.Project;
 import com.example.ucinternship.model.local.ProjectUser;
+import com.example.ucinternship.model.local.Supervisor;
 import com.example.ucinternship.model.local.Task;
 import com.example.ucinternship.ui.viewmodel.ProfileViewModel;
 import com.example.ucinternship.ui.viewmodel.ProjectDetailViewModel;
 import com.example.ucinternship.ui.viewmodel.ProjectViewModel;
 import com.example.ucinternship.ui.viewmodel.TaskViewModel;
+import com.example.ucinternship.utils.Constants;
 import com.example.ucinternship.utils.SharedPreferenceHelper;
 
 import java.util.List;
@@ -111,8 +114,7 @@ public class DetailProjectFragment extends Fragment implements LifecycleOwner {
         }
         taskViewModel = ViewModelProviders.of(requireActivity()).get(TaskViewModel.class);
         taskViewModel.init(helper.getAccessToken());
-        taskViewModel.getTasks().observe(requireActivity(), observeViewModel);
-
+        taskViewModel.getTaskLists(project.getProject_id()).observe(requireActivity(), observeViewModel);
         task_rv.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false));
         taskAdapter = new TaskAdapter(getActivity());
 

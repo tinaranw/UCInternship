@@ -59,5 +59,30 @@ public class TaskRepository {
         });
         return listTasks;
     }
+    public MutableLiveData<List<Task>> getTaskLists(int project_id) {
+        MutableLiveData<List<Task>> listTasks = new MutableLiveData<>();
+        apiService.getTaskLists(project_id).enqueue(new Callback<TaskResponse>() {
+            @Override
+            public void onResponse(Call<TaskResponse> call, Response<TaskResponse> response) {
+                Log.d(TAG, "onResponseTaskResponse: "+ response.code());
+                if (response.isSuccessful()) {
+                    Log.d(TAG, "onResponseb: " + response.code() + " asd " + response.message() + " asd " + response.body() + " asd " + response.errorBody() + " asd " + response.headers());
+                    if (response.code() == 200) {
+                        if (response.body() != null) {
+                            listTasks.postValue(response.body().getResults());
+                        }
+                    }
+                } else {
+                    Log.d(TAG, "onResponsea: " + response.code());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<TaskResponse> call, Throwable t) {
+                Log.d(TAG, "onFailure: " + t.getMessage());
+            }
+        });
+        return listTasks;
+    }
 
 }

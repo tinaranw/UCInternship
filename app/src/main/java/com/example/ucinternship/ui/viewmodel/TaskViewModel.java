@@ -1,10 +1,13 @@
 package com.example.ucinternship.ui.viewmodel;
 
 import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 import com.example.ucinternship.model.local.Project;
 import com.example.ucinternship.model.local.Task;
+import com.example.ucinternship.model.response.ProjectUserResponse;
+import com.example.ucinternship.model.response.TaskResponse;
 import com.example.ucinternship.repository.ProjectRepository;
 import com.example.ucinternship.repository.TaskRepository;
 
@@ -23,6 +26,9 @@ public class TaskViewModel extends ViewModel {
 
     public LiveData<List<Task>> getTasks() {
         return repository.getTasks();
+    }
+    public LiveData<List<Task>> getTaskLists( int project_id) {
+        return repository.getTaskLists(project_id);
     }
 
     @Override
