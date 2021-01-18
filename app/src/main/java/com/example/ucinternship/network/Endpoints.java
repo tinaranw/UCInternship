@@ -46,6 +46,17 @@ public interface Endpoints {
     @GET("offer")
     Call<ProjectResponse> getProjectOffers();
 
+    @GET("offers/event")
+    Call<ProjectResponse> getEventOffer();
+
+    @GET("offers/education")
+    Call<ProjectResponse> getEducationOffer();
+
+    @GET("offers/other")
+    Call<ProjectResponse> getOtherOffer();
+
+    @GET("task")
+    Call<TaskResponse> getTasks();
 
     @GET("student/progress")
     Call<StudentProgressResponse> getProgresses();
@@ -83,9 +94,6 @@ public interface Endpoints {
     @POST("supervisor/applicant/decline")
     @FormUrlEncoded
     Call<ProjectUserResponse> declineStudent(@Field("user_id") int user_id, @Field("project_id") int project_id);
-
-    @GET("task")
-    Call<TaskResponse> getTasks();
 
     @POST("project/tasks")
     @FormUrlEncoded

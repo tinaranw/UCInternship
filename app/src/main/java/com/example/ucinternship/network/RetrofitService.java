@@ -74,6 +74,18 @@ public class RetrofitService {
         return api.getProjectOffers();
     }
 
+    public Call<ProjectResponse> getEventOffer() {
+        return api.getEventOffer();
+    }
+
+    public Call<ProjectResponse> getEducationOffer() {
+        return api.getEducationOffer();
+    }
+
+    public Call<ProjectResponse> getOtherOffer() {
+        return api.getOtherOffer();
+    }
+
     public Call<StudentResponse> getStudentDetails(int id) {
         return api.getStudentDetails(id);
     }

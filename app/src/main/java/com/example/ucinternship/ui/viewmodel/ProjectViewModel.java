@@ -41,6 +41,16 @@ public class ProjectViewModel extends ViewModel {
     public LiveData<List<Project>> getOther() {
         return repository.getOther();
     }
+    public LiveData<List<Project>> getEventOffer() {
+        return repository.getEventOffer();
+    }
+    public LiveData<List<Project>> getEducationOffer() {
+        return repository.getEducationOffer();
+    }
+    public LiveData<List<Project>> getOtherOffer() {
+        return repository.getOtherOffer();
+    }
+
 
     @Override
     protected void onCleared() {
