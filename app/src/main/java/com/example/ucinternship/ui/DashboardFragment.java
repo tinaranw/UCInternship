@@ -126,7 +126,6 @@ public class DashboardFragment extends Fragment {
             accept.setText(String.valueOf(projects.size()));
         }
     };
-    ;
 
     private final Observer<Student> observeStudentDetailViewModel = details -> {
         if (details != null) {

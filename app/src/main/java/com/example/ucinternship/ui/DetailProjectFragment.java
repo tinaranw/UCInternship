@@ -148,10 +148,13 @@ public class DetailProjectFragment extends Fragment implements LifecycleOwner {
             projectstatus.setText("Available");
         } else if(project.getProject_status().equalsIgnoreCase("1")){
             projectstatus.setText("Ongoing");
+            getView().findViewById(R.id.apply_project_btn).setVisibility(View.GONE);
         } else if(project.getProject_status().equalsIgnoreCase("2")){
             projectstatus.setText("Completed");
+            getView().findViewById(R.id.apply_project_btn).setVisibility(View.GONE);
         } else if(project.getProject_status().equalsIgnoreCase("3")){
             projectstatus.setText("Suspended");
+            getView().findViewById(R.id.apply_project_btn).setVisibility(View.GONE);
         }
 
         projectdesc.setText(project.getProject_description());
@@ -162,6 +165,7 @@ public class DetailProjectFragment extends Fragment implements LifecycleOwner {
             getView().findViewById(R.id.incomingapplicationsdetail_inc).setVisibility(View.GONE);
             getView().findViewById(R.id.acceptedstudentsdetail_inc).setVisibility(View.GONE);
         } else {
+            getView().findViewById(R.id.apply_project_btn).setVisibility(View.GONE);
             appliedstudents_rv.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false));
             studentAdapter = new StudentAdapter(getActivity());
 
@@ -175,6 +179,16 @@ public class DetailProjectFragment extends Fragment implements LifecycleOwner {
             acceptedStudentAdapter.setAcceptedStudentList( project.getAccepted_students());
             acceptedStudentAdapter.notifyDataSetChanged();
             acceptedstudents_rv.setAdapter(acceptedStudentAdapter);
+        }
+
+        if(project.getProject_status().equals("0")){
+            getView().findViewById(R.id.rv_task).setVisibility(View.GONE);
+        } else  if(project.getProject_status().equals("1")){
+            Log.d("projectstatus", project.getProject_status());
+        } else  if(project.getProject_status().equals("2")){
+            Log.d("projectstatus", project.getProject_status());
+        } else {
+            Log.d("projectstatus", project.getProject_status());
         }
 
     }

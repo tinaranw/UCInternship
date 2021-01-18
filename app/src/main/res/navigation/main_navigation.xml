@@ -103,5 +103,21 @@
             android:name="progress"
             app:argType="com.example.ucinternship.model.local.Progress"
             app:nullable="true" />
+        <action
+            android:id="@+id/ActionDetailProgressToAddComment"
+            app:destination="@id/addCommentFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/addCommentFragment"
+        android:name="com.example.ucinternship.ui.staff.AddCommentFragment"
+        android:label="fragment_add_comment"
+        tools:layout="@layout/fragment_add_comment" >
+        <action
+            android:id="@+id/ActionAddCommentToDetailProgress"
+            app:destination="@id/progressFragment" />
+        <argument
+            android:name="progress"
+            app:argType="com.example.ucinternship.model.local.Progress"
+            app:nullable="true" />
     </fragment>
 </navigation>
