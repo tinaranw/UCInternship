@@ -17,6 +17,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.SearchView;
 import android.widget.TextView;
 
@@ -48,6 +49,8 @@ public class ProjectListFragment extends Fragment {
     RecyclerView rv;
     @BindView(R.id.projectsearchbar_search)
     SearchView search;
+    @BindView(R.id.project_list_progressbar)
+    ProgressBar loading;
 
     private ProjectViewModel viewModel;
     private ProjectAdapter adapter;
@@ -71,7 +74,7 @@ public class ProjectListFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         ButterKnife.bind(this, view);
-
+        loading(true);
         helper = SharedPreferenceHelper.getInstance(requireActivity());
         viewModel = ViewModelProviders.of(requireActivity()).get(ProjectViewModel.class);
         viewModel.init(helper.getAccessToken());
@@ -122,6 +125,7 @@ public class ProjectListFragment extends Fragment {
                 noproject.setVisibility(View.VISIBLE);
                 noproject_txt.setVisibility(View.VISIBLE);
             }
+            loading(false);
         }
     };
 
@@ -138,6 +142,7 @@ public class ProjectListFragment extends Fragment {
                 noproject.setVisibility(View.VISIBLE);
                 noproject_txt.setVisibility(View.VISIBLE);
             }
+            loading(false);
         }
     };
 
@@ -150,10 +155,12 @@ public class ProjectListFragment extends Fragment {
                 rv.setAdapter(adapter);
                 noproject.setVisibility(View.INVISIBLE);
                 noproject_txt.setVisibility(View.INVISIBLE);
+
             } else {
                 noproject.setVisibility(View.VISIBLE);
                 noproject_txt.setVisibility(View.VISIBLE);
             }
+            loading(false);
         }
     };
 
@@ -170,14 +177,17 @@ public class ProjectListFragment extends Fragment {
                 noproject.setVisibility(View.VISIBLE);
                 noproject_txt.setVisibility(View.VISIBLE);
             }
+            loading(false);
         }
     };
 
-    private void showLoading(Boolean state) {
+    private void loading(Boolean state) {
         if (state) {
             rv.setVisibility(View.GONE);
+            loading.setVisibility(View.VISIBLE);
         } else {
             rv.setVisibility(View.VISIBLE);
+            loading.setVisibility(View.GONE);
         }
     }
 }

@@ -13,6 +13,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.SearchView;
 import android.widget.TextView;
 import com.example.ucinternship.R;
@@ -43,6 +44,8 @@ public class ProjectOfferFragment extends Fragment {
     ImageView noproject;
     @BindView(R.id.noprojectoffer_txt)
     TextView noproject_txt;
+    @BindView(R.id.project_offer_progressbar)
+    ProgressBar loading;
 
     private ProjectViewModel viewModel;
     private ProjectOfferAdapter adapter;
@@ -63,7 +66,7 @@ public class ProjectOfferFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         ButterKnife.bind(this, view);
-
+        loading(true);
         helper = SharedPreferenceHelper.getInstance(requireActivity());
         viewModel = ViewModelProviders.of(requireActivity()).get(ProjectViewModel.class);
         viewModel.init(helper.getAccessToken());
@@ -121,6 +124,8 @@ public class ProjectOfferFragment extends Fragment {
         @Override
         public void onChanged(List<Project> projects) {
             if(projects != null){
+                loading(false);
+
                 adapter.setProjectList(projects);
                 adapter.notifyDataSetChanged();
                 rv.setAdapter(adapter);
@@ -132,4 +137,14 @@ public class ProjectOfferFragment extends Fragment {
             }
         }
     };
+
+    private void loading(Boolean state) {
+        if (state) {
+            rv.setVisibility(View.GONE);
+            loading.setVisibility(View.VISIBLE);
+        } else {
+            rv.setVisibility(View.VISIBLE);
+            loading.setVisibility(View.GONE);
+        }
+    }
 }
