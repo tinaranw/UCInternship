@@ -148,6 +148,9 @@ public class RetrofitService {
     public Call<ProgressResponse> declineProgress(int progress_id, String comment) {
         return api.declineProgress(progress_id, comment);
     }
+    public Call<ProjectUserResponse> applyToAProject(int user_id, int project_id) {
+        return api.applyToAProject(user_id, project_id);
+    }
 
 
     public Call<JsonObject> logout() {

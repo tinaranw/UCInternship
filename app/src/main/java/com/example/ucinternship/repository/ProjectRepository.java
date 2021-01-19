@@ -338,4 +338,30 @@ public class ProjectRepository {
         });
         return supervisorResponse;
     }
+
+    public MutableLiveData<ProjectUserResponse> applyToAProject(int project_id, int user_id) {
+        MutableLiveData<ProjectUserResponse> applicationResponse = new MutableLiveData<>();
+        apiService.applyToAProject(user_id, project_id).enqueue(new Callback<ProjectUserResponse>() {
+            @Override
+            public void onResponse(Call<ProjectUserResponse> call, Response<ProjectUserResponse> response) {
+                if (response.isSuccessful()) {
+                    Log.d(TAG, "onResponseApplication: " + response.code());
+                    if (response.code() == 201) {
+                        if (response.body() != null) {
+                            applicationResponse.postValue(response.body());
+                        }
+                    }
+                } else {
+//                    Log.d(TAG, "onResponsea: " + response.code() + " asd " + response.message() + " asd " + response.body() + " asd " + response.errorBody() + " asd " + response.headers());
+                    Log.d(TAG, "onResponseApplicationIsNotSuccessful: " + response.raw());
+                    Log.d(TAG, "onResponseApplicationIsNotSuccessful: " + user_id + " " + project_id );
+                }
+            }
+            @Override
+            public void onFailure(Call<ProjectUserResponse> call, Throwable t) {
+                Log.d(TAG, "onFailure: " + t.getMessage());
+            }
+        });
+        return applicationResponse;
+    }
 }

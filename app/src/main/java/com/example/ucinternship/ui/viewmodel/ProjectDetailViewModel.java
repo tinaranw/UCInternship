@@ -25,4 +25,8 @@ public class ProjectDetailViewModel extends ViewModel {
     public MutableLiveData<ProjectUserResponse> declineStudent(int user_id, int project_id) {
         return projectRepository.declineStudent(user_id, project_id);
     }
+
+    public MutableLiveData<ProjectUserResponse> applyToAProject(int user_id, int project_id) {
+        return projectRepository.applyToAProject(user_id, project_id);
+    }
 }

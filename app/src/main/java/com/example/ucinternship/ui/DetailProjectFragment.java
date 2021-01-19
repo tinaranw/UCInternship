@@ -38,6 +38,7 @@ import com.example.ucinternship.model.local.Project;
 import com.example.ucinternship.model.local.ProjectUser;
 import com.example.ucinternship.model.local.Supervisor;
 import com.example.ucinternship.model.local.Task;
+import com.example.ucinternship.ui.staff.AddCommentFragmentDirections;
 import com.example.ucinternship.ui.viewmodel.ProfileViewModel;
 import com.example.ucinternship.ui.viewmodel.ProjectDetailViewModel;
 import com.example.ucinternship.ui.viewmodel.ProjectViewModel;
@@ -122,16 +123,18 @@ public class DetailProjectFragment extends Fragment implements LifecycleOwner {
         if (getArguments() != null) {
             project = DetailProjectFragmentArgs.fromBundle(getArguments()).getProject();
             loadProject(view, project);
-        }
-        taskViewModel = ViewModelProviders.of(requireActivity()).get(TaskViewModel.class);
-        taskViewModel.init(helper.getAccessToken());
-        taskViewModel.getTaskLists(project.getProject_id()).observe(requireActivity(), observeViewModel);
-        task_rv.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false));
-        taskAdapter = new TaskAdapter(getActivity());
 
-        apply.setOnClickListener(v -> {
-            apply();
-        });
+            taskViewModel = ViewModelProviders.of(requireActivity()).get(TaskViewModel.class);
+            taskViewModel.init(helper.getAccessToken());
+            taskViewModel.getTaskLists(project.getProject_id()).observe(requireActivity(), observeViewModel);
+            task_rv.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false));
+            taskAdapter = new TaskAdapter(getActivity());
+
+            apply.setOnClickListener(v -> {
+                apply(project.getProject_id(), helper.getUserID());
+                Log.d("project_id", String.valueOf(project.getProject_id()));
+            });
+        }
 
     }
 
@@ -221,7 +224,7 @@ public class DetailProjectFragment extends Fragment implements LifecycleOwner {
         }
     };
 
-    public void apply(){
+    public void apply(int project_id, int user_id){
 
         new AlertDialog.Builder(getActivity())
                 .setTitle("Confirmation")
@@ -232,7 +235,14 @@ public class DetailProjectFragment extends Fragment implements LifecycleOwner {
                     dialog.show();
                     new Handler(Looper.getMainLooper()).postDelayed(() -> {
                         dialog.cancel();
-
+                        Log.d("project_id - observer", String.valueOf(project_id));
+                        projectDetailViewModel.applyToAProject(project_id, user_id).observe(requireActivity(), tokenResponse -> {
+                            if (tokenResponse != null) {
+                                Toast.makeText(getActivity(), "Project Applied.", Toast.LENGTH_SHORT).show();
+                            } else {
+                                Toast.makeText(getActivity(), "Failed to Apply to a Project.", Toast.LENGTH_SHORT).show();
+                            }
+                        });
 
                     }, 2000);
                 })

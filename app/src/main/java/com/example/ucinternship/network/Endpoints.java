@@ -107,4 +107,8 @@ public interface Endpoints {
     @POST("progress/decline")
     @FormUrlEncoded
     Call<ProgressResponse> declineProgress(@Field("progress_id") int progress_id, @Field("comment") String comment);
+
+    @POST("project/apply")
+    @FormUrlEncoded
+    Call<ProjectUserResponse> applyToAProject(@Field("user_id") int user_id, @Field("project_id") int project_id);
 }
