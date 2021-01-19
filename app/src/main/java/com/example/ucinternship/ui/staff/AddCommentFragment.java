@@ -4,7 +4,9 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.navigation.NavDirections;
 import androidx.navigation.Navigation;
@@ -20,6 +22,7 @@ import android.widget.Toast;
 
 import com.example.ucinternship.R;
 import com.example.ucinternship.model.local.Progress;
+import com.example.ucinternship.ui.DetailProgressFragment;
 import com.example.ucinternship.ui.DetailProgressFragmentArgs;
 import com.example.ucinternship.ui.DetailProgressFragmentDirections;
 import com.example.ucinternship.ui.viewmodel.ProfileViewModel;
@@ -35,6 +38,8 @@ public class AddCommentFragment extends Fragment {
     EditText comment;
     @BindView(R.id.approve_progress_btn)
     Button approve;
+    @BindView(R.id.comment_tb)
+    Toolbar toolbar;
 
     @BindView(R.id.decline_progress_btn)
     Button decline;
@@ -74,6 +79,7 @@ public class AddCommentFragment extends Fragment {
             });
         }
 
+        backButtonTb();
 
     }
 
@@ -97,6 +103,42 @@ public class AddCommentFragment extends Fragment {
                 NavDirections action = AddCommentFragmentDirections.ActionAddCommentToDetailProgress(progress);
                 Navigation.findNavController(view).navigate(action);
             };
+        });
+    }
+    public void backButtonTb() {
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //bisa pake ini jg
+//                Fragment fragment = new DetailProgressFragment();
+//                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+//                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+//                fragmentTransaction.replace(R.id.fragment, fragment);
+//                fragmentTransaction.addToBackStack(null);
+//                fragmentTransaction.commit();
+                FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
+
+//                Bundle bundle = new Bundle();
+//                progress = DetailProgressFragmentArgs.fromBundle(getArguments()).getProgress();
+//                bundle.putParcelable("progress", progress);
+//                new DetailProgressFragment().setArguments(bundle);
+//
+//                Log.d("testProgress", String.valueOf(progress.getProgress_id()));
+//
+//                fragmentTransaction.replace(R.id.fragment, new DetailProgressFragment()).commit();
+//                fragmentTransaction.addToBackStack(null);
+
+                Bundle bundle = new Bundle();
+                progress = DetailProgressFragmentArgs.fromBundle(getArguments()).getProgress();
+                bundle.putParcelable("progress", progress);
+                DetailProgressFragment myFragment = new DetailProgressFragment();
+                myFragment.setArguments(bundle);
+                Log.d("testProgress", String.valueOf(progress.getProgress_id()));
+
+                fragmentTransaction.replace(R.id.fragment,myFragment).commit();
+                fragmentTransaction.addToBackStack(null);
+
+            }
         });
     }
 

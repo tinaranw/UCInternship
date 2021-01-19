@@ -101,6 +101,8 @@ public class DetailProgressFragment extends Fragment {
             NavDirections action = DetailProgressFragmentDirections.ActionDetailProgressToAddComment(progress);
             Navigation.findNavController(view).navigate(action);
         });
+        Bundle bundle = getArguments();
+        progress = (Progress) bundle.getParcelable("progress");
     }
 
     private final Observer<Student> observeStudentDetailViewModel = details -> {
