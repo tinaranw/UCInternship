@@ -55,6 +55,7 @@ public class DetailTaskFragment extends Fragment {
     private ProgressViewModel progressViewModel;
     private ProfileViewModel profileViewModel;
     private String checkStudent, checkStaff, checkLecturer;
+
     public DetailTaskFragment() {
         // Required empty public constructor
     }
@@ -91,29 +92,27 @@ public class DetailTaskFragment extends Fragment {
         profileViewModel = ViewModelProviders.of(requireActivity()).get(ProfileViewModel.class);
         profileViewModel.init(helper.getAccessToken());
         Log.d("roleku", "" + helper.getRole());
-        if (helper.getRole().equalsIgnoreCase(checkStudent.replace("'", "\\"))) {
-            progressViewModel.getProgresses().observe(requireActivity(), observeViewModel);
-        } else {
-            progressViewModel.getSpvProgresses().observe(requireActivity(), observeViewModel);
-        }
+        Log.d("task fragment - task id", "" + task.getTask_id());
+        Log.d("task fragment - name", "" + task.getTask_name());
+        progressViewModel.getProgressLists(task.getTask_id()).observe(requireActivity(), observeViewModel);
 
         progress_rv.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false));
         progressAdapter = new ProgressAdapter(getActivity());
     }
 
-    private void loadTask(Task task){
+    private void loadTask(Task task) {
 
         tasktitle.setText(task.getTask_name());
         taskdesc.setText(task.getTask_description());
-        if(task.getTask_approved().equalsIgnoreCase("0")){
+        if (task.getTask_approved().equalsIgnoreCase("0")) {
             taskstatus.setText("Ongoing");
-        } else if(task.getTask_approved().equalsIgnoreCase("1")){
+        } else if (task.getTask_approved().equalsIgnoreCase("1")) {
             taskstatus.setText("Completed");
         }
     }
 
     private Observer<List<Progress>> observeViewModel = progress -> {
-        if(progress != null){
+        if (progress != null) {
             Log.d("ProgressChecking", String.valueOf(progress.size()));
             progressAdapter.setProgressList(progress);
             progressAdapter.notifyDataSetChanged();

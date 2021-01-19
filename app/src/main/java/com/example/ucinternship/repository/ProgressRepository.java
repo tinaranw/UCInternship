@@ -5,10 +5,12 @@ import android.util.Log;
 import androidx.lifecycle.MutableLiveData;
 
 import com.example.ucinternship.model.local.Progress;
+import com.example.ucinternship.model.local.Progress;
 import com.example.ucinternship.model.response.ProgressResponse;
 import com.example.ucinternship.model.response.ProgressResponse;
 import com.example.ucinternship.model.response.StudentProgressResponse;
 import com.example.ucinternship.model.response.SupervisorProgressResponse;
+import com.example.ucinternship.model.response.ProgressResponse;
 import com.example.ucinternship.network.RetrofitService;
 
 import java.util.List;
@@ -55,10 +57,8 @@ public class ProgressRepository {
                     }
                 }
             }
-
             @Override
             public void onFailure(Call<StudentProgressResponse> call, Throwable t) {
-
             }
         });
         return listProgress;
@@ -134,6 +134,27 @@ public class ProgressRepository {
             }
         });
         return progressResponse;
+    }
+    public MutableLiveData<List<Progress>> getProgressLists(int task_id){
+        MutableLiveData<List<Progress>> listProgress = new MutableLiveData<>();
+        apiService.getProgressLists(task_id).enqueue(new Callback<StudentProgressResponse>() {
+            @Override
+            public void onResponse(Call<StudentProgressResponse> call, Response<StudentProgressResponse> response) {
+                Log.d(TAG, "onResponseStudentProgressResponse: "+ response.code());
+                if(response.isSuccessful()){
+                    Log.d(TAG, "onResponseStudentProgressSuccessful: "+ response.code());
+                    if(response.body() != null){
+                        Log.d(TAG, "onResponseStudentProgressList: "+ response.body().getResults().size());
+                        listProgress.postValue(response.body().getResults());
+                        resetInstance();
+                    }
+                }
+            }
+            @Override
+            public void onFailure(Call<StudentProgressResponse> call, Throwable t) {
+            }
+        });
+        return listProgress;
     }
 
 }

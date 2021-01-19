@@ -105,6 +105,9 @@ public class RetrofitService {
     public Call<StudentProgressResponse> getProgresses() {
         return api.getProgresses();
     }
+    public Call<StudentProgressResponse> getProgressLists(int task_id) {
+        return api.getProgressLists(task_id);
+    }
 
     public Call<SupervisorProgressResponse> getSpvProgresses() {
         return api.getSpvProgresses();

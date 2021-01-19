@@ -26,6 +26,9 @@ public class ProgressViewModel  extends ViewModel {
     public LiveData<List<Progress>> getProgresses() {
         return repository.getProgresses();
     }
+    public LiveData<List<Progress>> getProgressLists(int task_id) {
+        return repository.getProgressLists(task_id);
+    }
 
     public LiveData<List<Progress>> getSpvProgresses() {
         return repository.getSpvProgresses();

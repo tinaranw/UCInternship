@@ -111,4 +111,8 @@ public interface Endpoints {
     @POST("project/apply")
     @FormUrlEncoded
     Call<ProjectUserResponse> applyToAProject(@Field("user_id") int user_id, @Field("project_id") int project_id);
+
+    @POST("project/task/progresses")
+    @FormUrlEncoded
+    Call<StudentProgressResponse> getProgressLists(@Field("task_id") int task_id);
 }
