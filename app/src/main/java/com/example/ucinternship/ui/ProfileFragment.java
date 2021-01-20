@@ -23,6 +23,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -83,6 +84,8 @@ public class ProfileFragment extends Fragment {
     ImageView edit;
     @BindView(R.id.logout_btn)
     Button logout;
+    @BindView(R.id.profile_progress_bar)
+    ProgressBar loading;
 
     //kita perlu declare ini, krn fragment butuh data dari sini
     private LogoutViewModel logoutViewModel;
@@ -114,7 +117,7 @@ public class ProfileFragment extends Fragment {
         checkStudent = "App'Models'Student";
         checkStaff = "App'Models'Staff";
         checkLecturer = "App'Models'Lecturer";
-
+        loading(true);
         //inisialisasi sharedpref dan viewmodel -> sm spt firebase yg reference bla"
         helper = SharedPreferenceHelper.getInstance(requireActivity());
         logoutViewModel = ViewModelProviders.of(requireActivity()).get(LogoutViewModel.class);
@@ -148,6 +151,7 @@ public class ProfileFragment extends Fragment {
 
     private final Observer<Student> observeStudentDetailViewModel = details -> {
         if (details != null) {
+            loading(false);
             Info info = details.getStudent_info();
             if (details.getStudent_photo() == null) {
                 image.setImageResource(R.drawable.ic_asset_7);
@@ -174,6 +178,7 @@ public class ProfileFragment extends Fragment {
 
     private final Observer<Supervisor> observeSupervisorDetailViewModel = details -> {
         if (details != null) {
+            loading(false);
             if (details.getSupervisor_photo() == null) {
                 image.setImageResource(R.drawable.ic_asset_7);
             } else {
@@ -241,6 +246,14 @@ public class ProfileFragment extends Fragment {
                 .setNegativeButton("No", (dialog, which) -> dialog.cancel())
                 .create()
                 .show();
+    }
+
+    private void loading(Boolean state) {
+        if (state) {
+            loading.setVisibility(View.VISIBLE);
+        } else {
+            loading.setVisibility(View.GONE);
+        }
     }
 
 

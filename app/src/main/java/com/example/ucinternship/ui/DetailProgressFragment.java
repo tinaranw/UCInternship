@@ -89,6 +89,7 @@ public class DetailProgressFragment extends Fragment {
         if (helper.getRole().equalsIgnoreCase(checkStudent.replace("'", "\\"))) {
             Log.d("checkstudent", "" + checkStudent.replace("'", "\\"));
             profileViewModel.getStudentDetails(helper.getUserID()).observe(requireActivity(), observeStudentDetailViewModel);
+            getView().findViewById(R.id.add_comment_button).setVisibility(View.GONE);
         }
 
         if (getArguments() != null) {
